@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class CarAI : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class CarAI : MonoBehaviour
     private float collisionRaycastLength = 0.1f;
 
     private int CarbonMeter = 0;
+
+
 
     internal bool IsThisLastPathIndex()
     {
@@ -141,6 +144,15 @@ public class CarAI : MonoBehaviour
             Destroy(gameObject);
             Debug.Log("Nagdestroy na ba ang ferson?");
             Debug.Log("Carbon Emission Meter: " + CarbonMeter);
+             CarbonEmissionUI uiManager = FindObjectOfType<CarbonEmissionUI>();
+            if (uiManager != null)
+            {
+                uiManager.UpdateCarbonMeter(CarbonMeter);
+            }
+            else
+            {
+                Debug.LogError("UIManager not found in the scene.");
+            }
         }
         else
         {
