@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class CarAI : MonoBehaviour
 {
-    [SerializeField]
+ [SerializeField]
     private List<Vector3> path = null;
     [SerializeField]
     private float arriveDistance = .3f, lastPointArriveDistance = .1f;
@@ -20,7 +21,13 @@ public class CarAI : MonoBehaviour
     [SerializeField]
     private float collisionRaycastLength = 0.1f;
 
-    private int CarbonMeter = 0;
+    // [SerializeField]
+    // public Text carbonMeterText; // Reference to the UI Text element
+
+    // private static int CarbonMeter = 0;
+
+    // Reference to the CarbonMeter script
+    public CarbonMeter carbonMeter;
 
     internal bool IsThisLastPathIndex()
     {
@@ -51,7 +58,28 @@ public class CarAI : MonoBehaviour
         {
             currentTargetPosition = path[index];
         }
+
+        
+        //UpdateCarbonMeterUI();
+
+        // You can find the CarbonMeter script in the scene if it's not assigned in the Unity Editor
+        if (carbonMeter == null)
+        {
+            carbonMeter = FindObjectOfType<CarbonMeter>();
+            if (carbonMeter == null)
+            {
+                Debug.LogError("CarbonMeter script not found in the scene!");
+            }
+        }
     }
+
+    // private void UpdateCarbonMeterUI()
+    // {
+    //     if (carbonMeterText != null)
+    //     {
+    //         carbonMeterText.text = "Carbon Emission Meter: " + CarbonMeter;
+    //     }
+    // }
 
     public void SetPath(List<Vector3> path)
     {
@@ -61,7 +89,7 @@ public class CarAI : MonoBehaviour
             return;
         }
 
-        path.Reverse(); //pabalik na car
+        //path.Reverse(); //pabalik na car
         this.path = path;
         index = 0;
         currentTargetPosition = this.path[index];
@@ -136,11 +164,13 @@ public class CarAI : MonoBehaviour
         index++;
         if(index >= path.Count)
         {
-            CarbonMeter++;
+            //CarbonMeter++;
+            carbonMeter.IncreaseCarbonMeter(); // Increase carbon meter value
             Stop = true;
             Destroy(gameObject);
             Debug.Log("Nagdestroy na ba ang ferson?");
-            Debug.Log("Carbon Emission Meter: " + CarbonMeter);
+            //Debug.Log("Carbon Emission Meter: " + CarbonMeter);
+            
         }
         else
         {
