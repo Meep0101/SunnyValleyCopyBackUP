@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    public Action OnRoadPlacement, OnHousePlacement, OnSpecialPlacement;
-    public Button placeRoadButton, placeHouseButton, placeSpecialButton;
+    public Action OnRoadPlacement, OnRemoveRoad, OnHousePlacement, OnSpecialPlacement;
+    public Button placeRoadButton, removeRoadButton, placeHouseButton, placeSpecialButton;
 
     public Color outlineColor;
     List<Button> buttonList;
@@ -21,6 +21,14 @@ public class UIController : MonoBehaviour
             ResetButtonColor();
             ModifyOutline(placeRoadButton);
             OnRoadPlacement?.Invoke();
+
+        });
+        removeRoadButton.onClick.AddListener(() =>
+        {
+            ResetButtonColor();
+            ModifyOutline(removeRoadButton);
+            //Trigger the removal process when the buttom is clicked
+            OnRemoveRoad?.Invoke();
 
         });
         placeHouseButton.onClick.AddListener(() =>

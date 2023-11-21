@@ -8,6 +8,11 @@ public class PlacementManager : MonoBehaviour
     public int width, height;
     Grid placementGrid;
 
+
+    private StructureModel selectedRoadObject;
+
+    public RoadFixer roadFixer;
+
     private Dictionary<Vector3Int, StructureModel> temporaryRoadobjects = new Dictionary<Vector3Int, StructureModel>();
     private Dictionary<Vector3Int, StructureModel> structureDictionary = new Dictionary<Vector3Int, StructureModel>();
 
@@ -52,6 +57,45 @@ public class PlacementManager : MonoBehaviour
             }
         }
 
+    }
+
+
+    public void RemoveRoadObject(Vector3Int position)
+    {
+        
+        if (structureDictionary.ContainsKey(position))
+        {
+            // 1. Remove the road object from the grid.
+            placementGrid[position.x, position.z] = CellType.Empty;
+            //Debug.Log("GUMANA KA NA PLEASE");
+
+            // 2. Remove the road object from the structureDictionary.
+            StructureModel removedStructure = structureDictionary[position];
+            structureDictionary.Remove(position); //Here, position is a Vector3Int that represents the position you want to remove from the dictionary. After executing this line, the entry for positionToRemove will be removed from the structureDictionary, effectively deleting the association between that position and the structure.
+
+            // 3. Optionally, destroy the associated GameObject.
+            Destroy(removedStructure.gameObject);
+
+            Debug.Log("GUMANA KA NA PLEASE");
+
+            // 4. Fix the neighboring road prefabs.
+            FixRoadPrefabs(position, roadFixer);
+
+            // Update the grid and UI to reflect the changes.
+            // Example: Handle visual updates here.
+        }
+        //Debug.Log("GUMANA KA NA PLEASE PERSSS");
+    }
+
+    private void FixRoadPrefabs(Vector3Int position, RoadFixer roadFixer)
+    {
+        // Get the neighboring road positions around the deleted road position
+        var neighbors = GetNeighboursOfTypeFor(position, CellType.Road);
+
+        foreach (var neighborPosition in neighbors)
+        {
+            roadFixer.FixRoadAtPosition(this, neighborPosition);
+        }
     }
 
     private Vector3Int? GetNearestRoad(Vector3Int position, int width, int height)

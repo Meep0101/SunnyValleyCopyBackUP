@@ -10,9 +10,21 @@ public class InputManager : MonoBehaviour
     public event Action OnMouseUp, OnEscape;
     private Vector2 mouseMovementVector = Vector2.zero;
     public Vector2 CameraMovementVector { get => mouseMovementVector; }
+    // [SerializeField]
+    // Camera mainCamera;
+    
     [SerializeField]
-    Camera mainCamera;
+    private Camera isometricCamera;
+    [SerializeField]
+    private Camera topViewCamera;
 
+    private Camera activeCamera; // Reference to the currently active camera
+
+    void Start()
+    {
+        // Set the isometric camera as the initial active camera
+        SetActiveCamera(isometricCamera);
+    }
 
     void Update()
     {
@@ -28,7 +40,7 @@ public class InputManager : MonoBehaviour
         if (Input.GetMouseButton(0) && EventSystem.current.IsPointerOverGameObject() == false)
         {
 
-            OnMouseClick?.Invoke(mainCamera.ScreenPointToRay(Input.mousePosition));
+            OnMouseClick?.Invoke(activeCamera.ScreenPointToRay(Input.mousePosition));
         }
     }
 
@@ -44,7 +56,7 @@ public class InputManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject() == false)
         {
-            OnMouseClick?.Invoke(mainCamera.ScreenPointToRay(Input.mousePosition));
+            OnMouseClick?.Invoke(activeCamera.ScreenPointToRay(Input.mousePosition));
         }
     }
 
@@ -67,5 +79,21 @@ public class InputManager : MonoBehaviour
         OnMouseHold = null;
         OnEscape = null;
         OnMouseUp = null;
+    }
+
+    public void SetActiveCamera(Camera newActiveCamera)
+    {
+        if (activeCamera != null)
+        {
+            activeCamera.enabled = false;
+        }
+
+        newActiveCamera.enabled = true;
+        activeCamera = newActiveCamera;
+    }
+
+    public bool IsCurrentCamera(Camera cameraToCheck)
+    {
+        return activeCamera == cameraToCheck;
     }
 }

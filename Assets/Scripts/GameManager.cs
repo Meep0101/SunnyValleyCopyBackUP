@@ -19,12 +19,32 @@ public class GameManager : MonoBehaviour
 
     public PathVisualizer pathVisualizer;
 
+    public PlacementManager placementManager;
+
     void Start()
     {
         uiController.OnRoadPlacement += RoadPlacementHandler;
         uiController.OnHousePlacement += HousePlacementHandler;
         uiController.OnSpecialPlacement += SpecialPlacementHandler;
         //uiController.OnBigStructurePlacement += BigStructurePlacement;
+        uiController.OnRemoveRoad += RemoveRoadHandler;
+        inputManager.OnEscape += HandleEscape;
+    }
+
+    private void RemoveRoadHandler()
+    {
+        
+        ClearInputActions();
+
+        inputManager.OnMouseClick += (pos) =>
+        {
+            ProcessInputAndCall(placementManager.RemoveRoadObject, pos);
+        };
+        inputManager.OnMouseUp += roadManager.FinishPlacingRoad;
+        inputManager.OnMouseHold += (pos) =>
+        {
+            ProcessInputAndCall(placementManager.RemoveRoadObject, pos);
+        };
         inputManager.OnEscape += HandleEscape;
     }
 
