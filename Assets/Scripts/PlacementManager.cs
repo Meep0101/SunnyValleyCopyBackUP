@@ -38,7 +38,7 @@ public class PlacementManager : MonoBehaviour
         if (structureNeedingRoad != null)
         {
             structureNeedingRoad.RoadPosition = GetNearestRoad(position, width, height).Value;
-            Debug.Log("My nearest road position is: " + structureNeedingRoad.RoadPosition);
+            //Debug.Log("My nearest road position is: " + structureNeedingRoad.RoadPosition);
         }
 
         for (int x = 0; x < width; x++)
