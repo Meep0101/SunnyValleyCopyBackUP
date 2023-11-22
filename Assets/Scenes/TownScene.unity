@@ -6645,7 +6645,7 @@ GameObject:
   - component: {fileID: 559128418}
   - component: {fileID: 559128421}
   - component: {fileID: 559128420}
-  - component: {fileID: 559128419}
+  - component: {fileID: 559128422}
   m_Layer: 5
   m_Name: meter
   m_TagString: Untagged
@@ -6672,19 +6672,6 @@ RectTransform:
   m_AnchoredPosition: {x: -11.384, y: 264}
   m_SizeDelta: {x: 474.7681, y: 71.5482}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &559128419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 559128417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb8eb13d0e5179548af16ae7c694c9fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  carbonText: {fileID: 559128420}
 --- !u!114 &559128420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6727,6 +6714,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 559128417}
   m_CullTransparentMesh: 1
+--- !u!114 &559128422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559128417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 534ab18668cec214ead7d53f64ef6b9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carbonMeterText: {fileID: 559128420}
 --- !u!1001 &573984866
 PrefabInstance:
   m_ObjectHideFlags: 0

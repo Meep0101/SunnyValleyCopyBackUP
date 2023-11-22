@@ -21,9 +21,12 @@ public class CarAI : MonoBehaviour
     [SerializeField]
     private float collisionRaycastLength = 0.1f;
 
-    private int CarbonMeter = 0;
-
-
+ 
+    private bool completeRoundTrip = false;
+    
+    public CarbonMeter carbonMeter;
+    [SerializeField]
+    private CarSpawner carSpawner;
 
     internal bool IsThisLastPathIndex()
     {
@@ -54,6 +57,16 @@ public class CarAI : MonoBehaviour
         {
             currentTargetPosition = path[index];
         }
+
+         // You can find the CarbonMeter script in the scene if it's not assigned in the Unity Editor
+        if (carbonMeter == null)
+        {
+            carbonMeter = FindObjectOfType<CarbonMeter>();
+            if (carbonMeter == null)
+            {
+                Debug.LogError("CarbonMeter script not found in the scene!");
+            }
+        }
     }
 
     public void SetPath(List<Vector3> path)
@@ -64,7 +77,6 @@ public class CarAI : MonoBehaviour
             return;
         }
 
-        //path.Reverse(); //pabalik na car
         this.path = path;
         index = 0;
         currentTargetPosition = this.path[index];
@@ -82,6 +94,7 @@ public class CarAI : MonoBehaviour
         CheckIfArrived();
         Drive();
         CheckForCollisions();
+        
     }
 
     private void CheckForCollisions()
@@ -130,81 +143,21 @@ public class CarAI : MonoBehaviour
             if(Vector3.Distance(currentTargetPosition,transform.position) < distanceToCheck)
             {
                 SetNextTargetIndex();
+                
             }
         }
     }
 
-    private void SetNextTargetIndex()
+    private void SetNextTargetIndex() //line 139-199 orig code
     {
-        // index++;
-        // if(index >= path.Count)
-        // {
-        //     CarbonMeter++;
-        //     Stop = true;
-        //     Destroy(gameObject);
-        //     Debug.Log("Nagdestroy na ba ang ferson?");
-        //     Debug.Log("Carbon Emission Meter: " + CarbonMeter);
-        //      CarbonEmissionUI uiManager = FindObjectOfType<CarbonEmissionUI>();
-        //     if (uiManager != null)
-        //     {
-        //         uiManager.UpdateCarbonMeter(CarbonMeter);
-        //     }
-        //     else
-        //     {
-        //         Debug.LogError("UIManager not found in the scene.");
-        //     }
-        // }
-        // else
-        // {
-        //     currentTargetPosition = path[index];
-        // }
-
-
-        index++;
-        // if (index >= path.Count)
-        // {
-        //     CarbonMeter++;
-        //     Stop = true;
-
-        //     // Instantiate a new car on the other side of the road
-        //     bool isGoingBack = InstantiateNewCarOnOtherSide();
-
-        //     Destroy(gameObject);
-        //     Debug.Log("Nagdestroy na ba ang ferson?");
-        //     Debug.Log("Carbon Emission Meter: " + CarbonMeter);
-
-        //     CarbonEmissionUI uiManager = FindObjectOfType<CarbonEmissionUI>();
-        //     if (uiManager != null)
-        //     {
-        //         uiManager.UpdateCarbonMeter(CarbonMeter);
-        //     }
-        //     else
-        //     {
-        //         Debug.LogError("UIManager not found in the scene.");
-        //     }
-
-        //     // Display debug message based on whether the car is going back or not
-        //     if (isGoingBack)
-        //     {
-        //         Debug.Log("New car instantiated on the other side, going back to the original starting point.");
-        //     }
-        //     else
-        //     {
-        //         Debug.Log("Car is not set to go back.");
-        //     }
-        // }
-        // else
-        // {
-        //     currentTargetPosition = path[index];
-        // }
-
+        
         index++;
     if (index >= path.Count)
     {
-        CarbonMeter++;
+        //CarbonMeter++;
         Stop = true;
-
-        // Reverse the path to make the car go back
+    
+        // Reverse the path to make the car go back  //line 208-213 reverse car code
         List<Vector3> reversedPath = new List<Vector3>(path);
         reversedPath.Reverse();
 
@@ -213,73 +166,32 @@ public class CarAI : MonoBehaviour
 
         // Reset the index to start from the beginning of the reversed path
         index = 0;
+        completeRoundTrip = true;
 
-        Debug.Log("Nagdestroy na ba ang ferson?");
-        Debug.Log("Carbon Emission Meter: " + CarbonMeter);
-        CarbonEmissionUI uiManager = FindObjectOfType<CarbonEmissionUI>();
-        if (uiManager != null)
-        {
-            uiManager.UpdateCarbonMeter(CarbonMeter);
-        }
-        else
-        {
-            Debug.LogError("UIManager not found in the scene.");
-        }
+      
+        carbonMeter.IncreaseCarbonMeter();
+
+       
 
         // Display debug message
         Debug.Log("Car is going back to the original starting point.");
+         CarSpawner carSpawner = FindObjectOfType<CarSpawner>();
+            if (carSpawner != null)
+            {
+                // Destroy the current car and spawn a new one
+                carSpawner.DestroyCar();
+                carSpawner.SpawnCar();
+            }
+   
+
     }
     else
     {
         currentTargetPosition = path[index];
+        
     }
+        
     }
 
-     private bool InstantiateNewCarOnOtherSide()
-    {
-         // Get the last point position
-    Vector3 lastPointPosition = path[path.Count - 1];
-
-    // Calculate the position on the other side of the road
-    Vector3 otherSidePosition = CalculateOtherSidePosition(lastPointPosition);
-
-    // Debug log for checking the position
-    Debug.Log("Other Side Position: " + otherSidePosition);
-
-    // Instantiate the new car at the other side
-    GameObject newCar = Instantiate(gameObject, otherSidePosition, Quaternion.identity);
-
-    // Debug log to check if instantiation is successful
-    Debug.Log("New Car Instantiated: " + newCar);
-
-    // Set a new path for the spawned car (reverse the original path)
-    List<Vector3> reversedPath = new List<Vector3>(path);
-    reversedPath.Reverse();
-
-    // Get the CarAI component from the spawned car
-    CarAI newCarAI = newCar.GetComponent<CarAI>();
-
-    // Debug log to check if CarAI component is found
-    Debug.Log("New Car AI Component: " + newCarAI);
-
-    // Check if the CarAI component is found
-    if (newCarAI != null)
-    {
-        // Set the reversed path for the spawned car
-        newCarAI.SetPath(reversedPath);
-        return true; // Going back
-    }
-    else
-    {
-        // Log an error if CarAI component is not found
-        Debug.LogError("CarAI component not found on the spawned car.");
-        return false;
-    }
+        
 }
-
-    private Vector3 CalculateOtherSidePosition(Vector3 lastPointPosition)
-    {
-         return new Vector3(lastPointPosition.x, lastPointPosition.y, -lastPointPosition.z);
-    }
-}
-
