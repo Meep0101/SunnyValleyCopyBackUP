@@ -992,7 +992,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 15.46}
+  m_AnchoredPosition: {x: 0, y: 15.460022}
   m_SizeDelta: {x: 86.5614, y: 411.83}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &88944063
@@ -6244,7 +6244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 15
   height: 15
-  roadFixer: {fileID: 0}
+  roadFixer: {fileID: 2093395485}
 --- !u!4 &540532164
 Transform:
   m_ObjectHideFlags: 0
@@ -28091,7 +28091,7 @@ MonoBehaviour:
   structureManager: {fileID: 319897188}
   objectDetector: {fileID: 951151276}
   pathVisualizer: {fileID: 1818247020}
-  placementManager: {fileID: 0}
+  placementManager: {fileID: 540532163}
 --- !u!4 &2039921796
 Transform:
   m_ObjectHideFlags: 0
