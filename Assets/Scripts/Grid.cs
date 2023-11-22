@@ -4,17 +4,21 @@ using System.Collections.Generic;
 /// <summary>
 /// Source https://github.com/lordjesus/Packt-Introduction-to-graph-algorithms-for-game-developers
 /// </summary>
-public class Point
+
+
+public class Point  // Represents a point in a 2D grid with X and Y coordinates.
 {
     public int X { get; set; }
     public int Y { get; set; }
 
+    // Constructor for the Point class, initializing X and Y coordinates.
     public Point(int x, int y)
     {
         this.X = x;
         this.Y = y;
     }
 
+    // Overrides the default Equals method to compare two points for equality.
     public override bool Equals(object obj)
     {
         if (obj == null)
@@ -29,6 +33,7 @@ public class Point
         return false;
     }
 
+    // Overrides the default GetHashCode method to generate a hash code for the point.
     public override int GetHashCode()
     {
         unchecked
@@ -40,12 +45,15 @@ public class Point
         }
     }
 
+    // Overrides the default ToString method to provide a string representation of the point.
     public override string ToString()
     {
         return "P(" + this.X + ", " + this.Y + ")";
     }
 }
 
+
+// Represents the type of a cell in the grid (Empty, Road, Structure, SpecialStructure, None).
 public enum CellType
 {
     Empty,
@@ -55,6 +63,7 @@ public enum CellType
     None
 }
 
+// Represents a 2D grid with cells of different types.
 public class Grid
 {
     private CellType[,] _grid;
@@ -67,6 +76,7 @@ public class Grid
     private List<Point> _specialStructure = new List<Point>();
     private List<Point> _houseStructure = new List<Point>();
 
+    // Constructor for the Grid class, initializing the grid with the specified width and height.
     public Grid(int width, int height)
     {
         _width = width;
@@ -99,6 +109,7 @@ public class Grid
         }
     }
 
+    // Static method that checks if a cell is walkable based on its type.
     public static bool IsCellWakable(CellType cellType, bool aiAgent = false)
     {
         if (aiAgent)
@@ -108,6 +119,10 @@ public class Grid
         return cellType == CellType.Empty || cellType == CellType.Road;
     }
 
+    /// <summary>
+    /// Returns a random point from the list of road points.
+    /// </summary>
+    /// <returns>Random road point or null if the list is empty.</returns>
     public Point GetRandomRoadPoint()
     {
         if (_roadList.Count == 0)
@@ -126,6 +141,10 @@ public class Grid
         return _specialStructure[UnityEngine.Random.Range(0, _specialStructure.Count)];
     }
 
+    /// <summary>
+    /// Returns a random point from the list of house structure points.
+    /// </summary>
+    /// <returns>Random house structure point or null if the list is empty.</returns>
     public Point GetRandomHouseStructurePoint()
     {
         if (_houseStructure.Count == 0)
@@ -135,6 +154,10 @@ public class Grid
         return _houseStructure[UnityEngine.Random.Range(0, _houseStructure.Count)];
     }
 
+    /// <summary>
+    /// Returns a list of all house structure points.
+    /// </summary>
+    /// <returns>List of all house structure points.</returns>
     public List<Point> GetAllHouses()
     {
         return _houseStructure;
@@ -145,16 +168,33 @@ public class Grid
         return _specialStructure;
     }
 
+    /// <summary>
+    /// Returns a list of walkable adjacent cells based on a given point and considering an agent.
+    /// </summary>
+    /// <param name="cell">The point for which to find adjacent cells.</param>
+    /// <param name="isAgent">Flag indicating whether the agent is considered.</param>
+    /// <returns>List of walkable adjacent cells.</returns>
     public List<Point> GetAdjacentCells(Point cell, bool isAgent)
     {
         return GetWakableAdjacentCells((int)cell.X, (int)cell.Y, isAgent);
     }
 
+    /// <summary>
+    /// Returns the cost of entering a cell. Currently, it always returns 1, indicating uniform cost.
+    /// </summary>
+    /// <param name="cell">The point representing the cell.</param>
+    /// <returns>The cost of entering the cell.</returns>
     public float GetCostOfEnteringCell(Point cell)
     {
         return 1;
     }
 
+    /// <summary>
+    /// Returns a list of all adjacent cells to a given point.
+    /// </summary>
+    /// <param name="x">X-coordinate of the point.</param>
+    /// <param name="y">Y-coordinate of the point.</param>
+    /// <returns>List of adjacent cells.</returns>
     public List<Point> GetAllAdjacentCells(int x, int y)
     {
         List<Point> adjacentCells = new List<Point>();
@@ -177,6 +217,14 @@ public class Grid
         return adjacentCells;
     }
 
+
+    /// <summary>
+    /// Returns a list of walkable adjacent cells based on a given point and considering an agent.
+    /// </summary>
+    /// <param name="x">X-coordinate of the point.</param>
+    /// <param name="y">Y-coordinate of the point.</param>
+    /// <param name="isAgent">Flag indicating whether the agent is considered.</param>
+    /// <returns>List of walkable adjacent cells.</returns>
     public List<Point> GetWakableAdjacentCells(int x, int y, bool isAgent)
     {
         List<Point> adjacentCells = GetAllAdjacentCells(x, y);
@@ -190,6 +238,13 @@ public class Grid
         return adjacentCells;
     }
 
+    /// <summary>
+    /// Returns a list of adjacent cells of a specific type based on a given point.
+    /// </summary>
+    /// <param name="x">X-coordinate of the point.</param>
+    /// <param name="y">Y-coordinate of the point.</param>
+    /// <param name="type">Type of cell to filter.</param>
+    /// <returns>List of adjacent cells of the specified type.</returns>
     public List<Point> GetAdjacentCellsOfType(int x, int y, CellType type)
     {
         List<Point> adjacentCells = GetAllAdjacentCells(x, y);
