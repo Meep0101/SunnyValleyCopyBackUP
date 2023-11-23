@@ -180,7 +180,7 @@ public class CarAI : MonoBehaviour
             {
                 // Destroy the current car and spawn a new one
                 carSpawner.DestroyCar();
-                carSpawner.SpawnCar();
+                //carSpawner.SpawnCar();
             }
    
 

@@ -11,7 +11,8 @@ public class CarSpawner : MonoBehaviour
 
     private void Start()
     {
-        SpawnCar();
+         Instantiate(SelectACarPrefab(), transform);
+        //SpawnCar();
     }
 
     public void SpawnCar()
