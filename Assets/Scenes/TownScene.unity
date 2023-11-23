@@ -11754,7 +11754,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 4294967295
 --- !u!4 &951151277
 Transform:
   m_ObjectHideFlags: 0

@@ -310,6 +310,7 @@ MonoBehaviour:
   hasCrosswalks: 1
   incomming: {fileID: 0}
   outgoing: {fileID: 0}
+  laneChangeDistance: 0
   incommingMarkers:
   - {fileID: 3810113384999970596}
   - {fileID: 394718298270981306}

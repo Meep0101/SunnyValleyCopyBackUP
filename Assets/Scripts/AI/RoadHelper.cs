@@ -21,6 +21,9 @@ namespace SimpleCity.AI
         [SerializeField]
         private Marker incomming, outgoing;
 
+        [SerializeField]
+        private float laneChangeDistance = 5f;
+
         public virtual Marker GetpositioForPedestrianToSpwan(Vector3 structurePosition)
         {
             return GetClosestMarkeTo(structurePosition, pedestrianMarkers);
@@ -88,6 +91,23 @@ namespace SimpleCity.AI
         {
             return carMarkers;
         }
+
+        public Vector3 GetAdjacentLanePosition(Vector3 currentPosition)
+{
+    Marker closestCarMarker = GetClosestMarkeTo(currentPosition, carMarkers, false);
+
+    if (closestCarMarker != null)
+    {
+        Vector3 carMarkerPosition = closestCarMarker.Position;
+        Vector3 toCarMarkerDirection = carMarkerPosition - currentPosition;
+        toCarMarkerDirection.Normalize();
+        Vector3 adjacentLanePosition = carMarkerPosition + Quaternion.Euler(0, 90, 0) * toCarMarkerDirection * laneChangeDistance;
+
+        return adjacentLanePosition;
+    }
+
+    return currentPosition;
+}
     }
 }
 
