@@ -37,6 +37,7 @@ public class CarAI : MonoBehaviour
 
     private bool stop;
     private bool collisionStop = false;
+    
 
     public bool Stop
     {
@@ -175,23 +176,25 @@ public class CarAI : MonoBehaviour
 
         // Display debug message
         Debug.Log("Car is going back to the original starting point.");
-         CarSpawner carSpawner = FindObjectOfType<CarSpawner>();
-            if (carSpawner != null)
-            {
-                // Destroy the current car and spawn a new one
-                carSpawner.DestroyCar();
-                //carSpawner.SpawnCar();
-            }
-   
+        
+   Debug.Log("Car is going back to the original starting point.");
+}
+else
+{
+    currentTargetPosition = path[index];
 
-    }
-    else
+    // Check if the car has completed a round trip and arrived back at the starting point
+    if (completeRoundTrip && IsThisLastPathIndex())
     {
-        currentTargetPosition = path[index];
+        carbonMeter.IncreaseCarbonMeter();
         
+        // Destroy the car when it completes the round trip
+        Destroy(gameObject);
+        Debug.Log("Car destroyed at the starting point.");
     }
         
     }
 
         
+}
 }

@@ -161,6 +161,8 @@ MonoBehaviour:
   currentTargetPosition: {x: 0, y: 0, z: 0}
   raycastStartingPoint: {fileID: 7828243858922119456}
   collisionRaycastLength: 0.1
+  carbonMeter: {fileID: 0}
+  carSpawner: {fileID: 0}
   <OnDrive>k__BackingField:
     m_PersistentCalls:
       m_Calls:

@@ -12,7 +12,7 @@ public class CarSpawner : MonoBehaviour
     private void Start()
     {
          Instantiate(SelectACarPrefab(), transform);
-        //SpawnCar();
+        //SpawnCar(); //spawn car but dont move
     }
 
     public void SpawnCar()
