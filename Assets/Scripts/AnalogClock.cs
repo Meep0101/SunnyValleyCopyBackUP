@@ -11,7 +11,7 @@ public class AnalogClock : MonoBehaviour
 
     // Variables to store current time, time scale, days of the week, and current day index
     private DateTime currentTime;
-    private float secondsPerGameMinute = 0.5f; // Adjust this based on your game's time scale
+    private float secondsPerGameMinute = 0.1f; // Adjust this based on your game's time scale
     private string[] daysOfWeek = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
     private int currentDayIndex = 0;
 
@@ -50,13 +50,12 @@ public class AnalogClock : MonoBehaviour
     // UpdateClockHands rotates the clock hands based on the current time
     private void UpdateClockHands()
     {
-        // Calculate the rotation angles for the hour and minute hands
-        // float hours = currentTime.Hour % 12 + currentTime.Minute / 60f;
+      
         float minutes = currentTime.Minute;
 
         // Rotate the clock hands
-        // hourHand.rotation = Quaternion.Euler(0f, 0f, -hours * 30f); // 30 degrees per hour
-       minuteHand.rotation = Quaternion.Euler(0f, 0f, 90f - minutes * 6f); // 6 degrees per minute
+        
+       minuteHand.rotation = Quaternion.Euler(0f, 0f, 90f - minutes * 0f); // 6 degrees per minute
     }
 
     // UpdateDayOfWeekText updates the displayed day of the week text
