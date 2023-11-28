@@ -18,8 +18,6 @@ public class AnalogClock : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        // Initialize current time to the current real-world time
-        currentTime = DateTime.Now;
 
         // Update initial clock hands and day of the week text
         UpdateClockHands();
@@ -55,7 +53,7 @@ public class AnalogClock : MonoBehaviour
 
         // Rotate the clock hands
         
-       minuteHand.rotation = Quaternion.Euler(0f, 0f, 90f - minutes * 0f); // 6 degrees per minute
+       minuteHand.rotation = Quaternion.Euler(0f, 0f, 90f - minutes * 6f); // 6 degrees per minute
     }
 
     // UpdateDayOfWeekText updates the displayed day of the week text
