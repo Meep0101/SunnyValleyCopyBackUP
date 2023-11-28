@@ -11,8 +11,9 @@ public class AnalogClock : MonoBehaviour
 
     // Variables to store current time, time scale, days of the week, and current day index
     private DateTime currentTime;
-    private float secondsPerGameMinute = 0.1f; // Adjust this based on your game's time scale
-    private string[] daysOfWeek = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+    private float secondsPerGameMinute = 0.3f; // Adjust this based on your game's time scale
+    private string[] daysOfWeek = {"Monday","Monday", "Tuesday","Tuesday", "Wednesday", "Wednesday", "Thursday", "Thursday", "Friday", "Friday", "Saturday",  "Saturday", "Sunday", "Sunday"};  
+    //why double? for Day Time and Night Time 
     private int currentDayIndex = 0;
 
     // Start is called before the first frame update

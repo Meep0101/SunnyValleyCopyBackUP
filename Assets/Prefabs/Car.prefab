@@ -142,7 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   power: 10
   torque: 0.02
-  maxSpeed: 0.4
+  maxSpeed: 0.6
   movementVector: {x: 0, y: 0}
 --- !u!114 &-1274727206583111556
 MonoBehaviour:
