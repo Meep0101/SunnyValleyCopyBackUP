@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 9129931513075086721}
   - component: {fileID: -7368483073046397102}
   - component: {fileID: -1274727206583111556}
+  - component: {fileID: -3116911743923688304}
   m_Layer: 10
   m_Name: Car
   m_TagString: Car
@@ -75,7 +76,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -126,6 +127,7 @@ MonoBehaviour:
   - {fileID: 1101577590284328575, guid: 5d2ce4f2e805b5c4092a09a0930cf37d, type: 3}
   - {fileID: 7954715419065063505, guid: 10f4671cf44100d409a99458809783f8, type: 3}
   - {fileID: 771982215564958993, guid: 855cd82b21977fe458e741a8f5352a56, type: 3}
+  laneWidth: 5
 --- !u!114 &-7368483073046397102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +165,9 @@ MonoBehaviour:
   collisionRaycastLength: 0.1
   carbonMeter: {fileID: 0}
   carSpawner: {fileID: 0}
+  carPrefab: {fileID: 569683081087099838}
+  laneChangeDuration: 2
+  laneChangeDistance: 3
   <OnDrive>k__BackingField:
     m_PersistentCalls:
       m_Calls:
@@ -178,6 +183,25 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &-3116911743923688304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569683081087099838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 061749052b93b894f98c62586fb5bc86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pedestrianMarkers: []
+  carMarkers: []
+  isCorner: 0
+  hasCrosswalks: 0
+  incomming: {fileID: 0}
+  outgoing: {fileID: 0}
+  laneChangeDistance: 5
 --- !u!1 &7828243858922119456
 GameObject:
   m_ObjectHideFlags: 0

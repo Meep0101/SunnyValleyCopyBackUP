@@ -99,4 +99,9 @@ public class RoadManager : MonoBehaviour
         temporaryPlacementPositions.Clear();
         startPosition = Vector3Int.zero;
     }
+
+    public float GetLaneWidth()
+    {
+        return 5.0f;
+    }
 }

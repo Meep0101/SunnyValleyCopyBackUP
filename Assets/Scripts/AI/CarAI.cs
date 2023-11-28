@@ -28,6 +28,9 @@ public class CarAI : MonoBehaviour
 
     private float laneChangeTimer = 0f;
 
+    public GameObject carPrefab;
+     private static CarAI currentCarAI;
+
    
 [SerializeField]
 private float laneChangeDuration = 2f;
@@ -79,6 +82,17 @@ private Vector3 laneChangeTarget;
             {
                 Debug.LogError("CarbonMeter script not found in the scene!");
             }
+        }
+
+        currentCarAI = this;
+    }
+
+         private void OnDestroy()
+    {
+        // Clear the current car reference when the car is destroyed
+        if (currentCarAI == this)
+        {
+            currentCarAI = null;
         }
     }
 
@@ -168,113 +182,18 @@ private Vector3 laneChangeTarget;
     private void SetNextTargetIndex() //line 139-199 orig code
     {
 
-        index++;
-    if (index >= path.Count)
-    {
-        // Check if the car has completed a round trip and arrived back at the starting point
-        if (completeRoundTrip && IsThisLastPathIndex())
-        {
-            carbonMeter.IncreaseCarbonMeter();
-            // Destroy the car when it completes the round trip
-            Destroy(gameObject);
-            Debug.Log("Car destroyed at the starting point.");
-            return;
-        }
-
-        // Reverse the path to make the car go back
-        List<Vector3> reversedPath = new List<Vector3>(path);
-        reversedPath.Reverse();
-
-        // Set the reversed path as the new path for the car
-        SetPath(reversedPath);
-
-        // Reset the index to start from the beginning of the reversed path
-        index = 0;
-        completeRoundTrip = true;
-
-       
-        
-        carbonMeter.IncreaseCarbonMeter();
-
-        // Display debug message
-        Debug.Log("Car is going back to the original starting point.");
-        // Change the rotation of the car when going back to the starting point
-        
-    }
-    else
-    {
-        currentTargetPosition = path[index];
-
-         if (completeRoundTrip && IsThisLastPathIndex())
-        {
-            carbonMeter.IncreaseCarbonMeter();
-            Destroy(gameObject);
-            Debug.Log("Car destroyed at the starting point.");
-            
-        }
-
-        
-    }     
-    // Change the rotation of the car when going back to the starting point
-        RotateCarForLeftTurn(); //wants to go left but cant :<  line 219-227 (left turn car)
-    
-}
-        private void RotateCarForLeftTurn()
-{
-   
-    transform.Rotate(Vector3.up, 90f);
-    Debug.Log("Turning left");
-}
-
-    // private bool ShouldChangeLane()
-    // {
-    //     float changeLaneDistance = 10f; // Adjust this value based on your requirements
-
-    // return Vector3.Distance(transform.position, path[0]) < changeLaneDistance;
-
-    // }
-
-//     private void ChangeLaneAndTurnLeft()
-//     {
-//         // Assuming you have a method to get the position of the adjacent lane
-//     Vector3 targetLanePosition = GetAdjacentLanePosition();
-
-//     // Set the target position for the lane change
-//     laneChangeTarget = targetLanePosition;
-
-//     // Rotate the car for a left turn
-//    //RotateCarForLeftTurn();
-
-//     // Indicate that the car is changing lanes
-//     changingLane = true;
-//     }
-
-    // private Vector3 GetAdjacentLanePosition()
-    // {
-    //     // Assuming lanes are spaced by a constant distance (laneWidth)
-    // float laneWidth = 3.0f; // Adjust this value based on your road setup
-
-    // // Get the current lane position
-    // Vector3 currentLanePosition = transform.position;
-
-    // // Get the direction of the road (you might need to adjust this based on your road setup)
-    // Vector3 roadDirection =  path[0] - path[1];
-    // roadDirection.Normalize();
-
-    // // Calculate the position of the adjacent lane
-    // Vector3 adjacentLanePosition = currentLanePosition + Vector3.Cross(Vector3.up, roadDirection) * laneWidth;
-
-    // return adjacentLanePosition;
-    // }
-
-
     //     index++;
-
-        
-
     // if (index >= path.Count)
     // {
-    //     Stop = true;
+    //     // Check if the car has completed a round trip and arrived back at the starting point
+    //     if (completeRoundTrip && IsThisLastPathIndex())
+    //     {
+    //         carbonMeter.IncreaseCarbonMeter();
+    //         // Destroy the car when it completes the round trip
+    //         Destroy(gameObject);
+    //         Debug.Log("Car destroyed at the starting point.");
+    //         return;
+    //     }
 
     //     // Reverse the path to make the car go back
     //     List<Vector3> reversedPath = new List<Vector3>(path);
@@ -287,89 +206,123 @@ private Vector3 laneChangeTarget;
     //     index = 0;
     //     completeRoundTrip = true;
 
+       
+        
     //     carbonMeter.IncreaseCarbonMeter();
 
     //     // Display debug message
     //     Debug.Log("Car is going back to the original starting point.");
-
+    //     // Change the rotation of the car when going back to the starting point
         
     // }
-        
     // else
     // {
     //     currentTargetPosition = path[index];
 
-    //     // Check if the car should change lanes when going back to the starting point
+    //      if (completeRoundTrip && IsThisLastPathIndex())
+    //     {
+    //         carbonMeter.IncreaseCarbonMeter();
+    //         Destroy(gameObject);
+    //         Debug.Log("Car destroyed at the starting point.");
+            
+    //     }
         
-    //     if (completeRoundTrip && IsThisLastPathIndex())
-    // {
-    //     carbonMeter.IncreaseCarbonMeter();
-    //     // Destroy the car when it completes the round trip
-    //     Destroy(gameObject);
-    //     Debug.Log("Car destroyed at the starting point.");
+      index++;
 
-    //     if (path != null && path.Count > 0){
-    // }
+        if (index >= path.Count)
+        {
+            // Destroy the car when it completes the round trip
+            Destroy(gameObject);
+            Debug.Log("Car destroyed at the end point.");
 
-    //      // Reverse the path to make the car go back
-    //     List<Vector3> reversedPath = new List<Vector3>(path);
-    //     reversedPath.Reverse();
+            // Respawn the car at the end of the road
+            RespawnCarAtEnd();
+            
 
-    //     // Set the reversed path as the new path for the car
-    //     SetPath(reversedPath);
+            return;
+        }
 
-    //     // Reset the index to start from the beginning of the reversed path
-    //     index = 0;
-    // }
-        
-//         index++;
-//     if (index >= path.Count)
-//     {
-//         //CarbonMeter++;
-//         Stop = true;
+        currentTargetPosition = path[index];
+
+        if (completeRoundTrip && IsThisLastPathIndex())
+        {
+            carbonMeter.IncreaseCarbonMeter();
+            Destroy(gameObject);
+            Debug.Log("Car destroyed at the end point.");
+        }
+    }
     
-//         // Reverse the path to make the car go back  //line 208-213 reverse car code
-//         List<Vector3> reversedPath = new List<Vector3>(path);
-//         reversedPath.Reverse();
 
-//         // Set the reversed path as the new path for the car
-//         SetPath(reversedPath);
-
-//         // Reset the index to start from the beginning of the reversed path
-//         index = 0;
-//         completeRoundTrip = true;
-
-      
-//         carbonMeter.IncreaseCarbonMeter();
-
-       
-
-//         // Display debug message
-//         Debug.Log("Car is going back to the original starting point.");
+    private void RespawnCarAtEnd()
+    {
         
-//    Debug.Log("Car is going back to the original starting point.");
-// }
-// else
-// {
-//     currentTargetPosition = path[index];
+      // Get the mirrored end point
+    Vector3 mirroredEndPoint = GetMirroredEndPoint();
 
-//     //dito dapat yung code for the change lanes
+    // Ensure that the mirrored end point is within the bounds of the road
+    //RoadHelper roadHelper = GetComponent<RoadHelper>();
+   // mirroredEndPoint = roadHelper.GetAdjacentLanePosition(mirroredEndPoint);
 
-//     // Check if the car has completed a round trip and arrived back at the starting point
-//     if (completeRoundTrip && IsThisLastPathIndex())
-//     {
-//         carbonMeter.IncreaseCarbonMeter();
-//         // Destroy the car when it completes the round trip
-//         Destroy(gameObject);
-//         Debug.Log("Car destroyed at the starting point.");
-//     }
+    // Instantiate a new car at the corrected end point of the road
+    GameObject newCar = Instantiate(carPrefab, mirroredEndPoint, Quaternion.identity);
 
+    // Set the path for the new car to drive back to the starting point
+    List<Vector3> reversePath = new List<Vector3>(path);
+    reversePath.Reverse();
     
-        
-//     }
+    // Adjust the new car's position to be slightly above the road
+    newCar.transform.position += Vector3.up * 0.1f;
 
-        
+    CarAI newCarAI = newCar.GetComponent<CarAI>();
+    if (newCarAI != null)
+    {
+        newCarAI.SetPath(reversePath);
+    }
+    else
+    {
+        Debug.LogError("CarAI component not found on the spawned car.");
+    }
+    }
+
+
+        private Vector3 GetMirroredEndPoint()
+    {
+         // Assuming there is a RoadHelper component attached to the road GameObject
+    RoadHelper roadHelper = GetComponent<RoadHelper>();
+
+    // Get the mirrored endpoint
+    Vector3 mirroredEndPoint = roadHelper.GetAdjacentLanePosition(transform.position);
+
+    // Get the rotation of the road at the endpoint
+    Quaternion roadRotation = transform.rotation;
+
+    // Reverse the original path to create the mirrored path
+    List<Vector3> mirroredPath = new List<Vector3>(path);
+    mirroredPath.Reverse();
+
+    // Spawn the car at the mirrored endpoint with the correct rotation
+    GameObject newCar = Instantiate(carPrefab, mirroredEndPoint, roadRotation);
+
+    // Set the reversed path for the mirrored road
+    CarAI carAI = newCar.GetComponent<CarAI>();
+    if (carAI != null)
+    {
+        carAI.SetPath(mirroredPath);
+    }
+    else
+    {
+        Debug.LogError("CarAI component not found on the spawned car.");
+    }
+
+    // Return the mirrored endpoint
+    return mirroredEndPoint;
+    }
 }
+
+
+
+        
+
 
     
 

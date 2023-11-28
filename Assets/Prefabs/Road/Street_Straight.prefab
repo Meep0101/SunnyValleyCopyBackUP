@@ -181,8 +181,8 @@ MonoBehaviour:
   - {fileID: 1295363197539937522}
   isCorner: 0
   hasCrosswalks: 0
-  incomming: {fileID: 0}
-  outgoing: {fileID: 0}
+  incomming: {fileID: 1438356393722834077}
+  outgoing: {fileID: 1295363197539937522}
   laneChangeDistance: 0
   leftLaneMarker90: {fileID: 1295363197539937522}
   rightLaneMarker90: {fileID: 1438356393722834077}
