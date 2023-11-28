@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainChoice : MonoBehaviour
+public class MapChoice : MonoBehaviour
 {
     public void PlayMap()
     {
