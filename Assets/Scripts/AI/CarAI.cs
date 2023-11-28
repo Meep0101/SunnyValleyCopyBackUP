@@ -182,141 +182,141 @@ private Vector3 laneChangeTarget;
     private void SetNextTargetIndex() //line 139-199 orig code
     {
 
-    //     index++;
-    // if (index >= path.Count)
-    // {
-    //     // Check if the car has completed a round trip and arrived back at the starting point
-    //     if (completeRoundTrip && IsThisLastPathIndex())
-    //     {
-    //         carbonMeter.IncreaseCarbonMeter();
-    //         // Destroy the car when it completes the round trip
-    //         Destroy(gameObject);
-    //         Debug.Log("Car destroyed at the starting point.");
-    //         return;
-    //     }
-
-    //     // Reverse the path to make the car go back
-    //     List<Vector3> reversedPath = new List<Vector3>(path);
-    //     reversedPath.Reverse();
-
-    //     // Set the reversed path as the new path for the car
-    //     SetPath(reversedPath);
-
-    //     // Reset the index to start from the beginning of the reversed path
-    //     index = 0;
-    //     completeRoundTrip = true;
-
-       
-        
-    //     carbonMeter.IncreaseCarbonMeter();
-
-    //     // Display debug message
-    //     Debug.Log("Car is going back to the original starting point.");
-    //     // Change the rotation of the car when going back to the starting point
-        
-    // }
-    // else
-    // {
-    //     currentTargetPosition = path[index];
-
-    //      if (completeRoundTrip && IsThisLastPathIndex())
-    //     {
-    //         carbonMeter.IncreaseCarbonMeter();
-    //         Destroy(gameObject);
-    //         Debug.Log("Car destroyed at the starting point.");
-            
-    //     }
-        
-      index++;
-
-        if (index >= path.Count)
-        {
-            // Destroy the car when it completes the round trip
-            Destroy(gameObject);
-            Debug.Log("Car destroyed at the end point.");
-
-            // Respawn the car at the end of the road
-            RespawnCarAtEnd();
-            
-
-            return;
-        }
-
-        currentTargetPosition = path[index];
-
+        index++;
+    if (index >= path.Count)
+    {
+        // Check if the car has completed a round trip and arrived back at the starting point
         if (completeRoundTrip && IsThisLastPathIndex())
         {
             carbonMeter.IncreaseCarbonMeter();
+            // Destroy the car when it completes the round trip
             Destroy(gameObject);
-            Debug.Log("Car destroyed at the end point.");
+            Debug.Log("Car destroyed at the starting point.");
+            return;
         }
-    }
-    
 
-    private void RespawnCarAtEnd()
-    {
+        // Reverse the path to make the car go back
+        List<Vector3> reversedPath = new List<Vector3>(path);
+        reversedPath.Reverse();
+
+        // Set the reversed path as the new path for the car
+        SetPath(reversedPath);
+
+        // Reset the index to start from the beginning of the reversed path
+        index = 0;
+        completeRoundTrip = true;
+
+       
         
-      // Get the mirrored end point
-    Vector3 mirroredEndPoint = GetMirroredEndPoint();
+        carbonMeter.IncreaseCarbonMeter();
 
-    // Ensure that the mirrored end point is within the bounds of the road
-    //RoadHelper roadHelper = GetComponent<RoadHelper>();
-   // mirroredEndPoint = roadHelper.GetAdjacentLanePosition(mirroredEndPoint);
+        // Display debug message
+        Debug.Log("Car is going back to the original starting point.");
+        // Change the rotation of the car when going back to the starting point
+        
+    }
+    else
+    {
+        currentTargetPosition = path[index];
 
-    // Instantiate a new car at the corrected end point of the road
-    GameObject newCar = Instantiate(carPrefab, mirroredEndPoint, Quaternion.identity);
+         if (completeRoundTrip && IsThisLastPathIndex())
+        {
+            carbonMeter.IncreaseCarbonMeter();
+            Destroy(gameObject);
+            Debug.Log("Car destroyed at the starting point.");
+            
+        }
+        
+    //   index++;
 
-    // Set the path for the new car to drive back to the starting point
-    List<Vector3> reversePath = new List<Vector3>(path);
-    reversePath.Reverse();
+    //     if (index >= path.Count)
+    //     {
+    //         // Destroy the car when it completes the round trip
+    //         Destroy(gameObject);
+    //         Debug.Log("Car destroyed at the end point.");
+
+    //         // Respawn the car at the end of the road
+    //         RespawnCarAtEnd();
+            
+
+    //         return;
+    //     }
+
+    //     currentTargetPosition = path[index];
+
+    //     if (completeRoundTrip && IsThisLastPathIndex())
+    //     {
+    //         carbonMeter.IncreaseCarbonMeter();
+    //         Destroy(gameObject);
+    //         Debug.Log("Car destroyed at the end point.");
+    //     }
+    }
+    }
+
+//     private void RespawnCarAtEnd()
+//     {
+        
+//       // Get the mirrored end point
+//     Vector3 mirroredEndPoint = GetMirroredEndPoint();
+
+//     // Ensure that the mirrored end point is within the bounds of the road
+//     //RoadHelper roadHelper = GetComponent<RoadHelper>();
+//    // mirroredEndPoint = roadHelper.GetAdjacentLanePosition(mirroredEndPoint);
+
+//     // Instantiate a new car at the corrected end point of the road
+//     GameObject newCar = Instantiate(carPrefab, mirroredEndPoint, Quaternion.identity);
+
+//     // Set the path for the new car to drive back to the starting point
+//     List<Vector3> reversePath = new List<Vector3>(path);
+//     reversePath.Reverse();
     
-    // Adjust the new car's position to be slightly above the road
-    newCar.transform.position += Vector3.up * 0.1f;
+//     // Adjust the new car's position to be slightly above the road
+//     newCar.transform.position += Vector3.up * 0.1f;
 
-    CarAI newCarAI = newCar.GetComponent<CarAI>();
-    if (newCarAI != null)
-    {
-        newCarAI.SetPath(reversePath);
-    }
-    else
-    {
-        Debug.LogError("CarAI component not found on the spawned car.");
-    }
-    }
+//     CarAI newCarAI = newCar.GetComponent<CarAI>();
+//     if (newCarAI != null)
+//     {
+//         newCarAI.SetPath(reversePath);
+//     }
+//     else
+//     {
+//         Debug.LogError("CarAI component not found on the spawned car.");
+//     }
+//     }
 
 
-        private Vector3 GetMirroredEndPoint()
-    {
-         // Assuming there is a RoadHelper component attached to the road GameObject
-    RoadHelper roadHelper = GetComponent<RoadHelper>();
+    //     private Vector3 GetMirroredEndPoint()
+    // {
+    //      // Assuming there is a RoadHelper component attached to the road GameObject
+    // RoadHelper roadHelper = GetComponent<RoadHelper>();
 
-    // Get the mirrored endpoint
-    Vector3 mirroredEndPoint = roadHelper.GetAdjacentLanePosition(transform.position);
+    // // Get the mirrored endpoint
+    // Vector3 mirroredEndPoint = roadHelper.GetAdjacentLanePosition(transform.position);
 
-    // Get the rotation of the road at the endpoint
-    Quaternion roadRotation = transform.rotation;
+    // // Get the rotation of the road at the endpoint
+    // Quaternion roadRotation = transform.rotation;
 
-    // Reverse the original path to create the mirrored path
-    List<Vector3> mirroredPath = new List<Vector3>(path);
-    mirroredPath.Reverse();
+    // // Reverse the original path to create the mirrored path
+    // List<Vector3> mirroredPath = new List<Vector3>(path);
+    // mirroredPath.Reverse();
 
-    // Spawn the car at the mirrored endpoint with the correct rotation
-    GameObject newCar = Instantiate(carPrefab, mirroredEndPoint, roadRotation);
+    // // Spawn the car at the mirrored endpoint with the correct rotation
+    // GameObject newCar = Instantiate(carPrefab, mirroredEndPoint, roadRotation);
 
-    // Set the reversed path for the mirrored road
-    CarAI carAI = newCar.GetComponent<CarAI>();
-    if (carAI != null)
-    {
-        carAI.SetPath(mirroredPath);
-    }
-    else
-    {
-        Debug.LogError("CarAI component not found on the spawned car.");
-    }
+    // // Set the reversed path for the mirrored road
+    // CarAI carAI = newCar.GetComponent<CarAI>();
+    // if (carAI != null)
+    // {
+    //     carAI.SetPath(mirroredPath);
+    // }
+    // else
+    // {
+    //     Debug.LogError("CarAI component not found on the spawned car.");
+    // }
 
-    // Return the mirrored endpoint
-    return mirroredEndPoint;
-    }
+    // // Return the mirrored endpoint
+    // return mirroredEndPoint;
+    // }
 }
 
 

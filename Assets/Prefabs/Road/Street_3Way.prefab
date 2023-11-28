@@ -789,8 +789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc0ba44aac3b484b8a0a4d8cbad8d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  adjacentMarkers:
-  - {fileID: 6122069206765831240}
+  adjacentMarkers: []
   openForConnections: 0
 --- !u!1 &5357747927933819594
 GameObject:

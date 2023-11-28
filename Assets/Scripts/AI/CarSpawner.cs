@@ -14,46 +14,46 @@ public class CarSpawner : MonoBehaviour
     private void Start()
     {
          Instantiate(SelectACarPrefab(), transform);
-        SpawnCar(); //spawn car but dont move
+        //SpawnCar(); //spawn car but dont move
     }
+
+    // public void SpawnCar()
+    // {
+    //     if (carPrefabs != null && carPrefabs.Length > 0)
+    //     {
+    //         // Select a random car prefab from the array
+    //         GameObject selectedCarPrefab = carPrefabs[Random.Range(0, carPrefabs.Length)];
+
+    //         // Instantiate the selected car prefab
+    //         spawnedCar = Instantiate(selectedCarPrefab, transform.position, Quaternion.identity);
+    //     }
+    //     else
+    //     {
+    //         Debug.LogError("Car prefabs are not assigned to the CarSpawner!");
+    //     }
+
+    // }
+
+    
 
     public void SpawnCar()
     {
-        if (carPrefabs != null && carPrefabs.Length > 0)
+    if (carPrefabs != null && carPrefabs.Length > 0)
         {
             // Select a random car prefab from the array
             GameObject selectedCarPrefab = carPrefabs[Random.Range(0, carPrefabs.Length)];
 
-            // Instantiate the selected car prefab
-            spawnedCar = Instantiate(selectedCarPrefab, transform.position, Quaternion.identity);
+            // Determine the spawn position based on the dynamic lane width
+            Vector3 spawnPosition = DetermineSpawnPosition();
+
+            // Instantiate the selected car prefab at the determined position
+            spawnedCar = Instantiate(selectedCarPrefab, spawnPosition, Quaternion.identity);
         }
         else
         {
             Debug.LogError("Car prefabs are not assigned to the CarSpawner!");
         }
-
-    }
-
-    
-
-//     public void SpawnCar()
-//     {
-//     if (carPrefabs != null && carPrefabs.Length > 0)
-//         {
-//             // Select a random car prefab from the array
-//             GameObject selectedCarPrefab = carPrefabs[Random.Range(0, carPrefabs.Length)];
-
-//             // Determine the spawn position based on the dynamic lane width
-//             Vector3 spawnPosition = DetermineSpawnPosition();
-
-//             // Instantiate the selected car prefab at the determined position
-//             spawnedCar = Instantiate(selectedCarPrefab, spawnPosition, Quaternion.identity);
-//         }
-//         else
-//         {
-//             Debug.LogError("Car prefabs are not assigned to the CarSpawner!");
-//         }
-// }
+}
 
 private Vector3 DetermineSpawnPosition()
 {
