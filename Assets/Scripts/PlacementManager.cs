@@ -81,10 +81,8 @@ public class PlacementManager : MonoBehaviour
             // 4. Fix the neighboring road prefabs.
             FixRoadPrefabs(position, roadFixer);
 
-            // Update the grid and UI to reflect the changes.
-            // Example: Handle visual updates here.
         }
-        //Debug.Log("GUMANA KA NA PLEASE PERSSS");
+        
     }
 
     private void FixRoadPrefabs(Vector3Int position, RoadFixer roadFixer)
