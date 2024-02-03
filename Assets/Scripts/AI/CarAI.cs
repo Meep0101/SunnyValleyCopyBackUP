@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using SimpleCity.AI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -28,6 +29,9 @@ public class CarAI : MonoBehaviour
 
     // Reference to the CarbonMeter script
     public CarbonMeter carbonMeter;
+    
+    [SerializeField]
+    public AiDirector aiDirector;
 
     internal bool IsThisLastPathIndex()
     {
@@ -69,6 +73,14 @@ public class CarAI : MonoBehaviour
             if (carbonMeter == null)
             {
                 Debug.LogError("CarbonMeter script not found in the scene!");
+            }
+        }
+        if (aiDirector == null)
+        {
+            aiDirector = FindObjectOfType<AiDirector>();
+            if (aiDirector == null)
+            {
+                Debug.LogError("AiDirector script not found in the scene!");
             }
         }
     }
@@ -159,22 +171,44 @@ public class CarAI : MonoBehaviour
         }
     }
 
+
+
+    private bool home = false;
     private void SetNextTargetIndex()
     {
+        
         index++;
-        if(index >= path.Count)
+
+        // if(aiDirector == null)
+        // {
+        //     Debug.LogError("aiDirector is null!");
+        //     return;
+        // }
+
+        
+        if(index >= path.Count && home == false)
         {
-            //CarbonMeter++;
             carbonMeter.IncreaseCarbonMeter(); // Increase carbon meter value
-            Stop = true;
+            //Stop = true;
             Destroy(gameObject);
             Debug.Log("Nagdestroy na ba ang ferson?");
-            //Debug.Log("Carbon Emission Meter: " + CarbonMeter);
             
-        }
+            aiDirector.RespawnACar();
+            Stop = true;
+            Destroy(gameObject);
+            carbonMeter.IncreaseCarbonMeter(); // Increase carbon meter value
+            Debug.Log("MAGDESTROY KA");
+                    
+            home = true;
+                
+
+        }    
+
         else
         {
             currentTargetPosition = path[index];
         }
+
+
     }
 }
