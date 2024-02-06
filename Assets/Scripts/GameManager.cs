@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public CameraMovement cameraMovement;
+   // public CameraMovement cameraMovement;
     public RoadManager roadManager;
     public InputManager inputManager;
 
@@ -129,8 +129,8 @@ public class GameManager : MonoBehaviour
 
 
 
-    private void Update()
-    {
-        cameraMovement.MoveCamera(new Vector3(inputManager.CameraMovementVector.x, 0, inputManager.CameraMovementVector.y));
-    }
+    // private void Update()
+    // {
+    //     cameraMovement.MoveCamera(new Vector3(inputManager.CameraMovementVector.x, 0, inputManager.CameraMovementVector.y));
+    // }
 }
