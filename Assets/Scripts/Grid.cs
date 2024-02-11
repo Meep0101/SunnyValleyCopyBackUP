@@ -58,6 +58,7 @@ public enum CellType
 {
     Empty,
     Road,
+    Water,
     Structure,
     SpecialStructure,
     None
@@ -73,6 +74,7 @@ public class Grid
     public int Height { get { return _height; } }
 
     private List<Point> _roadList = new List<Point>();
+    private List<Point> _waterList = new List<Point>();
     private List<Point> _specialStructure = new List<Point>();
     private List<Point> _houseStructure = new List<Point>();
 
@@ -96,6 +98,10 @@ public class Grid
             if (value == CellType.Road)
             {
                 _roadList.Add(new Point(i, j));
+            }
+            if (value == CellType.Water)
+            {
+                _waterList.Add(new Point(i, j));
             }
             if (value == CellType.SpecialStructure)
             {
