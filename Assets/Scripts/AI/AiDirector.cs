@@ -10,48 +10,14 @@ namespace SimpleCity.AI
     public class AiDirector : MonoBehaviour
     {
         public PlacementManager placementManager;
-        public GameObject[] pedestrianPrefabs;
-
+        
         public GameObject carPrefab;
 
-        AdjacencyGraph pedestrianGraph = new AdjacencyGraph();
         AdjacencyGraph carGraph = new AdjacencyGraph();
 
         List<Vector3> carPath = new List<Vector3>();
 
-        public void SpawnAllAagents()
-        {
-            foreach (var house in placementManager.GetAllHouses())
-            {
-                TrySpawningAnAgent(house, placementManager.GetRandomSpecialStrucutre());
-            }
-            foreach (var specialStructure in placementManager.GetAllSpecialStructures())
-            {
-                TrySpawningAnAgent(specialStructure, placementManager.GetRandomHouseStructure());
-            }
-        }
 
-        private void TrySpawningAnAgent(StructureModel startStructure, StructureModel endStructure)
-        {
-            if(startStructure != null && endStructure != null)
-            {
-                var startPosition = ((INeedingRoad)startStructure).RoadPosition;
-                var endPosition = ((INeedingRoad)endStructure).RoadPosition;
-
-                var startMarkerPosition = placementManager.GetStructureAt(startPosition).GetPedestrianSpawnMarker(startStructure.transform.position);
-                var endMarkerPosition = placementManager.GetStructureAt(endPosition).GetNearestPedestrianMarkerTo(endStructure.transform.position);
-
-                var agent = Instantiate(GetRandomPedestrian(), startMarkerPosition.Position, Quaternion.identity);
-                var path = placementManager.GetPathBetween(startPosition, endPosition, true);
-                if(path.Count > 0)
-                {
-                    path.Reverse();
-                    List<Vector3> agentPath = GetPedestrianPath(path, startMarkerPosition.Position, endMarkerPosition);
-                    var aiAgent = agent.GetComponent<AiAgent>();
-                    aiAgent.Initialize(agentPath);
-                }
-            }
-        }
 
         public void SpawnACar()
         {
@@ -103,9 +69,6 @@ namespace SimpleCity.AI
 
 
 
-
-
-
         private void TrySpawninACarHome(StructureModel startStructure, StructureModel endStructure)
         {
             if (startStructure != null && endStructure != null)
@@ -135,76 +98,6 @@ namespace SimpleCity.AI
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        private List<Vector3> GetPedestrianPath(List<Vector3Int> path, Vector3 startPosition, Vector3 endPosition)
-        {
-            pedestrianGraph.ClearGraph();
-            CreatAPedestrianGraph(path);
-            Debug.Log(pedestrianGraph);
-            return AdjacencyGraph.AStarSearch(pedestrianGraph,startPosition,endPosition);
-        }
-
-
-        private void CreatAPedestrianGraph(List<Vector3Int> path)
-        {
-            Dictionary<Marker, Vector3> tempDictionary = new Dictionary<Marker, Vector3>();
-
-            for (int i = 0; i < path.Count; i++)
-            {
-                var currentPosition = path[i];
-                var roadStructure = placementManager.GetStructureAt(currentPosition);
-                var markersList = roadStructure.GetPedestrianMarkers();
-                bool limitDistance = markersList.Count == 4;
-                tempDictionary.Clear();
-                foreach (var marker in markersList)
-                {
-                    pedestrianGraph.AddVertex(marker.Position);
-                    foreach (var markerNeighbourPosition in marker.GetAdjacentPositions())
-                    {
-                        pedestrianGraph.AddEdge(marker.Position, markerNeighbourPosition);
-                    }
-
-                    if(marker.OpenForconnections && i+1 < path.Count)
-                    {
-                        var nextRoadStructure = placementManager.GetStructureAt(path[i + 1]);
-                        if (limitDistance)
-                        {
-                            tempDictionary.Add(marker, nextRoadStructure.GetNearestPedestrianMarkerTo(marker.Position));
-                        }
-                        else
-                        {
-                            pedestrianGraph.AddEdge(marker.Position, nextRoadStructure.GetNearestPedestrianMarkerTo(marker.Position));
-                        }
-                    }
-                }
-                if(limitDistance && tempDictionary.Count == 4)
-                {
-                    var distanceSortedMarkers = tempDictionary.OrderBy(x => Vector3.Distance(x.Key.Position, x.Value)).ToList();
-                    for (int j = 0; j < 2; j++)
-                    {
-                        pedestrianGraph.AddEdge(distanceSortedMarkers[j].Key.Position, distanceSortedMarkers[j].Value);
-                    }
-                }
-            }
-        }
 
         private List<Vector3> GetCarPath(List<Vector3Int> path, Vector3 startPosition, Vector3 endPosition)
         {
@@ -260,10 +153,7 @@ namespace SimpleCity.AI
             }
         }
 
-        private GameObject GetRandomPedestrian()
-        {
-            return pedestrianPrefabs[UnityEngine.Random.Range(0, pedestrianPrefabs.Length)];
-        }
+
 
         private void Update()
         {
@@ -285,6 +175,111 @@ namespace SimpleCity.AI
             }
         }
 
+
+
+
+
+
+
+
+
+        // public GameObject[] pedestrianPrefabs;
+        // AdjacencyGraph pedestrianGraph = new AdjacencyGraph();
+
+        // public void SpawnAllAagents()
+        // {
+        //     foreach (var house in placementManager.GetAllHouses())
+        //     {
+        //         TrySpawningAnAgent(house, placementManager.GetRandomSpecialStrucutre());
+        //     }
+        //     foreach (var specialStructure in placementManager.GetAllSpecialStructures())
+        //     {
+        //         TrySpawningAnAgent(specialStructure, placementManager.GetRandomHouseStructure());
+        //     }
+        // }
+
+        // private void TrySpawningAnAgent(StructureModel startStructure, StructureModel endStructure)
+        // {
+        //     if(startStructure != null && endStructure != null)
+        //     {
+        //         var startPosition = ((INeedingRoad)startStructure).RoadPosition;
+        //         var endPosition = ((INeedingRoad)endStructure).RoadPosition;
+
+        //         var startMarkerPosition = placementManager.GetStructureAt(startPosition).GetPedestrianSpawnMarker(startStructure.transform.position);
+        //         var endMarkerPosition = placementManager.GetStructureAt(endPosition).GetNearestPedestrianMarkerTo(endStructure.transform.position);
+
+        //         var agent = Instantiate(GetRandomPedestrian(), startMarkerPosition.Position, Quaternion.identity);
+        //         var path = placementManager.GetPathBetween(startPosition, endPosition, true);
+        //         if(path.Count > 0)
+        //         {
+        //             path.Reverse();
+        //             List<Vector3> agentPath = GetPedestrianPath(path, startMarkerPosition.Position, endMarkerPosition);
+        //             var aiAgent = agent.GetComponent<AiAgent>();
+        //             aiAgent.Initialize(agentPath);
+        //         }
+        //     }
+        // }
+
+
+
+
+        // private List<Vector3> GetPedestrianPath(List<Vector3Int> path, Vector3 startPosition, Vector3 endPosition)
+        // {
+        //     pedestrianGraph.ClearGraph();
+        //     CreatAPedestrianGraph(path);
+        //     Debug.Log(pedestrianGraph);
+        //     return AdjacencyGraph.AStarSearch(pedestrianGraph,startPosition,endPosition);
+        // }
+
+
+        // private void CreatAPedestrianGraph(List<Vector3Int> path)
+        // {
+        //     Dictionary<Marker, Vector3> tempDictionary = new Dictionary<Marker, Vector3>();
+
+        //     for (int i = 0; i < path.Count; i++)
+        //     {
+        //         var currentPosition = path[i];
+        //         var roadStructure = placementManager.GetStructureAt(currentPosition);
+        //         var markersList = roadStructure.GetPedestrianMarkers();
+        //         bool limitDistance = markersList.Count == 4;
+        //         tempDictionary.Clear();
+        //         foreach (var marker in markersList)
+        //         {
+        //             pedestrianGraph.AddVertex(marker.Position);
+        //             foreach (var markerNeighbourPosition in marker.GetAdjacentPositions())
+        //             {
+        //                 pedestrianGraph.AddEdge(marker.Position, markerNeighbourPosition);
+        //             }
+
+        //             if(marker.OpenForconnections && i+1 < path.Count)
+        //             {
+        //                 var nextRoadStructure = placementManager.GetStructureAt(path[i + 1]);
+        //                 if (limitDistance)
+        //                 {
+        //                     tempDictionary.Add(marker, nextRoadStructure.GetNearestPedestrianMarkerTo(marker.Position));
+        //                 }
+        //                 else
+        //                 {
+        //                     pedestrianGraph.AddEdge(marker.Position, nextRoadStructure.GetNearestPedestrianMarkerTo(marker.Position));
+        //                 }
+        //             }
+        //         }
+        //         if(limitDistance && tempDictionary.Count == 4)
+        //         {
+        //             var distanceSortedMarkers = tempDictionary.OrderBy(x => Vector3.Distance(x.Key.Position, x.Value)).ToList();
+        //             for (int j = 0; j < 2; j++)
+        //             {
+        //                 pedestrianGraph.AddEdge(distanceSortedMarkers[j].Key.Position, distanceSortedMarkers[j].Value);
+        //             }
+        //         }
+        //     }
+        // }
+
+
+        // private GameObject GetRandomPedestrian()
+        // {
+        //     return pedestrianPrefabs[UnityEngine.Random.Range(0, pedestrianPrefabs.Length)];
+        // }
 
     }
 }
