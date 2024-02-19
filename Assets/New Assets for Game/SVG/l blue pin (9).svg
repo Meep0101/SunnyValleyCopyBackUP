@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.71 16.55">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f4f4f4;
+      }
+
+      .cls-2 {
+        fill: #ff78ab;
+      }
+
+      .cls-3 {
+        fill: #170000;
+        stroke: #f4f4f4;
+        stroke-miterlimit: 10;
+      }
+    </style>
+  </defs>
+  <g id="Layer_17" data-name="Layer 17">
+    <g id="l_blue_pin" data-name="l blue pin">
+      <path class="cls-1" d="m6.85,0h0C10.64,0,13.71,3.07,13.71,6.85v6.85h-6.85C3.07,13.71,0,10.64,0,6.85H0C0,3.07,3.07,0,6.85,0Z" transform="translate(6.85 -2.84) rotate(45)"/>
+      <path class="cls-3" d="m6.85,14.74l-3.97-3.97C.69,8.58.69,5.02,2.88,2.83h0c2.19-2.19,5.75-2.19,7.94,0h0c2.19,2.19,2.19,5.75,0,7.94l-3.97,3.97Z"/>
+      <circle class="cls-2" cx="6.85" cy="6.91" r="2.38"/>
+    </g>
+  </g>
+</svg>

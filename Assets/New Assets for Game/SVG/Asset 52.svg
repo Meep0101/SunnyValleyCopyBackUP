@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29.6 35.81">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: #fefefe;
+        stroke-width: 23.5px;
+      }
+
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        stroke: #eadec9;
+        stroke-width: 29.6px;
+      }
+    </style>
+  </defs>
+  <g id="road">
+    <g>
+      <line class="cls-2" x1="14.8" x2="14.8" y2="35.81"/>
+      <line class="cls-1" x1="14.8" x2="14.8" y2="35.81"/>
+    </g>
+  </g>
+</svg>
