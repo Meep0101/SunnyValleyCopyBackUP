@@ -35,6 +35,8 @@ public class PlacementManager : MonoBehaviour
         return false;
     }
 
+
+    //StructurePlacement to be removed
     internal void PlaceObjectOnTheMap(Vector3Int position, GameObject structurePrefab, CellType type) //Removed int width = 1, int height = 1
     {
         placementGrid[position.x, position.z] = type;
@@ -52,6 +54,7 @@ public class PlacementManager : MonoBehaviour
             Debug.Log("My nearest road position is: " + structureNeedingRoad.RoadPosition);
         }
 
+        #region 
         // for (int x = 0; x < width; x++)
         // {
         //     for (int z = 0; z < height; z++)
@@ -62,7 +65,7 @@ public class PlacementManager : MonoBehaviour
         //         DestroyNatureAt(newPosition);
         //     }
         // }
-
+        #endregion
     }
 
 

@@ -3620,22 +3620,22 @@ MonoBehaviour:
   terminalPrefab:
   - prefab: {fileID: 2769822920355022703, guid: 7102e40a9ba863a44838c4fd828cc22b,
       type: 3}
-    weight: 0.034
+    weight: 0.25
   - prefab: {fileID: 801535651834448878, guid: 3240703552f47d04d9bf7207ca5bfa85, type: 3}
-    weight: 0.107
+    weight: 0.25
   - prefab: {fileID: 8067785501733222628, guid: 4617fd335db984f4bb34f5eb561fd82b,
       type: 3}
-    weight: 0.143
+    weight: 1
   stationPrefab:
   - prefab: {fileID: 7864668269691680764, guid: 44c75b500bfebf84993deb17f38a98f6,
       type: 3}
-    weight: 0.09
+    weight: 0.25
   - prefab: {fileID: 8172496117335426106, guid: 3527735cc30c8554aadd1222f91bf61f,
       type: 3}
     weight: 0.25
   - prefab: {fileID: 3702253504043930072, guid: 838f9b485bb510747a4b89e3cb91e1bd,
       type: 3}
-    weight: 0.301
+    weight: 1
   placementManager: {fileID: 540532163}
 --- !u!4 &319897189
 Transform:

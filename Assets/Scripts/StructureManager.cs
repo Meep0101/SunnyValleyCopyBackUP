@@ -51,14 +51,14 @@ public class StructureManager : MonoBehaviour
         float tempSum = 0;
         for (int i = 0; i < weights.Length; i++)
         {
-            //0->weihg[0] weight[0]->weight[1]
+            //0->weihg[0] weight[0]->weight[0] + weight[1]
             if(randomValue >= tempSum && randomValue < tempSum + weights[i])
             {
                 return i;
             }
             tempSum += weights[i];
         }
-        return 0;
+        return 0; //If something went wrong here
     }
 
     private bool CheckPositionBeforePlacement(Vector3Int position)
