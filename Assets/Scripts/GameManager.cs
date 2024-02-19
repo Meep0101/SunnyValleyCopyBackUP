@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
 
         inputManager.OnMouseClick += (pos) =>
         {
-            ProcessInputAndCall(structureManager.PlaceSpecial, pos);
+            ProcessInputAndCall(structureManager.PlaceStation, pos);
         };
         inputManager.OnEscape += HandleEscape;
     }
@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
 
         inputManager.OnMouseClick += (pos) =>
         {
-            ProcessInputAndCall(structureManager.PlaceHouse, pos);
+            ProcessInputAndCall(structureManager.PlaceTerminal, pos);
         };
         inputManager.OnEscape += HandleEscape;
     }

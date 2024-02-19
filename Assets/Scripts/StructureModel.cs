@@ -27,8 +27,6 @@ public class StructureModel : MonoBehaviour, INeedingRoad
         structure.transform.localRotation = rotation;
     }
 
-
-
     internal List<Marker> GetCarMarkers()
     {
         return transform.GetChild(0).GetComponent<RoadHelper>().GetAllCarMarkers();
@@ -50,10 +48,7 @@ public class StructureModel : MonoBehaviour, INeedingRoad
     }
 
 
-
-
-
-
+    #region
     // public Vector3 GetNearestPedestrianMarkerTo(Vector3 position)
     // {
     //     return transform.GetChild(0).GetComponent<RoadHelper>().GetClosestPedestrainPosition(position);
@@ -68,5 +63,6 @@ public class StructureModel : MonoBehaviour, INeedingRoad
     // {
     //     return transform.GetChild(0).GetComponent<RoadHelper>().GetAllPedestrianMarkers();
     // }
+    #endregion
     
 }

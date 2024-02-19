@@ -7,34 +7,34 @@ using UnityEngine;
 
 public class StructureManager : MonoBehaviour
 {
-    public StructurePrefabWeighted[] housesPrefabe, specialPrefabs;     // removed bigStructuresPrefabs;
+    public StructurePrefabWeighted[] terminalPrefab, stationPrefab;     // removed bigStructuresPrefabs;
     public PlacementManager placementManager;
 
-    private float[] houseWeights, specialWeights, bigStructureWeights;
+    private float[] terminalWeights, stationWeights; // removed bigStructureWeights;
 
     private void Start()
     {
-        houseWeights = housesPrefabe.Select(prefabStats => prefabStats.weight).ToArray();
-        specialWeights = specialPrefabs.Select(prefabStats => prefabStats.weight).ToArray();
+        terminalWeights = terminalPrefab.Select(prefabStats => prefabStats.weight).ToArray();
+        stationWeights = stationPrefab.Select(prefabStats => prefabStats.weight).ToArray();
         //bigStructureWeights = bigStructuresPrefabs.Select(prefabStats => prefabStats.weight).ToArray();
     }
 
-    public void PlaceHouse(Vector3Int position)
+    public void PlaceTerminal(Vector3Int position)
     {
         if (CheckPositionBeforePlacement(position))
         {
-            int randomIndex = GetRandomWeightedIndex(houseWeights);
-            placementManager.PlaceObjectOnTheMap(position, housesPrefabe[randomIndex].prefab, CellType.Structure);
+            int randomIndex = GetRandomWeightedIndex(terminalWeights);
+            placementManager.PlaceObjectOnTheMap(position, terminalPrefab[randomIndex].prefab, CellType.Structure);
             AudioPlayer.instance.PlayPlacementSound();
         }
     }
 
-    public void PlaceSpecial(Vector3Int position)
+    public void PlaceStation(Vector3Int position)
     {
         if (CheckPositionBeforePlacement(position))
         {
-            int randomIndex = GetRandomWeightedIndex(specialWeights);
-            placementManager.PlaceObjectOnTheMap(position, specialPrefabs[randomIndex].prefab, CellType.SpecialStructure);
+            int randomIndex = GetRandomWeightedIndex(stationWeights);
+            placementManager.PlaceObjectOnTheMap(position, stationPrefab[randomIndex].prefab, CellType.SpecialStructure);
             AudioPlayer.instance.PlayPlacementSound();
         }
     }
@@ -73,6 +73,8 @@ public class StructureManager : MonoBehaviour
             Debug.Log("This position is not EMPTY");
             return false;
         }
+
+        //Should be removed
         if (placementManager.GetNeighboursOfTypeFor(position, CellType.Road).Count <= 0)
         {
             Debug.Log("Must be placed near a road");
