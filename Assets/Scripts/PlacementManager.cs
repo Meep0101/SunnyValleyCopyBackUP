@@ -9,7 +9,7 @@ public class PlacementManager : MonoBehaviour
     Grid placementGrid;
 
 
-    private StructureModel selectedRoadObject;
+    //private StructureModel selectedRoadObject;
 
     public RoadFixer roadFixer;
 
