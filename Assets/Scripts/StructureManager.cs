@@ -7,15 +7,15 @@ using UnityEngine;
 
 public class StructureManager : MonoBehaviour
 {
-    public StructurePrefabWeighted[] terminalPrefab, stationPrefab;     // removed bigStructuresPrefabs;
+    public GameObject terminalPrefab, stationPrefab;     // removed bigStructuresPrefabs;
     public PlacementManager placementManager;
 
     private float[] terminalWeights, stationWeights; // removed bigStructureWeights;
 
     private void Start()
     {
-        terminalWeights = terminalPrefab.Select(prefabStats => prefabStats.weight).ToArray();
-        stationWeights = stationPrefab.Select(prefabStats => prefabStats.weight).ToArray();
+        // terminalWeights = terminalPrefab.Select(prefabStats => prefabStats.weight).ToArray();
+        // stationWeights = stationPrefab.Select(prefabStats => prefabStats.weight).ToArray();
         //bigStructureWeights = bigStructuresPrefabs.Select(prefabStats => prefabStats.weight).ToArray();
     }
 
@@ -23,8 +23,8 @@ public class StructureManager : MonoBehaviour
     {
         if (CheckPositionBeforePlacement(position))
         {
-            int randomIndex = GetRandomWeightedIndex(terminalWeights);
-            placementManager.PlaceObjectOnTheMap(position, terminalPrefab[randomIndex].prefab, CellType.Structure);
+            //int randomIndex = GetRandomWeightedIndex(terminalWeights);
+            placementManager.PlaceObjectOnTheMap(position, terminalPrefab, CellType.Structure);
             AudioPlayer.instance.PlayPlacementSound();
         }
     }
@@ -33,8 +33,8 @@ public class StructureManager : MonoBehaviour
     {
         if (CheckPositionBeforePlacement(position))
         {
-            int randomIndex = GetRandomWeightedIndex(stationWeights);
-            placementManager.PlaceObjectOnTheMap(position, stationPrefab[randomIndex].prefab, CellType.SpecialStructure);
+            //int randomIndex = GetRandomWeightedIndex(stationWeights);
+            placementManager.PlaceObjectOnTheMap(position, stationPrefab, CellType.SpecialStructure);
             AudioPlayer.instance.PlayPlacementSound();
         }
     }
@@ -158,10 +158,10 @@ public class StructureManager : MonoBehaviour
     #endregion
 }
 
-[Serializable]
-public struct StructurePrefabWeighted
-{
-    public GameObject prefab;
-    [Range(0,1)]
-    public float weight;
-}
+// [Serializable]
+// public struct StructurePrefab
+// {
+//     public GameObject prefab;
+//     [Range(0,1)]
+//     //public float weight;
+// }
