@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private static GameManager instance;
+
     public CameraMovement cameraMovement;
     public RoadManager roadManager;
     public InputManager inputManager;
@@ -21,6 +23,14 @@ public class GameManager : MonoBehaviour
 
     public PlacementManager placementManager;
 
+
+
+
+    [SerializeField] private Transform[] redNodeTransformArray;
+    [SerializeField] private Transform terminalTransform;
+    private List<StationNode> stationNodelist;
+
+
     void Start()
     {
         uiController.OnRoadPlacement += RoadPlacementHandler;
@@ -30,6 +40,8 @@ public class GameManager : MonoBehaviour
         uiController.OnRemoveRoad += RemoveRoadHandler;
         inputManager.OnEscape += HandleEscape;
     }
+
+    
 
     private void RemoveRoadHandler()
     {
