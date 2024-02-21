@@ -170,6 +170,29 @@ public class PlacementManager : MonoBehaviour
         return structureModel;
     }
 
+
+
+
+    internal Vector3Int WorldToGridPosition(Vector3 worldPosition)
+    {
+        // Convert world position to grid position based on grid cell size
+        int x = Mathf.FloorToInt(worldPosition.x);
+        int z = Mathf.FloorToInt(worldPosition.z);
+        return new Vector3Int(x, 0 ,z);
+    }
+    
+    public Vector3Int WorldToCell(Vector3 position)
+    {
+        return new Vector3Int(
+            Mathf.FloorToInt(position.x),
+            Mathf.FloorToInt(position.y),
+            Mathf.FloorToInt(position.z)
+        );
+    }
+
+
+
+
     internal List<Vector3Int> GetPathBetween(Vector3Int startPosition, Vector3Int endPosition, bool isAgent = false)
     {
         var resultPath = GridSearch.AStarSearch(placementGrid, new Point(startPosition.x, startPosition.z), new Point(endPosition.x, endPosition.z), isAgent);
