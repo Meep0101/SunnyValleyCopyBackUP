@@ -10,14 +10,17 @@ public class StructureManager : MonoBehaviour
     public GameObject terminalPrefab, stationPrefab;     // removed bigStructuresPrefabs;
     public PlacementManager placementManager;
 
-    private float[] terminalWeights, stationWeights; // removed bigStructureWeights;
+    #region 
+    //private float[] terminalWeights, stationWeights; // removed bigStructureWeights;
 
-    private void Start()
-    {
+     
+    //private void Start()
+    //{
         // terminalWeights = terminalPrefab.Select(prefabStats => prefabStats.weight).ToArray();
         // stationWeights = stationPrefab.Select(prefabStats => prefabStats.weight).ToArray();
         //bigStructureWeights = bigStructuresPrefabs.Select(prefabStats => prefabStats.weight).ToArray();
-    }
+    //}
+    #endregion
 
     public void PlaceTerminal(Vector3Int position)
     {
@@ -37,28 +40,6 @@ public class StructureManager : MonoBehaviour
             placementManager.PlaceObjectOnTheMap(position, stationPrefab, CellType.SpecialStructure);
             AudioPlayer.instance.PlayPlacementSound();
         }
-    }
-
-    private int GetRandomWeightedIndex(float[] weights)
-    {
-        float sum = 0f;
-        for (int i = 0; i < weights.Length; i++)
-        {
-            sum += weights[i];
-        }
-
-        float randomValue = UnityEngine.Random.Range(0, sum);
-        float tempSum = 0;
-        for (int i = 0; i < weights.Length; i++)
-        {
-            //0->weihg[0] weight[0]->weight[0] + weight[1]
-            if(randomValue >= tempSum && randomValue < tempSum + weights[i])
-            {
-                return i;
-            }
-            tempSum += weights[i];
-        }
-        return 0; //If something went wrong here
     }
 
     private bool CheckPositionBeforePlacement(Vector3Int position)
@@ -83,6 +64,7 @@ public class StructureManager : MonoBehaviour
         return true;
 
         #region 
+        // BigStructures
         // if (DefaultCheck(position) == false)
         // {
         //     return false;
@@ -94,6 +76,32 @@ public class StructureManager : MonoBehaviour
         // return true;
         #endregion
     }
+
+    #region 
+    // private int GetRandomWeightedIndex(float[] weights)
+    // {
+    //     float sum = 0f;
+    //     for (int i = 0; i < weights.Length; i++)
+    //     {
+    //         sum += weights[i];
+    //     }
+
+    //     float randomValue = UnityEngine.Random.Range(0, sum);
+    //     float tempSum = 0;
+    //     for (int i = 0; i < weights.Length; i++)
+    //     {
+    //         //0->weihg[0] weight[0]->weight[0] + weight[1]
+    //         if(randomValue >= tempSum && randomValue < tempSum + weights[i])
+    //         {
+    //             return i;
+    //         }
+    //         tempSum += weights[i];
+    //     }
+    //     return 0; //If something went wrong here
+    // }
+    #endregion
+
+
 
     #region 
     // internal void PlaceBigStructure(Vector3Int position)
@@ -158,6 +166,7 @@ public class StructureManager : MonoBehaviour
     #endregion
 }
 
+#region 
 // [Serializable]
 // public struct StructurePrefab
 // {
@@ -165,3 +174,4 @@ public class StructureManager : MonoBehaviour
 //     [Range(0,1)]
 //     //public float weight;
 // }
+#endregion
