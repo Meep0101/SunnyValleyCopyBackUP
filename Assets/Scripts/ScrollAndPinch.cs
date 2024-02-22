@@ -1,23 +1,6 @@
-/*
-Original Script By: Ditzel
-Youtube Video Link: https://www.youtube.com/watch?v=KkYco_7-ULA&ab_channel=DitzelGames
-Uses of this script:
- For controlling camera movement: Pan, zoom and rotate
-How to use:
-Set this on an empty game object positioned at (0,0,0) and attach your active camera.
-The script only runs on mobile devices or the remote app.
-DecreaseCameraPanSpeed - The more the value, the greater it slows the pan speed
-Upper height (Zoom out restriction) - Relative to camera position (not worldspace)
-Lower height (Zoom in restriction) - Relative to camera position (not worldspace)
-------[CHANGE LOG]------
-Edited by Kudoshi : 24/3/2021
-- Added Zoom In Out restriction
-- Added camera pan speed
-*/
-
 using UnityEngine;
-
-class ScrollAndPinch : MonoBehaviour
+using UnityEngine.EventSystems;
+public class ScrollAndPinch : MonoBehaviour
 {
 #if  UNITY_ANDROID
     public Camera Camera;
@@ -28,6 +11,8 @@ class ScrollAndPinch : MonoBehaviour
     public float CameraLowerHeightBound; //Zoom in
 
     private Vector3 cameraStartPosition;
+
+  
     private void Awake()
     {
         if (Camera == null)
@@ -36,11 +21,12 @@ class ScrollAndPinch : MonoBehaviour
         cameraStartPosition = Camera.transform.position;
     }
 
-    private void Update()
+    public void Update()
     {
+    
 
         //Update Plane
-        if (Input.touchCount >= 1)
+        for (int i = 0; i<= Input.touchCount; i++)
             Plane.SetNormalAndPosition(transform.up, transform.position);
 
         var Delta1 = Vector3.zero;
@@ -92,6 +78,8 @@ class ScrollAndPinch : MonoBehaviour
             //Rotation Function
             if (Rotate && pos2b != pos2)
                 Camera.transform.RotateAround(pos1, Plane.normal, Vector3.SignedAngle(pos2 - pos1, pos2b - pos1b, Plane.normal));
+
+                
         }
 
     }
@@ -124,9 +112,13 @@ class ScrollAndPinch : MonoBehaviour
         return Vector3.zero;
     }
 
+
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(transform.position, transform.position + transform.up);
     }
+
+   
 #endif
 }

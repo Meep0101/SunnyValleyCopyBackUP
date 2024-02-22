@@ -16,6 +16,8 @@ public class RoadManager : MonoBehaviour
 
     public RoadFixer roadFixer;
 
+   
+
     private void Start()
     {
         roadFixer = GetComponent<RoadFixer>();
@@ -23,6 +25,9 @@ public class RoadManager : MonoBehaviour
 
     public void PlaceRoad(Vector3Int position)
     {
+        
+
+
         if (placementManager.CheckIfPositionInBound(position) == false)
             return;
         if (placementManager.CheckIfPositionIsFree(position) == false)
@@ -37,7 +42,7 @@ public class RoadManager : MonoBehaviour
 
             temporaryPlacementPositions.Add(position);
             placementManager.PlaceTemporaryStructure(position, roadFixer.deadEnd, CellType.Road);
-
+            
         }
         else
         {
@@ -99,4 +104,6 @@ public class RoadManager : MonoBehaviour
         temporaryPlacementPositions.Clear();
         startPosition = Vector3Int.zero;
     }
+
+    
 }

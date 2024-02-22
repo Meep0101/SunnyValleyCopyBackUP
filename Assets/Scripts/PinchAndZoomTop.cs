@@ -1,11 +1,13 @@
+using System.Runtime.CompilerServices;
+//using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 public class PinchZoom : MonoBehaviour
 {
     public float perspectiveZoomSpeed = 100f;        // The rate of change of the field of view in perspective mode.
     public float orthoZoomSpeed = 100f;        // The rate of change of the orthographic size in orthographic mode.
- public Camera cam;
- 
+    public Camera cam;
+   
  void Start()
  {
   cam = GetComponent<Camera>();
@@ -13,7 +15,7 @@ public class PinchZoom : MonoBehaviour
 
     void Update()
     {
-        // If there are two touches on the device...
+       // If there are two touches on the device...
         if (Input.touchCount == 2)
         {
             // Store both touches.
@@ -30,6 +32,8 @@ public class PinchZoom : MonoBehaviour
 
             // Find the difference in the distances between each frame.
             float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
+
+        
 
             // If the camera is orthographic...
             if (cam.orthographic)
@@ -49,5 +53,10 @@ public class PinchZoom : MonoBehaviour
                 cam.fieldOfView = Mathf.Clamp(cam.fieldOfView, 0.1f, 179.9f);
             }
         }
+        
     }
-}
+
+    
+        
+    }
+   
