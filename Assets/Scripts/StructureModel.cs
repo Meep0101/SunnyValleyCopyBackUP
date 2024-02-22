@@ -10,12 +10,15 @@ public class StructureModel : MonoBehaviour, INeedingRoad
 
     public Vector3Int RoadPosition { get; set; }
 
+    // Handles instantiating the model
+    //Road Fixer
     public void CreateModel(GameObject model)
     {
-        var structure = Instantiate(model, transform);
+        var structure = Instantiate(model, transform); //Named structure only with no relevance
         yHeight = structure.transform.position.y;
     }
 
+    //Road Fixer
     public void SwapModel(GameObject model, Quaternion rotation)
     {
         foreach (Transform child in transform)
@@ -48,7 +51,7 @@ public class StructureModel : MonoBehaviour, INeedingRoad
     }
 
 
-    #region
+    #region Pedestrian
     // public Vector3 GetNearestPedestrianMarkerTo(Vector3 position)
     // {
     //     return transform.GetChild(0).GetComponent<RoadHelper>().GetClosestPedestrainPosition(position);

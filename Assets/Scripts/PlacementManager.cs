@@ -14,6 +14,8 @@ public class PlacementManager : MonoBehaviour
     public RoadFixer roadFixer;
 
     private Dictionary<Vector3Int, StructureModel> temporaryRoadobjects = new Dictionary<Vector3Int, StructureModel>();
+
+    //To be removed
     private Dictionary<Vector3Int, StructureModel> structureDictionary = new Dictionary<Vector3Int, StructureModel>();
 
     private void Start()
@@ -54,7 +56,7 @@ public class PlacementManager : MonoBehaviour
             Debug.Log("My nearest road position is: " + structureNeedingRoad.RoadPosition);
         }
 
-        #region 
+        #region BigStructure
         // for (int x = 0; x < width; x++)
         // {
         //     for (int z = 0; z < height; z++)
@@ -141,6 +143,8 @@ public class PlacementManager : MonoBehaviour
         return placementGrid[position.x, position.z] == type;
     }
 
+
+    //RoadFixer
     internal void PlaceTemporaryStructure(Vector3Int position, GameObject structurePrefab, CellType type)
     {
         placementGrid[position.x, position.z] = type;
@@ -159,6 +163,7 @@ public class PlacementManager : MonoBehaviour
         return neighbours;
     }
 
+    //RoadFixer
     private StructureModel CreateANewStructureModel(Vector3Int position, GameObject structurePrefab, CellType type)
     {
         GameObject structure = new GameObject(type.ToString());
@@ -204,6 +209,7 @@ public class PlacementManager : MonoBehaviour
         return path;
     }
 
+    //RoadFixer
     internal void RemoveAllTemporaryStructures()
     {
         foreach (var structure in temporaryRoadobjects.Values)
@@ -215,6 +221,7 @@ public class PlacementManager : MonoBehaviour
         temporaryRoadobjects.Clear();
     }
 
+    //RoadFixer
     internal void AddtemporaryStructuresToStructureDictionary()
     {
         foreach (var structure in temporaryRoadobjects)
@@ -224,7 +231,8 @@ public class PlacementManager : MonoBehaviour
         }
         temporaryRoadobjects.Clear();
     }
-
+    
+    //RoadFixer
     public void ModifyStructureModel(Vector3Int position, GameObject newModel, Quaternion rotation)
     {
         if (temporaryRoadobjects.ContainsKey(position))

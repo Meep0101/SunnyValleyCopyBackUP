@@ -176,13 +176,7 @@ namespace SimpleCity.AI
         }
 
 
-
-
-
-
-
-
-
+        #region
         // public GameObject[] pedestrianPrefabs;
         // AdjacencyGraph pedestrianGraph = new AdjacencyGraph();
 
@@ -280,6 +274,7 @@ namespace SimpleCity.AI
         // {
         //     return pedestrianPrefabs[UnityEngine.Random.Range(0, pedestrianPrefabs.Length)];
         // }
+        #endregion
 
     }
 }

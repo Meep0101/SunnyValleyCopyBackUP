@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class StructureManager : MonoBehaviour
+public class StructureManager : MonoBehaviour //Created for on mouse click placing buildings only
 {
     public GameObject terminalPrefab, stationPrefab;     // removed bigStructuresPrefabs;
     public PlacementManager placementManager;
 
-    #region 
+    #region Weights
     //private float[] terminalWeights, stationWeights; // removed bigStructureWeights;
 
      
@@ -22,6 +22,8 @@ public class StructureManager : MonoBehaviour
     //}
     #endregion
 
+    //To be removed 
+    // Handler to the input manager on Mouse click
     public void PlaceTerminal(Vector3Int position)
     {
         if (CheckPositionBeforePlacement(position))
@@ -55,6 +57,12 @@ public class StructureManager : MonoBehaviour
             return false;
         }
 
+
+
+
+
+
+
         //Should be removed
         if (placementManager.GetNeighboursOfTypeFor(position, CellType.Road).Count <= 0)
         {
@@ -63,7 +71,7 @@ public class StructureManager : MonoBehaviour
         }
         return true;
 
-        #region 
+        #region BigStructures
         // BigStructures
         // if (DefaultCheck(position) == false)
         // {
@@ -77,7 +85,7 @@ public class StructureManager : MonoBehaviour
         #endregion
     }
 
-    #region 
+    #region GetRandomWeightedIndex
     // private int GetRandomWeightedIndex(float[] weights)
     // {
     //     float sum = 0f;
@@ -101,9 +109,7 @@ public class StructureManager : MonoBehaviour
     // }
     #endregion
 
-
-
-    #region 
+    #region PlaceBigstructure
     // internal void PlaceBigStructure(Vector3Int position)
     // {
     //     int width = 2;
@@ -166,7 +172,7 @@ public class StructureManager : MonoBehaviour
     #endregion
 }
 
-#region 
+#region struct structure prefab
 // [Serializable]
 // public struct StructurePrefab
 // {
