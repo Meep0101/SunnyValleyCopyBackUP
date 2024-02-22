@@ -50,22 +50,5 @@ public class StructureModel : MonoBehaviour, INeedingRoad
         return transform.GetChild(0).GetComponent<RoadHelper>().GetPositioForCarToEnd(previousPathPosition);
     }
 
-
-    #region Pedestrian
-    // public Vector3 GetNearestPedestrianMarkerTo(Vector3 position)
-    // {
-    //     return transform.GetChild(0).GetComponent<RoadHelper>().GetClosestPedestrainPosition(position);
-    // }
-
-    // public Marker GetPedestrianSpawnMarker(Vector3 position)
-    // {
-    //     return transform.GetChild(0).GetComponent<RoadHelper>().GetpositioForPedestrianToSpwan(position);
-    // }
-
-    // public List<Marker> GetPedestrianMarkers()
-    // {
-    //     return transform.GetChild(0).GetComponent<RoadHelper>().GetAllPedestrianMarkers();
-    // }
-    #endregion
     
 }

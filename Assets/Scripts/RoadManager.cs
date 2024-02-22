@@ -27,6 +27,10 @@ public class RoadManager : MonoBehaviour
             return;
         if (placementManager.CheckIfPositionIsFree(position) == false)
             return;
+
+        if (placementManager.IsCellOccupied(position))
+            return;
+        
         if (placementMode == false)
         {
             temporaryPlacementPositions.Clear();
@@ -55,7 +59,7 @@ public class RoadManager : MonoBehaviour
 
             foreach (var temporaryPosition in temporaryPlacementPositions)
             {
-                if (placementManager.CheckIfPositionIsFree(temporaryPosition) == false)
+                if (placementManager.IsCellOccupied(temporaryPosition))
                 {
                     roadPositionsToRecheck.Add(temporaryPosition);
                     continue;

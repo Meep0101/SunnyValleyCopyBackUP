@@ -21,9 +21,9 @@ namespace SimpleCity.AI
 
         public void SpawnACar()
         {
-            foreach (var house in placementManager.GetAllHouses())
+            foreach (var structureObject in placementManager.GetAllHouses())
             {
-                TrySpawninACar(house, placementManager.GetRandomSpecialStrucutre());
+                TrySpawninACar(structureObject, placementManager.GetRandomSpecialStrucutre());
             }
         }
 

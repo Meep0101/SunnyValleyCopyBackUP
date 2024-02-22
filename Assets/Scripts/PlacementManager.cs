@@ -13,6 +13,22 @@ public class PlacementManager : MonoBehaviour
 
     public RoadFixer roadFixer;
 
+
+
+    public struct PlacedObject
+    {
+        public Vector3 position;
+        public CellType cellType;
+    }
+
+
+
+
+
+    // List to store information about manually placed objects
+    public List<PlacedObject> manuallyPlacedObjects = new List<PlacedObject>();
+  
+
     private Dictionary<Vector3Int, StructureModel> temporaryRoadobjects = new Dictionary<Vector3Int, StructureModel>();
 
     //To be removed
@@ -21,7 +37,57 @@ public class PlacementManager : MonoBehaviour
     private void Start()
     {
         placementGrid = new Grid(width, height);
+        RetrieveManuallyPlacedObjects();
     }
+
+
+
+    public void RetrieveManuallyPlacedObjects()
+    {
+        // Clear the list before retrieving new objects
+        manuallyPlacedObjects.Clear();
+
+        // Find all objects with the "Structure" tag and add them to the list
+        GameObject[] structures = GameObject.FindGameObjectsWithTag("Structure");
+        foreach (GameObject structure in structures)
+        {
+            PlacedObject placedObject;
+            placedObject.position = structure.transform.position;
+            placedObject.cellType = CellType.Structure; // Assuming it's a structure
+            manuallyPlacedObjects.Add(placedObject);
+        
+        
+            Debug.Log("Position: " + placedObject.position);
+        }
+
+        // Find all objects with the "SpecialStructure" tag and add them to the list
+        GameObject[] specialStructures = GameObject.FindGameObjectsWithTag("SpecialStructure");
+        foreach (GameObject specialStructure in specialStructures)
+        {
+            PlacedObject placedObject;
+            placedObject.position = specialStructure.transform.position;
+            placedObject.cellType = CellType.SpecialStructure; // Assuming it's a special structure
+            manuallyPlacedObjects.Add(placedObject);
+
+            Debug.Log("SSPosition: " + placedObject.position);
+        }
+    }
+
+    // Method to check if a cell is occupied by a structure or special structure
+    public bool IsCellOccupied(Vector3 position)
+    {
+        foreach (var placedObject in manuallyPlacedObjects)
+        {
+            if (placedObject.position == position)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
 
     internal CellType[] GetNeighbourTypesFor(Vector3Int position)
     {
@@ -56,18 +122,7 @@ public class PlacementManager : MonoBehaviour
             Debug.Log("My nearest road position is: " + structureNeedingRoad.RoadPosition);
         }
 
-        #region BigStructure
-        // for (int x = 0; x < width; x++)
-        // {
-        //     for (int z = 0; z < height; z++)
-        //     {
-        //         var newPosition = position + new Vector3Int(x, 0, z);
-        //         placementGrid[newPosition.x, newPosition.z] = type;
-        //         structureDictionary.Add(newPosition, structure);
-        //         DestroyNatureAt(newPosition);
-        //     }
-        // }
-        #endregion
+
     }
 
 
@@ -259,26 +314,59 @@ public class PlacementManager : MonoBehaviour
         return GetStructureAt(point);
     }
 
+
+
+
+
     public List<StructureModel> GetAllHouses()
     {
         List<StructureModel> returnList = new List<StructureModel>();
-        var housePositions = placementGrid.GetAllHouses();
-        foreach (var point in housePositions)
+        // Find all GameObjects with the "Structure" tag
+        GameObject[] structureObjects = GameObject.FindGameObjectsWithTag("Structure");
+        foreach (var structureObject in structureObjects)
         {
-            returnList.Add(structureDictionary[new Vector3Int(point.X, 0, point.Y)]);
+            // Get the StructureModel component from the GameObject
+            StructureModel structureModel = structureObject.GetComponent<StructureModel>();
+            if (structureModel != null)
+            {
+                returnList.Add(structureModel);
+            }
         }
         return returnList;
+
+        // List<StructureModel> returnList = new List<StructureModel>();
+        // var housePositions = placementGrid.GetAllHouses();
+        // foreach (var point in housePositions)
+        // {
+        //     returnList.Add(structureDictionary[new Vector3Int(point.X, 0, point.Y)]);
+        // }
+        // return returnList;
     }
 
     internal List<StructureModel> GetAllSpecialStructures()
     {
+
         List<StructureModel> returnList = new List<StructureModel>();
-        var housePositions = placementGrid.GetAllSpecialStructure();
-        foreach (var point in housePositions)
+        // Find all GameObjects with the "SpecialStructure" tag
+        GameObject[] specialStructureObjects = GameObject.FindGameObjectsWithTag("SpecialStructure");
+        foreach (var specialStructureObject in specialStructureObjects)
         {
-            returnList.Add(structureDictionary[new Vector3Int(point.X, 0, point.Y)]);
+            // Get the StructureModel component from the GameObject
+            StructureModel structureModel = specialStructureObject.GetComponent<StructureModel>();
+            if (structureModel != null)
+            {
+                returnList.Add(structureModel);
+            }
         }
         return returnList;
+
+        // List<StructureModel> returnList = new List<StructureModel>();
+        // var housePositions = placementGrid.GetAllSpecialStructure();
+        // foreach (var point in housePositions)
+        // {
+        //     returnList.Add(structureDictionary[new Vector3Int(point.X, 0, point.Y)]);
+        // }
+        // return returnList;
     }
 
 

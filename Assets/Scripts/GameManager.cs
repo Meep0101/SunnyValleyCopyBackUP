@@ -34,8 +34,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         uiController.OnRoadPlacement += RoadPlacementHandler;
-        uiController.OnHousePlacement += HousePlacementHandler;
-        uiController.OnSpecialPlacement += SpecialPlacementHandler;
+        //uiController.OnHousePlacement += HousePlacementHandler;
+        //uiController.OnSpecialPlacement += SpecialPlacementHandler;
         //uiController.OnBigStructurePlacement += BigStructurePlacement;
         uiController.OnRemoveRoad += RemoveRoadHandler;
         inputManager.OnEscape += HandleEscape;
@@ -89,27 +89,27 @@ public class GameManager : MonoBehaviour
     //     inputManager.OnEscape += HandleEscape;
     // }
 
-    private void SpecialPlacementHandler()
-    {
-        ClearInputActions();
+    // private void SpecialPlacementHandler()
+    // {
+    //     ClearInputActions();
 
-        inputManager.OnMouseClick += (pos) =>
-        {
-            ProcessInputAndCall(structureManager.PlaceStation, pos);
-        };
-        inputManager.OnEscape += HandleEscape;
-    }
+    //     inputManager.OnMouseClick += (pos) =>
+    //     {
+    //         ProcessInputAndCall(structureManager.PlaceStation, pos);
+    //     };
+    //     inputManager.OnEscape += HandleEscape;
+    // }
 
-    private void HousePlacementHandler()
-    {
-        ClearInputActions();
+    // private void HousePlacementHandler()
+    // {
+    //     ClearInputActions();
 
-        inputManager.OnMouseClick += (pos) =>
-        {
-            ProcessInputAndCall(structureManager.PlaceTerminal, pos);
-        };
-        inputManager.OnEscape += HandleEscape;
-    }
+    //     inputManager.OnMouseClick += (pos) =>
+    //     {
+    //         ProcessInputAndCall(structureManager.PlaceTerminal, pos);
+    //     };
+    //     inputManager.OnEscape += HandleEscape;
+    // }
 
     private void RoadPlacementHandler()
     {
