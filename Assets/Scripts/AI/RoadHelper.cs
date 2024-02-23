@@ -7,24 +7,28 @@ namespace SimpleCity.AI
 {
     public class RoadHelper : MonoBehaviour
     {
-        [SerializeField]
-        protected List<Marker> pedestrianMarkers;
+        // [SerializeField]
+        // protected List<Marker> pedestrianMarkers;
+
+
         [SerializeField]
         protected List<Marker> carMarkers;
-        [SerializeField]
-        protected bool isCorner;
-        [SerializeField]
-        protected bool hasCrosswalks;
+
+        // [SerializeField]
+        // protected bool isCorner;
+
+        // [SerializeField]
+        // protected bool hasCrosswalks;
 
         float approximateThresholdCorner = 0.3f;
 
         [SerializeField]
         private Marker incomming, outgoing;
 
-        public virtual Marker GetpositioForPedestrianToSpwan(Vector3 structurePosition)
-        {
-            return GetClosestMarkeTo(structurePosition, pedestrianMarkers);
-        }
+        // public virtual Marker GetpositioForPedestrianToSpwan(Vector3 structurePosition)
+        // {
+        //     return GetClosestMarkeTo(structurePosition, pedestrianMarkers);
+        // }
 
         public virtual Marker GetPositioForCarToSpawn(Vector3 nextPathPosition)
         {
@@ -68,10 +72,10 @@ namespace SimpleCity.AI
             }
         }
 
-        public Vector3 GetClosestPedestrainPosition(Vector3 currentPosition)
-        {
-            return GetClosestMarkeTo(currentPosition, pedestrianMarkers, isCorner).Position;
-        }
+        // public Vector3 GetClosestPedestrainPosition(Vector3 currentPosition)
+        // {
+        //     return GetClosestMarkeTo(currentPosition, pedestrianMarkers, isCorner).Position;
+        // }
 
         public Vector3 GetClosestCarMarkerPosition(Vector3 currentPosition)
         {
@@ -79,10 +83,10 @@ namespace SimpleCity.AI
         }
 
 
-        public List<Marker> GetAllPedestrianMarkers()
-        {
-            return pedestrianMarkers;
-        }
+        // public List<Marker> GetAllPedestrianMarkers()
+        // {
+        //     return pedestrianMarkers;
+        // }
 
         public List<Marker> GetAllCarMarkers()
         {
