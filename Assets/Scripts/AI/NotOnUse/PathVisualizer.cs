@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//For PedestriansAI only
 public class PathVisualizer : MonoBehaviour
 {
     LineRenderer lineRenderer;
