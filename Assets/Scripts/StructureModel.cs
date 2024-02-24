@@ -7,12 +7,10 @@ using UnityEngine;
 public class StructureModel : MonoBehaviour, INeedingRoad
 {
     float yHeight = 0;
-
     public Vector3Int RoadPosition { get; set; }
 
-    // Handles instantiating the model
     //Road Fixer
-    public void CreateModel(GameObject model)
+    public void CreateModel(GameObject model) // Handles instantiating the road model
     {
         var structure = Instantiate(model, transform); //Named structure only with no relevance
         yHeight = structure.transform.position.y;

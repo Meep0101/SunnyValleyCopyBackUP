@@ -9,9 +9,9 @@ public class RoadManager : MonoBehaviour
     public PlacementManager placementManager;
 
     public List<Vector3Int> temporaryPlacementPositions = new List<Vector3Int>();
-    public List<Vector3Int> roadPositionsToRecheck = new List<Vector3Int>();
+    public List<Vector3Int> roadPositionsToRecheck = new List<Vector3Int>(); //To store the positions of neighbors
 
-    private Vector3Int startPosition;
+    private Vector3Int startPosition; //Save the position on the first clicked
     private bool placementMode = false;
 
     public RoadFixer roadFixer;
@@ -24,7 +24,7 @@ public class RoadManager : MonoBehaviour
     public void PlaceRoad(Vector3Int position)
     {
         if (placementManager.CheckIfPositionInBound(position) == false)
-            return;
+            return; //Stops placing road
         if (placementManager.CheckIfPositionIsFree(position) == false)
             return;
 
@@ -37,7 +37,7 @@ public class RoadManager : MonoBehaviour
             roadPositionsToRecheck.Clear();
 
             placementMode = true;
-            startPosition = position;
+            startPosition = position; //First time placing road on map
 
             temporaryPlacementPositions.Add(position);
             placementManager.PlaceTemporaryStructure(position, roadFixer.deadEnd, CellType.Road);
@@ -55,11 +55,11 @@ public class RoadManager : MonoBehaviour
 
             roadPositionsToRecheck.Clear();
 
-            temporaryPlacementPositions = placementManager.GetPathBetween(startPosition, position);
+            temporaryPlacementPositions = placementManager.GetPathBetween(startPosition, position); // A*
 
             foreach (var temporaryPosition in temporaryPlacementPositions)
             {
-                if (placementManager.IsCellOccupied(temporaryPosition))
+                if (placementManager.CheckIfPositionIsFree(temporaryPosition) == false ||placementManager.IsCellOccupied(temporaryPosition))
                 {
                     roadPositionsToRecheck.Add(temporaryPosition);
                     continue;
@@ -101,6 +101,6 @@ public class RoadManager : MonoBehaviour
             AudioPlayer.instance.PlayPlacementSound();
         }
         temporaryPlacementPositions.Clear();
-        startPosition = Vector3Int.zero;
+        startPosition = Vector3Int.zero; // Zero this position
     }
 }

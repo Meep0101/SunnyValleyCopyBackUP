@@ -24,8 +24,6 @@ public class GameManager : MonoBehaviour
     public PlacementManager placementManager;
 
 
-
-
     [SerializeField] private Transform[] redNodeTransformArray;
     [SerializeField] private Transform terminalTransform;
     private List<StationNode> stationNodelist;
@@ -41,7 +39,6 @@ public class GameManager : MonoBehaviour
         inputManager.OnEscape += HandleEscape;
     }
 
-    
 
     private void RemoveRoadHandler()
     {
@@ -78,6 +75,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    #region BigStructurePlacement
     // private void BigStructurePlacement()
     // {
     //     ClearInputActions();
@@ -110,6 +108,7 @@ public class GameManager : MonoBehaviour
     //     };
     //     inputManager.OnEscape += HandleEscape;
     // }
+    #endregion
 
     private void RoadPlacementHandler()
     {
