@@ -22,12 +22,6 @@ public class CarAI : MonoBehaviour
     [SerializeField]
     private float collisionRaycastLength = 0.1f;
 
-    // [SerializeField]
-    // public Text carbonMeterText; // Reference to the UI Text element
-
-    // private static int CarbonMeter = 0;
-
-    // Reference to the CarbonMeter script
     public CarbonMeter carbonMeter;
     
     [SerializeField]
@@ -63,9 +57,6 @@ public class CarAI : MonoBehaviour
             currentTargetPosition = path[index];
         }
 
-        
-        //UpdateCarbonMeterUI();
-
         // You can find the CarbonMeter script in the scene if it's not assigned in the Unity Editor
         if (carbonMeter == null)
         {
@@ -84,14 +75,6 @@ public class CarAI : MonoBehaviour
             }
         }
     }
-
-    // private void UpdateCarbonMeterUI()
-    // {
-    //     if (carbonMeterText != null)
-    //     {
-    //         carbonMeterText.text = "Carbon Emission Meter: " + CarbonMeter;
-    //     }
-    // }
 
     public void SetPath(List<Vector3> path)
     {
@@ -173,33 +156,25 @@ public class CarAI : MonoBehaviour
 
 
 
-    private bool home = false;
+    //private bool home = false;
     private void SetNextTargetIndex()
     {
         
-        index++;
-
-        // if(aiDirector == null)
-        // {
-        //     Debug.LogError("aiDirector is null!");
-        //     return;
-        // }
-
-        
-        if(index >= path.Count && home == false)
+        index++;      
+        if(index >= path.Count) //&& home == false)
         {
             carbonMeter.IncreaseCarbonMeter(); // Increase carbon meter value
-            //Stop = true;
+            Stop = true;
             Destroy(gameObject);
             Debug.Log("Nagdestroy na ba ang ferson?");
             
             aiDirector.RespawnACar();
-            Stop = true;
-            Destroy(gameObject);
-            carbonMeter.IncreaseCarbonMeter(); // Increase carbon meter value
-            Debug.Log("MAGDESTROY KA");
+            //Stop = true;
+            //Destroy(gameObject);
+            //carbonMeter.IncreaseCarbonMeter(); // Increase carbon meter value
+            //Debug.Log("MAGDESTROY KA");
                     
-            home = true;
+            //home = true;
                 
 
         }    
