@@ -7,19 +7,16 @@ public class PlacementManager : MonoBehaviour
 {
     public int width, height;
     Grid placementGrid;
-
-    //private StructureModel selectedRoadObject;
     public RoadFixer roadFixer;
 
     // List to store information about manually placed objects
     public List<PlacedObject> manuallyPlacedObjects = new List<PlacedObject>();
+    //List for temporary roadobjects
     private Dictionary<Vector3Int, StructureModel> temporaryRoadobjects = new Dictionary<Vector3Int, StructureModel>();
+    // Allow us to access objects that are already placed on the map
+    private Dictionary<Vector3Int, StructureModel> structureDictionary = new Dictionary<Vector3Int, StructureModel>(); 
 
-    //To be removed - not sure
-    private Dictionary<Vector3Int, StructureModel> structureDictionary = new Dictionary<Vector3Int, StructureModel>(); // Allow us to access objects that are already placed on the map
-
-
-    public struct PlacedObject
+    public struct PlacedObject //Manually placed objects
     {
         public Vector3 position;
         public CellType cellType;
@@ -28,10 +25,10 @@ public class PlacementManager : MonoBehaviour
     private void Start()
     {
         placementGrid = new Grid(width, height);
-        RetrieveManuallyPlacedObjects();
+        RetrieveManuallyPlacedObjects(); //Manually placed objects
     }
 
-    public void RetrieveManuallyPlacedObjects()
+    public void RetrieveManuallyPlacedObjects() //Manually placed objects
     {
         // Clear the list before retrieving new objects
         manuallyPlacedObjects.Clear();
@@ -109,6 +106,7 @@ public class PlacementManager : MonoBehaviour
 
         //StructureModel structure = CreateANewStructureModel(position, structurePrefab, type);
 
+        // Sets NEAREST ROAD position for each structure so that we can access it when finding a path betweeb each structure 
         var structureNeedingRoad = structure.GetComponent<INeedingRoad>();
         if (structureNeedingRoad != null)
         {
@@ -138,8 +136,6 @@ public class PlacementManager : MonoBehaviour
     }
 
     //RoadFixer
-
-
     internal List<Vector3Int> GetNeighboursOfTypeFor(Vector3Int position, CellType type) //CellType Road used
     {
         var neighbourVertices = placementGrid.GetAdjacentCellsOfType(position.x, position.z, type);
@@ -150,7 +146,6 @@ public class PlacementManager : MonoBehaviour
         }
         return neighbours;
     }
-
 
 
     public void RemoveRoadObject(Vector3Int position)
@@ -186,6 +181,7 @@ public class PlacementManager : MonoBehaviour
         }
     }
 
+    //Create a path between two structures
     private Vector3Int? GetNearestRoad(Vector3Int position, int width, int height)
     {
         for (int x = 0; x < width; x++)
@@ -211,14 +207,6 @@ public class PlacementManager : MonoBehaviour
             Destroy(item.collider.gameObject);
         }
     }
-
-
-
-
-
-
-
-
 
 
 
@@ -268,13 +256,7 @@ public class PlacementManager : MonoBehaviour
 
 
 
-
-
-
-
-
-
-
+    #region GetPositions NoExplanation
     public StructureModel GetRandomRoad()
     {
         var point = placementGrid.GetRandomRoadPoint();
@@ -344,7 +326,7 @@ public class PlacementManager : MonoBehaviour
         // return returnList;
     }
 
-    private StructureModel GetStructureAt(Point point)
+    private StructureModel GetStructureAt(Point point) //Ask  the PlacementManager what is in the given structure
     {
         if (point != null)
         {
@@ -361,6 +343,7 @@ public class PlacementManager : MonoBehaviour
         }
         return null;
     }
+    #endregion
 
     internal Vector3Int WorldToGridPosition(Vector3 worldPosition)
     {
@@ -378,4 +361,5 @@ public class PlacementManager : MonoBehaviour
             Mathf.FloorToInt(position.z)
         );
     }
+
 }
