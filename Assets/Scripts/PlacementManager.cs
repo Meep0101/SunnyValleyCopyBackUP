@@ -7,6 +7,7 @@ public class PlacementManager : MonoBehaviour
 {
     public int width, height;
     Grid placementGrid;
+    public CarbonMeter carbonMeter;
 
 
     private StructureModel selectedRoadObject;
@@ -19,6 +20,7 @@ public class PlacementManager : MonoBehaviour
     private void Start()
     {
         placementGrid = new Grid(width, height);
+        carbonMeter = FindObjectOfType<CarbonMeter>();
     }
 
     internal CellType[] GetNeighbourTypesFor(Vector3Int position)
@@ -118,10 +120,26 @@ public class PlacementManager : MonoBehaviour
     private void DestroyNatureAt(Vector3Int position)
     {
         RaycastHit[] hits = Physics.BoxCastAll(position + new Vector3(0, 0.5f, 0), new Vector3(0.5f, 0.5f, 0.5f), transform.up, Quaternion.identity, 1f, 1 << LayerMask.NameToLayer("Nature"));
-        foreach (var item in hits)
+        foreach (var hit in hits)
         {
-            Destroy(item.collider.gameObject);
+            Destroy(hit.collider.gameObject);
+            FindObjectOfType<CarbonMeter>().DecreaseCarbonMeter();
+            Debug.Log("Tree Destroy");
         }
+    }
+
+    public void RemoveNatureAndDecreaseCarbon(Vector3Int position)
+    {
+        DestroyNatureAt(position);
+        carbonMeter.DecreaseCarbonMeter();
+        carbonMeter.UpdateCarbonMeter();
+    }
+
+    public void PlaceVehicleAndIncreaseCarbon(Vector3Int position, GameObject vehiclePrefab)
+    {
+        GameObject newVehicle =Instantiate(vehiclePrefab, position, Quaternion.identity);
+        CarAI carAI = newVehicle.GetComponent<CarAI>();
+        carbonMeter.IncreaseCarbonMeter();
     }
 
     internal bool CheckIfPositionIsFree(Vector3Int position)
