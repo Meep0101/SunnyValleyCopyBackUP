@@ -2,17 +2,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlacementManager : MonoBehaviour
 {
     public int width, height;
     Grid placementGrid;
     public CarbonMeter carbonMeter;
-
+   
+    public GameObject treePrefab;
+    public int numberOfTrees = 1; //kung ilan ang spawn
 
     private StructureModel selectedRoadObject;
 
     public RoadFixer roadFixer;
+
+    public float treeSpawnIntervalMin = 2f;
+    public float treeSpawnIntervalMax = 5f;
 
     private Dictionary<Vector3Int, StructureModel> temporaryRoadobjects = new Dictionary<Vector3Int, StructureModel>();
     private Dictionary<Vector3Int, StructureModel> structureDictionary = new Dictionary<Vector3Int, StructureModel>();
@@ -21,6 +27,55 @@ public class PlacementManager : MonoBehaviour
     {
         placementGrid = new Grid(width, height);
         carbonMeter = FindObjectOfType<CarbonMeter>();
+
+        StartCoroutine(SpawnTreesRandomly());
+    }
+
+    private IEnumerator SpawnTreesRandomly()
+    {
+        while (true)
+        {
+
+        Vector3Int randomPosition = new Vector3Int(UnityEngine.Random.Range(0,width), 0, UnityEngine.Random.Range(0, height)); //random
+        
+
+        if (CheckIfPositionInBound(randomPosition) && CheckIfPositionIsFree(randomPosition))
+        {
+            randomPosition = new Vector3Int(Mathf.RoundToInt(randomPosition.x), 0, Mathf.RoundToInt(randomPosition.z)); //problem - it spawns out of bounds in x axis
+            
+            if(!CheckIfTreeWillSpawnInBounds(randomPosition))
+            {
+                Debug.Log("Tree would spawn out of bounds at position (X-Axis): " + randomPosition);
+                continue;
+            }
+            
+            GameObject nature = Instantiate(treePrefab, randomPosition, Quaternion.identity);
+            Spawntrees(nature.transform);
+
+
+            carbonMeter.DecreaseCarbonMeter();
+            Debug.Log("Trees spawned at position: " + randomPosition);
+        }
+        
+
+        float nextSpawnInterval = UnityEngine.Random.Range(treeSpawnIntervalMin, treeSpawnIntervalMax);
+        yield return new WaitForSeconds(nextSpawnInterval);
+        }
+    }
+
+    private bool CheckIfTreeWillSpawnInBounds(Vector3Int position)
+    {
+        return position.x >= 0 && position.x < width;
+    }
+
+    private void Spawntrees(Transform parent)
+    {
+        for (int i = 0; i < numberOfTrees; i++)
+        {
+
+            Vector3 treeOffset = new Vector3(UnityEngine.Random.Range(-1f, 1f), 0, UnityEngine.Random.Range(-1f, 1f));
+            
+        }
     }
 
     internal CellType[] GetNeighbourTypesFor(Vector3Int position)
@@ -69,7 +124,7 @@ public class PlacementManager : MonoBehaviour
         {
             // 1. Remove the road object from the grid.
             placementGrid[position.x, position.z] = CellType.Empty;
-            //Debug.Log("GUMANA KA NA PLEASE");
+           
 
             // 2. Remove the road object from the structureDictionary.
             StructureModel removedStructure = structureDictionary[position];
@@ -78,7 +133,7 @@ public class PlacementManager : MonoBehaviour
             // 3. Optionally, destroy the associated GameObject.
             Destroy(removedStructure.gameObject);
 
-            Debug.Log("GUMANA KA NA PLEASE");
+            
 
             // 4. Fix the neighboring road prefabs.
             FixRoadPrefabs(position, roadFixer);
@@ -86,7 +141,7 @@ public class PlacementManager : MonoBehaviour
             // Update the grid and UI to reflect the changes.
             // Example: Handle visual updates here.
         }
-        //Debug.Log("GUMANA KA NA PLEASE PERSSS");
+        
     }
 
     private void FixRoadPrefabs(Vector3Int position, RoadFixer roadFixer)
@@ -123,7 +178,7 @@ public class PlacementManager : MonoBehaviour
         foreach (var hit in hits)
         {
             Destroy(hit.collider.gameObject);
-            FindObjectOfType<CarbonMeter>().DecreaseCarbonMeter();
+            //FindObjectOfType<CarbonMeter>().DecreaseCarbonMeter();
             Debug.Log("Tree Destroy");
         }
     }
