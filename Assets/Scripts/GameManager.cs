@@ -1,4 +1,4 @@
-﻿using SimpleCity.AI;
+using SimpleCity.AI;
 using SVS;
 using System;
 using System.Collections;
@@ -21,10 +21,11 @@ public class GameManager : MonoBehaviour
     //public PathVisualizer pathVisualizer;
     public PlacementManager placementManager;
 
-
-    [SerializeField] private Transform[] redNodeTransformArray;
-    [SerializeField] private Transform terminalTransform;
-    private List<StationNode> stationNodelist;
+    [SerializeField] private GathererAI[] gathererAIArray;
+    [SerializeField] private Transform[] goldNodeTransformArray;
+    [SerializeField] private Transform[] treeNodeTransformArray;
+    [SerializeField] private Transform storageTransform;
+    private List<ResourceNode> resourceNodeList; //Resurce Node object
 
 
     void Start()
@@ -37,6 +38,20 @@ public class GameManager : MonoBehaviour
         inputManager.OnEscape += HandleEscape;
     }
 
+    private void Awake() {
+        instance = this;
+
+        GameResources.Init();
+
+        resourceNodeList = new List<ResourceNode>();
+
+        foreach (Transform goldNodeTransform in goldNodeTransformArray){
+            resourceNodeList.Add(new ResourceNode(goldNodeTransform, GameResources.StationType.Gold));
+        }
+        foreach (Transform treeNodeTransform in treeNodeTransformArray){
+            resourceNodeList.Add(new ResourceNode(treeNodeTransform, GameResources.StationType.Wood));
+        }
+    }
 
     private void RemoveRoadHandler()
     {
@@ -136,10 +151,69 @@ public class GameManager : MonoBehaviour
             callback.Invoke(result.Value);
     }
 
-
-
     private void Update()
     {
         cameraMovement.MoveCamera(new Vector3(inputManager.CameraMovementVector.x, 0, inputManager.CameraMovementVector.y));
     }
+
+    private ResourceNode GetResourceNode() {
+        //List<Transform> resourceNodeList = new List<Transform>() { goldNode1Transform, goldNode2Transform, goldNode3Transform };
+        
+        List<ResourceNode> tmpResourceNodeList = new List<ResourceNode>(resourceNodeList);      //Clone List only for the use of cycle
+        for (int i = 0; i < tmpResourceNodeList.Count; i++){
+            if (!tmpResourceNodeList[i].HasResources()){
+                //No more Resources or Passengers
+                tmpResourceNodeList.RemoveAt(i);
+                i--;
+            }
+        }
+        if (tmpResourceNodeList.Count > 0){
+            return tmpResourceNodeList[UnityEngine.Random.Range(0, tmpResourceNodeList.Count)];     //Return that have resources or passengers
+        } else {
+            return null;
+        }
+    }
+
+    public static ResourceNode GetResourceNode_Static() {
+        return instance.GetResourceNode();
+    }
+
+    private ResourceNode GetResourceNodeType(GameResources.StationType stationType) {
+        //List<Transform> resourceNodeList = new List<Transform>() { goldNode1Transform, goldNode2Transform, goldNode3Transform };
+        
+        List<ResourceNode> tmpResourceNodeList = new List<ResourceNode>(resourceNodeList);      //Clone List only for the use of cycle
+        for (int i = 0; i < tmpResourceNodeList.Count; i++){
+            if (!tmpResourceNodeList[i].HasResources() || tmpResourceNodeList[i].GetStationType() != stationType){
+                //No more Resources/Passengers or different type
+                tmpResourceNodeList.RemoveAt(i);
+                i--;
+            }
+        }
+        if (tmpResourceNodeList.Count > 0){
+            return tmpResourceNodeList[UnityEngine.Random.Range(0, tmpResourceNodeList.Count)];     //Return that have resources or passengers
+        } else {
+            return null;
+        }
+    }
+
+    public static ResourceNode GetResourceNodeType_Static(GameResources.StationType stationType) {
+        return instance.GetResourceNodeType(stationType);
+    }
+
+
+    private Transform GetStorage() {
+        return storageTransform;
+    }
+
+    public static Transform GetStorage_Static() {
+        return instance.GetStorage();
+    }
+
+
+
+
+
+
 }
+
+
