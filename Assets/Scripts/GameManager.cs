@@ -21,14 +21,16 @@ public class GameManager : MonoBehaviour
 
     public PlacementManager placementManager;
 
+    bool placingRoadEnabled = true;
+    bool removingRoadEnabled = true;
+
     void Start()
     {
         uiController.OnRoadPlacement += RoadPlacementHandler;
         uiController.OnHousePlacement += HousePlacementHandler;
         uiController.OnSpecialPlacement += SpecialPlacementHandler;
-        //uiController.OnBigStructurePlacement += BigStructurePlacement;
         uiController.OnRemoveRoad += RemoveRoadHandler;
-        inputManager.OnEscape += HandleEscape;
+        //inputManager.OnEscape += HandleEscape;
     }
 
     private void RemoveRoadHandler()
@@ -36,16 +38,33 @@ public class GameManager : MonoBehaviour
         
         ClearInputActions();
 
-        inputManager.OnMouseClick += (pos) =>
+        if(removingRoadEnabled)
         {
-            ProcessInputAndCall(placementManager.RemoveRoadObject, pos);
-        };
-        inputManager.OnMouseUp += roadManager.FinishPlacingRoad;
-        inputManager.OnMouseHold += (pos) =>
-        {
-            ProcessInputAndCall(placementManager.RemoveRoadObject, pos);
-        };
+            inputManager.OnMouseClick += (pos) =>
+
+            {
+                ProcessInputAndCall(placementManager.RemoveRoadObject, pos);
+            };
+
+            inputManager.OnMouseUp += roadManager.FinishPlacingRoad;
+            inputManager.OnMouseHold += (pos) =>
+            {
+                ProcessInputAndCall (placementManager.RemoveRoadObject, pos);
+            };
+        }
+
         inputManager.OnEscape += HandleEscape;
+
+        // inputManager.OnMouseClick += (pos) =>
+        // {
+        //     ProcessInputAndCall(placementManager.RemoveRoadObject, pos);
+        // };
+        // inputManager.OnMouseUp += roadManager.FinishPlacingRoad;
+        // inputManager.OnMouseHold += (pos) =>
+        // {
+        //     ProcessInputAndCall(placementManager.RemoveRoadObject, pos);
+        // };
+        // inputManager.OnEscape += HandleEscape;
     }
 
     private void HandleEscape()
@@ -66,17 +85,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // private void BigStructurePlacement()
-    // {
-    //     ClearInputActions();
-
-    //     inputManager.OnMouseClick += (pos) =>
-    //     {
-    //         ProcessInputAndCall(structureManager.PlaceBigStructure, pos);
-    //     };
-    //     inputManager.OnEscape += HandleEscape;
-    // }
-
+    
     private void SpecialPlacementHandler()
     {
         ClearInputActions();
@@ -103,16 +112,29 @@ public class GameManager : MonoBehaviour
     {
         ClearInputActions();
 
-        inputManager.OnMouseClick += (pos) =>
+        if(placingRoadEnabled)
         {
-            ProcessInputAndCall(roadManager.PlaceRoad, pos);
-        };
-        inputManager.OnMouseUp += roadManager.FinishPlacingRoad;
-        inputManager.OnMouseHold += (pos) =>
-        {
-            ProcessInputAndCall(roadManager.PlaceRoad, pos);
-        };
-        inputManager.OnEscape += HandleEscape;
+            inputManager.OnMouseClick += (pos) =>
+            {
+                ProcessInputAndCall(roadManager.PlaceRoad, pos);
+            };
+            inputManager.OnMouseUp += roadManager.FinishPlacingRoad;
+            inputManager.OnMouseHold += (pos) =>
+            {
+                ProcessInputAndCall (roadManager.PlaceRoad, pos);
+            };
+        }
+
+        // inputManager.OnMouseClick += (pos) =>
+        // {
+        //     ProcessInputAndCall(roadManager.PlaceRoad, pos);
+        // };
+        // inputManager.OnMouseUp += roadManager.FinishPlacingRoad;
+        // inputManager.OnMouseHold += (pos) =>
+        // {
+        //     ProcessInputAndCall(roadManager.PlaceRoad, pos);
+        // };
+        // inputManager.OnEscape += HandleEscape;
     }
 
     private void ClearInputActions()
@@ -126,11 +148,9 @@ public class GameManager : MonoBehaviour
         if (result.HasValue)
             callback.Invoke(result.Value);
     }
+    
 
 
 
-    // private void Update()
-    // {
-    //     cameraMovement.MoveCamera(new Vector3(inputManager.CameraMovementVector.x, 0, inputManager.CameraMovementVector.y));
-    // }
+    
 }

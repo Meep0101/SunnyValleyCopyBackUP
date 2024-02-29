@@ -1129,7 +1129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2579291c11f2f7145bcb17a548190b11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 15
+  width: 14
   height: 15
   carbonMeter: {fileID: 0}
   treePrefab: {fileID: 1834718577}

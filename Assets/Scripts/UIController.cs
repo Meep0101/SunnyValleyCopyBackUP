@@ -12,46 +12,45 @@ public class UIController : MonoBehaviour
     public Color outlineColor;
     List<Button> buttonList;
 
+    bool roadButtonEnabled = true;
+    bool removeButtonEnabled = true;
+
     private void Start()
     {
         buttonList = new List<Button> { placeHouseButton, placeRoadButton, placeSpecialButton };
 
         placeRoadButton.onClick.AddListener(() =>
         {
-            ResetButtonColor();
-            ModifyOutline(placeRoadButton);
-            OnRoadPlacement?.Invoke();
+
+            roadButtonEnabled =!roadButtonEnabled;
+            UpdateButtonState(placeRoadButton, roadButtonEnabled);
+
+            if (roadButtonEnabled)
+            {
+                OnRoadPlacement?.Invoke();
+            }
+            
 
         });
         removeRoadButton.onClick.AddListener(() =>
         {
-            ResetButtonColor();
-            ModifyOutline(removeRoadButton);
-            //Trigger the removal process when the buttom is clicked
-            OnRemoveRoad?.Invoke();
+            removeButtonEnabled = !removeButtonEnabled;
+            UpdateButtonState(removeRoadButton, removeButtonEnabled);
 
-        });
-        placeHouseButton.onClick.AddListener(() =>
-        {
-            ResetButtonColor();
-            ModifyOutline(placeHouseButton);
-            OnHousePlacement?.Invoke();
+            if (removeButtonEnabled)
+                OnRemoveRoad?.Invoke();
 
-        });
-        placeSpecialButton.onClick.AddListener(() =>
-        {
-            ResetButtonColor();
-            ModifyOutline(placeSpecialButton);
-            OnSpecialPlacement?.Invoke();
 
-        });
-        // placeBigStructureButton.onClick.AddListener(() =>
-        // {
-        //     ResetButtonColor();
-        //     ModifyOutline(placeBigStructureButton);
-        //     OnBigStructurePlacement?.Invoke();
+               });
+       
+    }
 
-        // });
+    private void UpdateButtonState(Button button, bool isEnabled)
+    {
+       var outline = button.GetComponent<Outline>();
+       outline.effectColor = isEnabled ? outlineColor : Color.black;
+       outline.enabled = isEnabled;
+
     }
 
     private void ModifyOutline(Button button)
@@ -67,6 +66,9 @@ public class UIController : MonoBehaviour
         {
             button.GetComponent<Outline>().enabled = false;
         }
+
+        roadButtonEnabled = true;
+        removeButtonEnabled = true;
     }
 
 
