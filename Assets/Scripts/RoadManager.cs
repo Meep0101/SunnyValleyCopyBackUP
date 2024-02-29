@@ -7,6 +7,7 @@ using UnityEngine;
 public class RoadManager : MonoBehaviour
 {
     public PlacementManager placementManager;
+    public UIController uiController;
 
     public List<Vector3Int> temporaryPlacementPositions = new List<Vector3Int>();
     public List<Vector3Int> roadPositionsToRecheck = new List<Vector3Int>();
@@ -20,6 +21,12 @@ public class RoadManager : MonoBehaviour
 
     private void Start()
     {
+        uiController = FindObjectOfType<UIController>();
+        if (uiController == null)
+        {
+            Debug.Log ("fuck my life");
+        }
+
         roadFixer = GetComponent<RoadFixer>();
     }
 
@@ -27,7 +34,10 @@ public class RoadManager : MonoBehaviour
     {
         
 
-
+        if (!uiController.roadButtonEnabled)
+        {
+            return;
+        }
         if (placementManager.CheckIfPositionInBound(position) == false)
             return;
         if (placementManager.CheckIfPositionIsFree(position) == false)

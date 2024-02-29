@@ -32,7 +32,7 @@ public class InputManager : MonoBehaviour
         CheckClickHoldEvent();
         CheckClickUpEvent();
         CheckArrowInput();
-        CheckEscClick();
+        //CheckEscClick();
     }
 
     private void CheckClickHoldEvent()
@@ -60,13 +60,13 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    private void CheckEscClick()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            OnEscape.Invoke();
-        }
-    }
+    // private void CheckEscClick()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.Escape))
+    //     {
+    //         OnEscape.Invoke();
+    //     }
+    // }
 
     private void CheckArrowInput()
     {
@@ -96,4 +96,6 @@ public class InputManager : MonoBehaviour
     {
         return activeCamera == cameraToCheck;
     }
+    
 }
+

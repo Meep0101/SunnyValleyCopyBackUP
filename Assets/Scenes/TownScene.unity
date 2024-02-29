@@ -1137,6 +1137,7 @@ MonoBehaviour:
   roadFixer: {fileID: 2093395485}
   treeSpawnIntervalMin: 5
   treeSpawnIntervalMax: 15
+  roadPrefab: {fileID: 2093395482}
 --- !u!4 &540532164
 Transform:
   m_ObjectHideFlags: 0

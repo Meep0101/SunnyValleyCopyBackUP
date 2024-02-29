@@ -21,8 +21,15 @@ public class GameManager : MonoBehaviour
 
     public PlacementManager placementManager;
 
-    bool placingRoadEnabled = true;
-    bool removingRoadEnabled = true;
+     private enum FunctionalityState
+    {
+        None,
+        RoadPlacement,
+        RemoveRoad
+    }
+
+    private FunctionalityState currentFunctionality = FunctionalityState.None;
+
 
     void Start()
     {
@@ -30,60 +37,63 @@ public class GameManager : MonoBehaviour
         uiController.OnHousePlacement += HousePlacementHandler;
         uiController.OnSpecialPlacement += SpecialPlacementHandler;
         uiController.OnRemoveRoad += RemoveRoadHandler;
-        //inputManager.OnEscape += HandleEscape;
+        inputManager.OnEscape += HandleEscape;
     }
 
-    private void RemoveRoadHandler()
+   private void ToggleRoadPlacement()
     {
-        
-        ClearInputActions();
-
-        if(removingRoadEnabled)
+        if (currentFunctionality == FunctionalityState.RoadPlacement)
         {
+            currentFunctionality = FunctionalityState.None;
+        }
+        else
+        {
+            currentFunctionality = FunctionalityState.RoadPlacement;
+            ClearInputActions();
             inputManager.OnMouseClick += (pos) =>
-
             {
-                ProcessInputAndCall(placementManager.RemoveRoadObject, pos);
+                ProcessInputAndCall(roadManager.PlaceRoad, pos);
             };
-
             inputManager.OnMouseUp += roadManager.FinishPlacingRoad;
             inputManager.OnMouseHold += (pos) =>
             {
-                ProcessInputAndCall (placementManager.RemoveRoadObject, pos);
+                ProcessInputAndCall(roadManager.PlaceRoad, pos);
             };
+            inputManager.OnEscape += HandleEscape;
         }
-
-        inputManager.OnEscape += HandleEscape;
-
-        // inputManager.OnMouseClick += (pos) =>
-        // {
-        //     ProcessInputAndCall(placementManager.RemoveRoadObject, pos);
-        // };
-        // inputManager.OnMouseUp += roadManager.FinishPlacingRoad;
-        // inputManager.OnMouseHold += (pos) =>
-        // {
-        //     ProcessInputAndCall(placementManager.RemoveRoadObject, pos);
-        // };
-        // inputManager.OnEscape += HandleEscape;
     }
+      
+    
+    private void RemoveRoadHandler()
+    {
+        ClearInputActions();
+
+        if (uiController.RoadButtonEnabled) // Check if road placement is enabled
+        {
+            inputManager.OnMouseClick += (pos) =>
+            {
+                ProcessInputAndCall(placementManager.RemoveRoadObject, pos);
+            };
+            inputManager.OnMouseUp += roadManager.FinishPlacingRoad;
+            inputManager.OnMouseHold += (pos) =>
+            {
+                ProcessInputAndCall(placementManager.RemoveRoadObject, pos);
+            };
+            inputManager.OnEscape += HandleEscape;
+        }
+    }
+
+    
 
     private void HandleEscape()
     {
         ClearInputActions();
         uiController.ResetButtonColor();
         pathVisualizer.ResetPath();
-        inputManager.OnMouseClick += TrySelectingAgent;
+       
     }
 
-    private void TrySelectingAgent(Ray ray)
-    {
-        GameObject hitObject = objectDetector.RaycastAll(ray);
-        if(hitObject != null)
-        {
-            var agentScript = hitObject.GetComponent<AiAgent>();
-            agentScript?.ShowPath();
-        }
-    }
+ 
 
     
     private void SpecialPlacementHandler()
@@ -112,7 +122,7 @@ public class GameManager : MonoBehaviour
     {
         ClearInputActions();
 
-        if(placingRoadEnabled)
+        if (uiController.RoadButtonEnabled) // Check if road placement is enabled
         {
             inputManager.OnMouseClick += (pos) =>
             {
@@ -121,20 +131,11 @@ public class GameManager : MonoBehaviour
             inputManager.OnMouseUp += roadManager.FinishPlacingRoad;
             inputManager.OnMouseHold += (pos) =>
             {
-                ProcessInputAndCall (roadManager.PlaceRoad, pos);
+                ProcessInputAndCall(roadManager.PlaceRoad, pos);
             };
+            inputManager.OnEscape += HandleEscape;
         }
-
-        // inputManager.OnMouseClick += (pos) =>
-        // {
-        //     ProcessInputAndCall(roadManager.PlaceRoad, pos);
-        // };
-        // inputManager.OnMouseUp += roadManager.FinishPlacingRoad;
-        // inputManager.OnMouseHold += (pos) =>
-        // {
-        //     ProcessInputAndCall(roadManager.PlaceRoad, pos);
-        // };
-        // inputManager.OnEscape += HandleEscape;
+       
     }
 
     private void ClearInputActions()
@@ -148,9 +149,8 @@ public class GameManager : MonoBehaviour
         if (result.HasValue)
             callback.Invoke(result.Value);
     }
-    
 
 
 
-    
+   
 }
