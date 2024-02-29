@@ -24,7 +24,7 @@ public class GathererAI : MonoBehaviour {
     //private int goldInventoryAmount;
     //Dictionary for resourcetype/stationtype
     private Dictionary<GameResources.StationType, int> inventoryAmountDictionary;
-    private TextMeshProUGUI inventoryTextMesh; // besides the AI
+    private TextMeshPro inventoryTextMesh; // besides the AI
 
     private void Awake() {
         unit = gameObject.GetComponent<IUnit>();
@@ -35,7 +35,7 @@ public class GathererAI : MonoBehaviour {
             inventoryAmountDictionary[stationType] = 0;
         }
 
-        inventoryTextMesh = transform.Find("inventoryTextMesh").GetComponent<TextMeshProUGUI>();
+        inventoryTextMesh = transform.Find("inventoryTextMesh").GetComponent<TextMeshPro>();
         UpdateInventoryText();
     }
 
