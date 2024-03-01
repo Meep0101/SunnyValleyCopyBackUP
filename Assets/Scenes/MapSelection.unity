@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 059a3c4fb25459f47a7904400e150b52, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8ecca863192ef0843837be3a720b3954, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -462,7 +462,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 059a3c4fb25459f47a7904400e150b52, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c41cd05664c83e54c998e17ee22c802c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -537,7 +537,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 059a3c4fb25459f47a7904400e150b52, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1cf930ef0b18a7541abf2e1cf764c9fc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -802,7 +802,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: MAP 1
+  m_Text: BGC
 --- !u!222 &583867043
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1664,7 +1664,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: MAP 4
+  m_Text: Davao
 --- !u!222 &1146156212
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2473,7 +2473,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1932213922}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.3575419
+  m_Size: 0.35754192
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2661,7 +2661,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1539486568}
   - component: {fileID: 1539486570}
-  - component: {fileID: 1539486569}
+  - component: {fileID: 1539486571}
   m_Layer: 5
   m_Name: Image1
   m_TagString: Untagged
@@ -2688,7 +2688,15 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 269}
   m_SizeDelta: {x: 253.8752, y: 244.0829}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1539486569
+--- !u!222 &1539486570
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539486567}
+  m_CullTransparentMesh: 1
+--- !u!114 &1539486571
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2708,7 +2716,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 059a3c4fb25459f47a7904400e150b52, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ccb306c5022a81c4f9e68253a911d4ec, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2718,14 +2726,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!222 &1539486570
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1539486567}
-  m_CullTransparentMesh: 1
 --- !u!1 &1596499185
 GameObject:
   m_ObjectHideFlags: 0
@@ -3201,7 +3201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 059a3c4fb25459f47a7904400e150b52, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 85644b7d9127f464d8998b56108f97db, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3439,7 +3439,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: MAP 2
+  m_Text: Cebu
 --- !u!222 &1967127849
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3518,7 +3518,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: MAP 5
+  m_Text: Baguio
 --- !u!222 &1977538798
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3597,7 +3597,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: MAP 3
+  m_Text: Bulacan
 --- !u!222 &1998170301
 CanvasRenderer:
   m_ObjectHideFlags: 0
