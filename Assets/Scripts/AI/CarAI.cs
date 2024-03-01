@@ -155,7 +155,6 @@ public class CarAI : MonoBehaviour
     }
 
 
-
     //private bool home = false;
     private void SetNextTargetIndex()
     {
@@ -167,18 +166,7 @@ public class CarAI : MonoBehaviour
             Stop = true;
             Destroy(gameObject);
             Debug.Log("Nagdestroy na ba ang ferson?");
-            
-            aiDirector.RespawnACar();
-            //Stop = true;
-            //Destroy(gameObject);
-            //carbonMeter.IncreaseCarbonMeter(); // Increase carbon meter value
-            //Debug.Log("MAGDESTROY KA");
-                    
-            //home = true;
-                
-
         }    
-
         else
         {
             currentTargetPosition = path[index];

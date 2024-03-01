@@ -17,22 +17,22 @@ namespace SimpleCity.AI
         List<Vector3> carPath = new List<Vector3>();
 
 
-        public void SpawnACar()
-        {
-            foreach (var structureObject in placementManager.GetAllHouses())
-            {
-                TrySpawninACar(structureObject, placementManager.GetRandomSpecialStrucutre());
-            }
-        }
+        // public void SpawnACar()
+        // {
+        //     foreach (var structureObject in placementManager.GetAllHouses())
+        //     {
+        //         TrySpawninACar(structureObject, placementManager.GetRandomSpecialStrucutre());
+        //     }
+        // }
 
-        public void RespawnACar()
-        {
-            Debug.Log("TestTttttttttT");
-            foreach (var specialStructure in placementManager.GetAllSpecialStructures())
-            {
-                TrySpawninACarHome(specialStructure, placementManager.GetRandomHouseStructure());
-            }
-        }
+        // public void RespawnACar()
+        // {
+        //     Debug.Log("TestTttttttttT");
+        //     foreach (var specialStructure in placementManager.GetAllSpecialStructures())
+        //     {
+        //         TrySpawninACarHome(specialStructure, placementManager.GetRandomHouseStructure());
+        //     }
+        // }
 
         private void TrySpawninACar(StructureModel startStructure, StructureModel endStructure)
         {
@@ -64,32 +64,32 @@ namespace SimpleCity.AI
             }
         }
 
-        private void TrySpawninACarHome(StructureModel startStructure, StructureModel endStructure)
-        {
-            if (startStructure != null && endStructure != null)
-            {
-                var startRoadPosition = ((INeedingRoad)startStructure).RoadPosition;
-                var endRoadPosition = ((INeedingRoad)endStructure).RoadPosition;
+        // private void TrySpawninACarHome(StructureModel startStructure, StructureModel endStructure)
+        // {
+        //     if (startStructure != null && endStructure != null)
+        //     {
+        //         var startRoadPosition = ((INeedingRoad)startStructure).RoadPosition;
+        //         var endRoadPosition = ((INeedingRoad)endStructure).RoadPosition;
 
-                var path = placementManager.GetPathBetween(startRoadPosition, endRoadPosition, true);
-                path.Reverse();
+        //         var path = placementManager.GetPathBetween(startRoadPosition, endRoadPosition, true);
+        //         path.Reverse();
 
-                if (path.Count == 0 && path.Count>2)
-                    return;
+        //         if (path.Count == 0 && path.Count>2)
+        //             return;
 
-                var startMarkerPosition = placementManager.GetStructureAt(startRoadPosition).GetCarSpawnMarker(path[1]);
+        //         var startMarkerPosition = placementManager.GetStructureAt(startRoadPosition).GetCarSpawnMarker(path[1]);
 
-                var endMarkerPosition = placementManager.GetStructureAt(endRoadPosition).GetCarEndMarker(path[path.Count-2]);
+        //         var endMarkerPosition = placementManager.GetStructureAt(endRoadPosition).GetCarEndMarker(path[path.Count-2]);
 
-                carPath = GetCarPath(path, startMarkerPosition.Position, endMarkerPosition.Position);
+        //         carPath = GetCarPath(path, startMarkerPosition.Position, endMarkerPosition.Position);
 
-                var car = Instantiate(carPrefab, startMarkerPosition.Position, Quaternion.identity);
-                car.GetComponent<CarAI>().SetPath(carPath);
-            }
-            else{
-                Debug.LogError("startStructure or endStructure is null!");
-            }
-        }
+        //         var car = Instantiate(carPrefab, startMarkerPosition.Position, Quaternion.identity);
+        //         car.GetComponent<CarAI>().SetPath(carPath);
+        //     }
+        //     else{
+        //         Debug.LogError("startStructure or endStructure is null!");
+        //     }
+        // }
 
 
         private List<Vector3> GetCarPath(List<Vector3Int> path, Vector3 startPosition, Vector3 endPosition)

@@ -6,16 +6,16 @@ using Random = UnityEngine.Random;
 
 public class CarSpawner : MonoBehaviour
 {
-    public GameObject[] carPrefabs;
+    //public GameObject[] carPrefabs;
 
-    private void Start()
-    {
-        Instantiate(SelectACarPrefab(), transform);
-    }
+    // private void Start()
+    // {
+    //     Instantiate(SelectACarPrefab(), transform);
+    // }
 
-    private GameObject SelectACarPrefab()
-    {
-        var randomIndex = Random.Range(0, carPrefabs.Length);
-        return carPrefabs[randomIndex];
-    }
+    // private GameObject SelectACarPrefab()
+    // {
+    //     var randomIndex = Random.Range(0, carPrefabs.Length);
+    //     return carPrefabs[randomIndex];
+    // }
 }
