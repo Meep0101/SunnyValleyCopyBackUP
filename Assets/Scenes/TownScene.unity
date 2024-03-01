@@ -535,8 +535,8 @@ Transform:
   m_GameObject: {fileID: 185400025}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1, z: 1.5}
+  m_LocalPosition: {x: 7.5325, y: -0, z: 7.1787}
+  m_LocalScale: {x: 3.0064502, y: 1, z: 3.0955398}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 970204964}
@@ -1129,14 +1129,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2579291c11f2f7145bcb17a548190b11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 14
-  height: 15
+  width: 30
+  height: 30
   carbonMeter: {fileID: 0}
   treePrefab: {fileID: 1834718577}
   numberOfTrees: 1
   roadFixer: {fileID: 2093395485}
-  treeSpawnIntervalMin: 5
-  treeSpawnIntervalMax: 15
+  treeSpawnIntervalMin: 1
+  treeSpawnIntervalMax: 1
   roadPrefab: {fileID: 2093395482}
 --- !u!4 &540532164
 Transform:
@@ -1337,6 +1337,7 @@ MonoBehaviour:
   placeHouseButton: {fileID: 1325324658}
   placeSpecialButton: {fileID: 1405492519}
   outlineColor: {r: 0.8931636, g: 0.0047169924, b: 1, a: 1}
+  roadManager: {fileID: 0}
 --- !u!114 &681313530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3344,8 +3345,8 @@ Transform:
   m_GameObject: {fileID: 1352260909}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 7.5325, y: -0, z: 7.1787}
+  m_LocalScale: {x: 2.0043, y: 1, z: 2.0636933}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1450213218}
@@ -4550,8 +4551,8 @@ Transform:
   m_GameObject: {fileID: 1874407663}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.51, z: 0}
-  m_LocalScale: {x: 15, y: 3, z: 15}
+  m_LocalPosition: {x: 7.5325, y: -1.51, z: 7.1787}
+  m_LocalScale: {x: 30.064503, y: 3, z: 30.9554}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 970204964}
@@ -5206,6 +5207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placementManager: {fileID: 540532163}
+  uiController: {fileID: 0}
   temporaryPlacementPositions: []
   roadPositionsToRecheck: []
   roadFixer: {fileID: 0}
@@ -5218,8 +5220,8 @@ Transform:
   m_GameObject: {fileID: 2093395482}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7, y: 0, z: -7}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -6.4978, y: -0, z: -7.268}
+  m_LocalScale: {x: 2.0043, y: 1, z: 2.0636933}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 970204964}
