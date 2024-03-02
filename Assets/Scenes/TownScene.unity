@@ -3578,6 +3578,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62978363c3617e14b8e61a804dd40cd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Camera: {fileID: 0}
+  Rotate: 0
+  DecreaseCameraPanSpeed: 2
+  CameraUpperHeightBound: 0
+  CameraLowerHeightBound: 0
 --- !u!4 &296893308
 Transform:
   m_ObjectHideFlags: 0
@@ -18416,7 +18421,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1325324654
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19437,7 +19442,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1405492519
 MonoBehaviour:
   m_ObjectHideFlags: 0

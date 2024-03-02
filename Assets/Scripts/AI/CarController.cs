@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class CarController : MonoBehaviour
+public class CarController : MonoBehaviour // Nilalagay sa OnDrive ng CarAI
 {
     Rigidbody rb;
 
@@ -22,7 +22,7 @@ public class CarController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    public void Move(Vector2 movementInput)
+    public void Move(Vector2 movementInput) // Function called in the OnDrive CarAI 
     {
         this.movementVector = movementInput;
     }

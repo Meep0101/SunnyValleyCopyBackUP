@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 /// <summary>
 /// Source https://github.com/lordjesus/Packt-Introduction-to-graph-algorithms-for-game-developers
@@ -142,6 +143,7 @@ public class Grid
     {
         if (_specialStructure.Count == 0)
         {
+            Debug.Log("No random special structure point");
             return null;
         }
         return _specialStructure[UnityEngine.Random.Range(0, _specialStructure.Count)];

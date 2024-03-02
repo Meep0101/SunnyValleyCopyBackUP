@@ -7,9 +7,9 @@ using UnityEngine;
 
 namespace SimpleCity.AI
 {
-    public class AiDirector : MonoBehaviour
+    public class AiDirector : MonoBehaviour // spawn car and get direction
     {
-        public PlacementManager placementManager; //Contains a grid/graph which stores all the diff. data of the map (Where is the road, structures) thus, get access on map and data on map
+        public PlacementManager placementManager; //Contains a grid/graph which stores all the diff. data of the map (Where is the road, structures) thus, get access on map and data on map // Performs A* algorithm
         public GameObject carPrefab;
 
         AdjacencyGraph carGraph = new AdjacencyGraph();
@@ -17,13 +17,16 @@ namespace SimpleCity.AI
         List<Vector3> carPath = new List<Vector3>();
 
 
-        // public void SpawnACar()
-        // {
-        //     foreach (var structureObject in placementManager.GetAllHouses())
-        //     {
-        //         TrySpawninACar(structureObject, placementManager.GetRandomSpecialStrucutre());
-        //     }
-        // }
+        public void SpawnACar()
+        {
+            Debug.Log("Clicked: SpawnACar");
+            foreach (var structureObject in placementManager.GetAllHouses())
+            {
+                Debug.Log("There is a structureObject in GetAllHouses");
+                TrySpawninACar(structureObject, placementManager.GetRandomSpecialStrucutre());
+                 // Gets house then special structure
+            }
+        }
 
         // public void RespawnACar()
         // {

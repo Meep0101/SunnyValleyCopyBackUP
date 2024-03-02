@@ -332,6 +332,7 @@ public class PlacementManager : MonoBehaviour
         {
             return structureDictionary[new Vector3Int(point.X, 0, point.Y)];
         }
+        Debug.Log("No GetStructureAt Point");
         return null;
     }
 
