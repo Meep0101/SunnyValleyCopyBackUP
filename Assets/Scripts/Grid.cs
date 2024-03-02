@@ -143,7 +143,7 @@ public class Grid
     {
         if (_specialStructure.Count == 0)
         {
-            Debug.Log("No random special structure point");
+            //Debug.Log("No random special structure point");
             return null;
         }
         return _specialStructure[UnityEngine.Random.Range(0, _specialStructure.Count)];
