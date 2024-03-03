@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using UnityEngine;
 
 /// <summary>
 /// Source https://github.com/lordjesus/Packt-Introduction-to-graph-algorithms-for-game-developers
@@ -115,6 +116,24 @@ public class Grid
             _grid[i, j] = value;
         }
     }
+
+    // Method to check if a specific position contains a certain cell type
+    public bool IsCellOfType(Vector3Int position, CellType type)
+    {
+        // Convert world position to grid position based on grid cell size
+        int i = Mathf.FloorToInt(position.x);
+        int j = Mathf.FloorToInt(position.z);
+       
+        // Check if the grid position is within bounds
+        if (i >= 0 && i < _width && j >= 0 && j < _height)
+        {
+            // Check if the cell type matches the specified type
+            return _grid[i, j] == type;
+        }
+        return false; // Position is out of bounds
+    }
+
+
 
     // Static method that checks if a cell is walkable based on its type.
     public static bool IsCellWakable(CellType cellType, bool aiAgent = false)

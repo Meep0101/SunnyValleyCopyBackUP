@@ -25,39 +25,39 @@ public class PlacementManager : MonoBehaviour
     private void Start()
     {
         placementGrid = new Grid(width, height);
-        RetrieveManuallyPlacedObjects(); //Manually placed objects
+        //RetrieveManuallyPlacedObjects(); //Manually placed objects
     }
 
-    public void RetrieveManuallyPlacedObjects() //Manually placed objects
-    {
-        // Clear the list before retrieving new objects
-        manuallyPlacedObjects.Clear();
+    // public void RetrieveManuallyPlacedObjects() //Manually placed objects
+    // {
+    //     // Clear the list before retrieving new objects
+    //     manuallyPlacedObjects.Clear();
 
-        // Find all objects with the "Structure" tag and add them to the list
-        GameObject[] structures = GameObject.FindGameObjectsWithTag("Structure");
-        foreach (GameObject structure in structures)
-        {
-            PlacedObject placedObject;
-            placedObject.position = structure.transform.position;
-            placedObject.cellType = CellType.Structure; // Assuming it's a structure
-            manuallyPlacedObjects.Add(placedObject);
+    //     // Find all objects with the "Structure" tag and add them to the list
+    //     GameObject[] structures = GameObject.FindGameObjectsWithTag("Structure");
+    //     foreach (GameObject structure in structures)
+    //     {
+    //         PlacedObject placedObject;
+    //         placedObject.position = structure.transform.position;
+    //         placedObject.cellType = CellType.Structure; // Assuming it's a structure
+    //         manuallyPlacedObjects.Add(placedObject);
         
         
-            Debug.Log("Position: " + placedObject.position);
-        }
+    //         Debug.Log("Position: " + placedObject.position);
+    //     }
 
-        // Find all objects with the "SpecialStructure" tag and add them to the list
-        GameObject[] specialStructures = GameObject.FindGameObjectsWithTag("SpecialStructure");
-        foreach (GameObject specialStructure in specialStructures)
-        {
-            PlacedObject placedObject;
-            placedObject.position = specialStructure.transform.position;
-            placedObject.cellType = CellType.SpecialStructure; // Assuming it's a special structure
-            manuallyPlacedObjects.Add(placedObject);
+    //     // Find all objects with the "SpecialStructure" tag and add them to the list
+    //     GameObject[] specialStructures = GameObject.FindGameObjectsWithTag("SpecialStructure");
+    //     foreach (GameObject specialStructure in specialStructures)
+    //     {
+    //         PlacedObject placedObject;
+    //         placedObject.position = specialStructure.transform.position;
+    //         placedObject.cellType = CellType.SpecialStructure; // Assuming it's a special structure
+    //         manuallyPlacedObjects.Add(placedObject);
 
-            Debug.Log("SSPosition: " + placedObject.position);
-        }
-    }
+    //         Debug.Log("SSPosition: " + placedObject.position);
+    //     }
+    // }
 
     // Method to check if a cell is occupied by a structure or special structure
     public bool IsCellOccupied(Vector3 position)
@@ -102,7 +102,7 @@ public class PlacementManager : MonoBehaviour
         placementGrid[position.x, position.z] = type;
         StructureModel structure = CreateANewStructureModel(position, structurePrefab, type);
         structureDictionary.Add(position, structure);
-        DestroyNatureAt(position);
+        //DestroyNatureAt(position);
 
         //StructureModel structure = CreateANewStructureModel(position, structurePrefab, type);
 
