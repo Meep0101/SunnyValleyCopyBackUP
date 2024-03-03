@@ -29,29 +29,28 @@ public class UIController : MonoBehaviour
             ModifyOutline(removeRoadButton);
             //Trigger the removal process when the buttom is clicked
             OnRemoveRoad?.Invoke();
-
         });
-        placeHouseButton.onClick.AddListener(() =>
-        {
-            ResetButtonColor();
-            ModifyOutline(placeHouseButton);
-            OnHousePlacement?.Invoke();
 
-        });
-        placeSpecialButton.onClick.AddListener(() =>
-        {
-            ResetButtonColor();
-            ModifyOutline(placeSpecialButton);
-            OnSpecialPlacement?.Invoke();
-
-        });
+        #region Other Placemnents
+        // placeHouseButton.onClick.AddListener(() =>
+        // {
+        //     ResetButtonColor();
+        //     ModifyOutline(placeHouseButton);
+        //     OnHousePlacement?.Invoke();
+        // });
+        // placeSpecialButton.onClick.AddListener(() =>
+        // {
+        //     ResetButtonColor();
+        //     ModifyOutline(placeSpecialButton);
+        //     OnSpecialPlacement?.Invoke();
+        // });
         // placeBigStructureButton.onClick.AddListener(() =>
         // {
         //     ResetButtonColor();
         //     ModifyOutline(placeBigStructureButton);
         //     OnBigStructurePlacement?.Invoke();
-
         // });
+        #endregion
     }
 
     private void ModifyOutline(Button button)
