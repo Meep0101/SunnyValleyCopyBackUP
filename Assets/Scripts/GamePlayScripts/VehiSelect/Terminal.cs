@@ -47,6 +47,7 @@ public class Terminal : MonoBehaviour
             vehicleSpawner.SpawnVehicle(vehicleType, this);
             DecrementCount(1);
             IsClicked = false;
+            VehiclesTab.SetActive(false);
         }
     }
 
