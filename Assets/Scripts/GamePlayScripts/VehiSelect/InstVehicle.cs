@@ -8,14 +8,11 @@ public class InstVehicle : MonoBehaviour
     public GameObject pedicabPrefab;
     public GameObject motorcyclePrefab;
     public GameObject busPrefab;
-    private Terminal terminal;
+    //private Terminal terminal;
+    private Terminal terminalInstance;
 
-    private void Start()
-    {
-        terminal = GameObject.Find("Terminal").GetComponent<Terminal>();
-    }
 
-    public void SpawnVehicle(string vehicleType)
+    public void SpawnVehicle(string vehicleType, Terminal terminal)
     {
         GameObject prefab = null;
         switch (vehicleType)
@@ -34,10 +31,49 @@ public class InstVehicle : MonoBehaviour
                 break;
         }
 
-        if (prefab != null && terminal.currentCount >= 0)
+        if (prefab != null && terminal.CurrentCount > 0)
         {
             Instantiate(prefab, terminal.transform.position, Quaternion.identity);
-            terminal.DecrementCount();
+            //terminal.DecrementCount();
+            // if (terminalInstance == null)
+            // {
+            //     terminalInstance = terminal;
+            // }
+            // int Minuscount = 1;
+            // terminalInstance.DecrementCounter(Minuscount);
         }
     }
+
+
 }
+
+    // private void Start()
+    // {
+    //     terminal = GameObject.Find("Terminal").GetComponent<Terminal>();
+    // }
+
+    // public void SpawnVehicle(string vehicleType)
+    // {
+    //     GameObject prefab = null;
+    //     switch (vehicleType)
+    //     {
+    //         case "Jeep":
+    //             prefab = jeepPrefab;
+    //             break;
+    //         case "Pedicab":
+    //             prefab = pedicabPrefab;
+    //             break;
+    //         case "Motorcycle":
+    //             prefab = motorcyclePrefab;
+    //             break;
+    //         case "Bus":
+    //             prefab = busPrefab;
+    //             break;
+    //     }
+
+    //     if (prefab != null && terminal.currentCount >= 0)
+    //     {
+    //         Instantiate(prefab, terminal.transform.position, Quaternion.identity);
+    //         terminal.DecrementCount();
+    //     }
+    // }
