@@ -3578,11 +3578,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62978363c3617e14b8e61a804dd40cd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Camera: {fileID: 0}
-  Rotate: 0
-  DecreaseCameraPanSpeed: 2
-  CameraUpperHeightBound: 0
-  CameraLowerHeightBound: 0
 --- !u!4 &296893308
 Transform:
   m_ObjectHideFlags: 0
@@ -23275,12 +23270,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jeepPrefab: {fileID: 4440174077712163617, guid: 81615ee5f8a71ec4aaeb121cbc4cfc3c,
     type: 3}
-  pedicabPrefab: {fileID: 771982215564958993, guid: 855cd82b21977fe458e741a8f5352a56,
-    type: 3}
-  motorcyclePrefab: {fileID: 3224105099788658157, guid: 25c83d295f789394da1342229c25d951,
-    type: 3}
-  busPrefab: {fileID: 1101577590284328575, guid: 5d2ce4f2e805b5c4092a09a0930cf37d,
-    type: 3}
+  pedicabPrefab: {fileID: 0}
+  motorcyclePrefab: {fileID: 0}
+  busPrefab: {fileID: 0}
   terminal: {fileID: 1565329212}
   jeepButton: {fileID: 1940014938}
   pedicabButton: {fileID: 1441238313}
