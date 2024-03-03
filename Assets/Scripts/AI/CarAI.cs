@@ -44,7 +44,7 @@ public class CarAI : MonoBehaviour
     }
 
     [field: SerializeField]
-    public UnityEvent<Vector2> OnDrive { get; set; }
+    public UnityEvent<Vector2> OnDrive { get; set; }  // Button event feature where CarController is placed
 
     private void Start()
     {
@@ -58,29 +58,29 @@ public class CarAI : MonoBehaviour
         }
 
         // You can find the CarbonMeter script in the scene if it's not assigned in the Unity Editor
-        if (carbonMeter == null)
-        {
-            carbonMeter = FindObjectOfType<CarbonMeter>();
-            if (carbonMeter == null)
-            {
-                Debug.LogError("CarbonMeter script not found in the scene!");
-            }
-        }
-        if (aiDirector == null)
-        {
-            aiDirector = FindObjectOfType<AiDirector>();
-            if (aiDirector == null)
-            {
-                Debug.LogError("AiDirector script not found in the scene!");
-            }
-        }
+        // if (carbonMeter == null)
+        // {
+        //     carbonMeter = FindObjectOfType<CarbonMeter>();
+        //     if (carbonMeter == null)
+        //     {
+        //         Debug.LogError("CarbonMeter script not found in the scene!");
+        //     }
+        // }
+        // if (aiDirector == null)
+        // {
+        //     aiDirector = FindObjectOfType<AiDirector>();
+        //     if (aiDirector == null)
+        //     {
+        //         Debug.LogError("AiDirector script not found in the scene!");
+        //     }
+        // }
     }
 
     public void SetPath(List<Vector3> path)
     {
         if(path.Count == 0)
         {
-            Destroy(gameObject);
+            Destroy(gameObject); // Possible to change: State.Idle()
             return;
         }
 
@@ -89,11 +89,10 @@ public class CarAI : MonoBehaviour
         index = 0;
         currentTargetPosition = this.path[index];
 
-        Vector3 relativepoint = transform.InverseTransformPoint(this.path[index + 1]);
-
+        // Sets car position to face on the next target position
+        Vector3 relativepoint = transform.InverseTransformPoint(this.path[index + 1]);  //this.path[index + 1] is the next position on the path
         float angle = Mathf.Atan2(relativepoint.x, relativepoint.z) * Mathf.Rad2Deg;
-
-        transform.rotation = Quaternion.Euler(0, angle, 0);
+        transform.rotation = Quaternion.Euler(0, angle, 0); // Sets the facing angle of spawned car. Rotates on the Y-axis
         Stop = false;
     }
 
@@ -120,21 +119,22 @@ public class CarAI : MonoBehaviour
     {
         if (Stop)
         {
-            OnDrive?.Invoke(Vector2.zero);
+            OnDrive?.Invoke(Vector2.zero);  // Car will stop , "?" is a listener to avoid Error exception
         }
-        else
+        else    //Move toward nex target point
         {
             Vector3 relativepoint = transform.InverseTransformPoint(currentTargetPosition);
             float angle = Mathf.Atan2(relativepoint.x, relativepoint.z) * Mathf.Rad2Deg;
-            var rotateCar = 0;
+            var rotateCar = 0;  // x value, rotates the car. If zero = no rotation
             if(angle > turningAngleOffset)
             {
-                rotateCar = 1;
+                rotateCar = 1;  //Rotate RIGHT
             }else if(angle < -turningAngleOffset)
             {
-                rotateCar = -1;
+                rotateCar = -1; //Rotate LEFT
             }
-            OnDrive?.Invoke(new Vector2(rotateCar, 1));
+            //Whether there will be rotation or none:
+            OnDrive?.Invoke(new Vector2(rotateCar, 1)); // (x, y), 1 since go forward
         }
     }
 
@@ -143,9 +143,9 @@ public class CarAI : MonoBehaviour
         if(Stop == false)
         {
             var distanceToCheck = arriveDistance;
-            if(index == path.Count - 1)
+            if(index == path.Count - 1) // Last Point in the Path
             {
-                distanceToCheck = lastPointArriveDistance;
+                distanceToCheck = lastPointArriveDistance; // Switched
             }
             if(Vector3.Distance(currentTargetPosition,transform.position) < distanceToCheck)
             {
@@ -164,7 +164,7 @@ public class CarAI : MonoBehaviour
         {
             carbonMeter.IncreaseCarbonMeter(); // Increase carbon meter value
             Stop = true;
-            Destroy(gameObject);
+            Destroy(gameObject);            //Possible to change: State.Idle()
             Debug.Log("Nagdestroy na ba ang ferson?");
         }    
         else
