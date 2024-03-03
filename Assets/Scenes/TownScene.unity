@@ -17432,7 +17432,7 @@ PrefabInstance:
     - target: {fileID: 3702253504043930072, guid: 838f9b485bb510747a4b89e3cb91e1bd,
         type: 3}
       propertyPath: m_Name
-      value: Shop
+      value: Shop1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22192,9 +22192,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f8c048f923bc24196736b3af8a3b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emptyColor: {r: 1, g: 1, b: 1, a: 1}
-  currentColor: {r: 1, g: 1, b: 1, a: 1}
-  currentCount: 0
   VehiclesTab: {fileID: 1626919790}
 --- !u!114 &1565329213
 MonoBehaviour:
@@ -23268,12 +23265,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02af1e7646765c744b44d53547c51c61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jeepPrefab: {fileID: 4440174077712163617, guid: 81615ee5f8a71ec4aaeb121cbc4cfc3c,
-    type: 3}
-  pedicabPrefab: {fileID: 0}
-  motorcyclePrefab: {fileID: 0}
-  busPrefab: {fileID: 0}
-  terminal: {fileID: 1565329212}
+  terminals:
+  - {fileID: 1565329212}
+  - {fileID: 1972692477}
   jeepButton: {fileID: 1940014938}
   pedicabButton: {fileID: 1441238313}
   motorcycleButton: {fileID: 2060372922}
@@ -29864,9 +29858,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f8c048f923bc24196736b3af8a3b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emptyColor: {r: 1, g: 1, b: 1, a: 1}
-  currentColor: {r: 1, g: 1, b: 1, a: 1}
-  currentCount: 0
   VehiclesTab: {fileID: 1626919790}
 --- !u!114 &1972692478
 MonoBehaviour:
