@@ -11,6 +11,7 @@ namespace SVS
     public class AudioPlayer : MonoBehaviour
     {
         public AudioClip placementSound;
+        public AudioClip removeSound;
         public AudioSource audioSource;
 
         public static AudioPlayer instance;
@@ -29,6 +30,13 @@ namespace SVS
             if(placementSound != null)
             {
                 audioSource.PlayOneShot(placementSound);
+            }
+        }
+        public void PlayRemoveSound()
+        {
+            if(removeSound != null)
+            {
+                audioSource.PlayOneShot(removeSound);
             }
         }
     }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18090525, g: 0.22645332, b: 0.30723113, a: 1}
+  m_IndirectSpecularColor: {r: 0.18090543, g: 0.22645362, b: 0.30723208, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2506,6 +2506,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 618d58c7a8dccc44184229b065d5d341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Camera: {fileID: 0}
+  Rotate: 0
+  DecreaseCameraPanSpeed: 2
+  CameraUpperHeightBound: 0
+  CameraLowerHeightBound: 0
 --- !u!4 &1058882863
 Transform:
   m_ObjectHideFlags: 0
@@ -2552,7 +2557,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5daff3c079fae944b893a2506b415bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placementSound: {fileID: 8300000, guid: 9a524ef8c85f8a3419ea55d99c5b9ba5, type: 3}
+  placementSound: {fileID: 8300000, guid: 892de71d662565f45b8bd10d1086de8f, type: 3}
+  removeSound: {fileID: 8300000, guid: 48e62590a27533c498609a07593520b4, type: 3}
   audioSource: {fileID: 1105030476}
 --- !u!82 &1105030476
 AudioSource:
@@ -2675,7 +2681,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 99d6bb57bd482e642b33808fe3b6523c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7aa1e786da889b64bb42dc34c47aab69, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.1
   m_Pitch: 1
