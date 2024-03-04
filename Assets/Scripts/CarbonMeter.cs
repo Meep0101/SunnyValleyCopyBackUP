@@ -7,14 +7,26 @@ public class CarbonMeter : MonoBehaviour
 {
     public Text carbonMeterText; // Reference to the UI Text element
 
-    private int carbonMeterValue = 100;
+    private int carbonMeterValue = 80;
+
+     void Start()
+    {
+        UpdateCarbonMeter();
+    }
 
     // Function to update the carbon meter UI
+
     public void UpdateCarbonMeter()
     {
         if (carbonMeterText != null)
         {
             carbonMeterText.text = "Carbon Emission:" + carbonMeterValue +"%";
+
+            if (carbonMeterValue >= 100)
+            {
+                StopGame();
+            }
+        
         }
     }
 
@@ -34,12 +46,19 @@ public class CarbonMeter : MonoBehaviour
     // Function to reset the carbon meter value
     public void ResetCarbonMeter()
     {
-        carbonMeterValue = 100;
+        carbonMeterValue = 80;
         UpdateCarbonMeter(); // Update UI when CarbonMeter changes
     }
 
-    void Start()
+    private void StopGame()
     {
-        UpdateCarbonMeter();
+        Debug.Log("STOP NA AYOKO NA");
     }
+    public int GetCarbonMeterValue()
+    {
+        return carbonMeterValue;
+
+    }
+
+   
 }

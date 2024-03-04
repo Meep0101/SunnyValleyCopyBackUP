@@ -25,6 +25,7 @@ public class PlacementManager : MonoBehaviour
 
     private int treeCount = 0;
     public Text treeCountText;
+    private int vehicleCount = 0;
 
 
    
@@ -69,6 +70,12 @@ public class PlacementManager : MonoBehaviour
         while (true)
         {
 
+            if (carbonMeter.GetCarbonMeterValue() >= 100)
+            {
+                StopSpawningTrees(); //make tree stop 
+                yield break ;
+            }
+
         Vector3Int randomPosition = new Vector3Int(UnityEngine.Random.Range(0,width), 0, UnityEngine.Random.Range(0, height)); //random
         
 
@@ -86,14 +93,22 @@ public class PlacementManager : MonoBehaviour
             Spawntrees(nature.transform);
 
 
-            carbonMeter.DecreaseCarbonMeter();
-            Debug.Log("Trees spawned at position: " + randomPosition);
+            carbonMeter.IncreaseCarbonMeter();
+            FindObjectOfType<GameManager>().IncrementTrees();
+            
         }
         
 
         float nextSpawnInterval = UnityEngine.Random.Range(treeSpawnIntervalMin, treeSpawnIntervalMax);
         yield return new WaitForSeconds(nextSpawnInterval);
         }
+    }
+
+    private void StopSpawningTrees() //makes tree stop
+    {
+       Debug.Log("TREES STOP!");
+
+       FindObjectOfType<GameManager>().StopGame();
     }
 
     private bool CheckIfTreeWillSpawnInBounds(Vector3Int position)
@@ -225,6 +240,8 @@ public class PlacementManager : MonoBehaviour
         DestroyNatureAt(position);
         carbonMeter.DecreaseCarbonMeter();
         carbonMeter.UpdateCarbonMeter();
+
+        treeCount++;
     }
 
     public void PlaceVehicleAndIncreaseCarbon(Vector3Int position, GameObject vehiclePrefab)
@@ -232,6 +249,8 @@ public class PlacementManager : MonoBehaviour
         GameObject newVehicle =Instantiate(vehiclePrefab, position, Quaternion.identity);
         CarAI carAI = newVehicle.GetComponent<CarAI>();
         carbonMeter.IncreaseCarbonMeter();
+
+       FindObjectOfType<GameManager>().IncrementVehicles();
     }
 
     internal bool CheckIfPositionIsFree(Vector3Int position)
@@ -370,5 +389,14 @@ public class PlacementManager : MonoBehaviour
             return structureDictionary[position];
         }
         return null;
+    }
+
+    public int GetTreeCount()
+    {
+        return treeCount;
+    }
+    public int GetVehicleCount()
+    {
+        return vehicleCount;
     }
 }

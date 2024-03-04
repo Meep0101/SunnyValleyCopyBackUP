@@ -4,19 +4,22 @@ using UnityEngine.UI;
 
 public class AnalogClock : MonoBehaviour
 {
-    // Public variables to reference clock hands and day of the week text in the Unity Editor
+   
     
     public RectTransform minuteHand;
     public Text dayOfWeekText;
 
-    // Variables to store current time, time scale, days of the week, and current day index
+    
     private DateTime currentTime;
-    private float secondsPerGameMinute = 0.3f; // Adjust this based on your game's time scale
-    private string[] daysOfWeek = {"Monday","Monday", "Tuesday","Tuesday", "Wednesday", "Wednesday", "Thursday", "Thursday", "Friday", "Friday", "Saturday",  "Saturday", "Sunday", "Sunday"};  
-    //why double? for Day Time and Night Time 
+    private float secondsPerGameMinute = 0.2f; // 0.03f speed for fast forward
+    private string[] daysOfWeek = {"Monday", "Monday","Tuesday", "Wednesday", "Thursday",  "Friday", "Saturday", "Sunday"};  
+    
     private int currentDayIndex = 0;
+    private int daysPassed = 0;
 
-    // Start is called before the first frame update
+    public CarbonMeter carbonMeter;
+
+   
     private void Start()
     {
 
@@ -28,13 +31,16 @@ public class AnalogClock : MonoBehaviour
         InvokeRepeating("UpdateGameTime", 1f, secondsPerGameMinute);
     }
 
-    // UpdateGameTime is called at a regular interval to simulate the passage of time in the game
     private void UpdateGameTime()
     {
-        // Increment the current time by one minute
+       if(carbonMeter.GetCarbonMeterValue() >= 100)
+       {
+        StopClock();
+        return;
+       }
         currentTime = currentTime.AddMinutes(1);
 
-        // Update clock hands based on the new time
+        
         UpdateClockHands();
 
         // Check if the minute hand completed a full circle (hour changed)
@@ -42,8 +48,18 @@ public class AnalogClock : MonoBehaviour
         {
             // Update the day of the week and reset the index if it reaches the end of the week
             currentDayIndex = (currentDayIndex + 1) % daysOfWeek.Length;
+            daysPassed++;
             UpdateDayOfWeekText();
+
+            FindObjectOfType<GameManager>().IncrementDays();
         }
+    }
+
+    private void StopClock()
+    {
+        Debug.Log("Clock Stop");
+        enabled = false;
+       
     }
 
     // UpdateClockHands rotates the clock hands based on the current time

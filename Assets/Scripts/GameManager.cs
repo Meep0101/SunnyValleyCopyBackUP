@@ -20,6 +20,10 @@ public class GameManager : MonoBehaviour
     public PathVisualizer pathVisualizer;
 
     public PlacementManager placementManager;
+    public GameObject gameOverPanel;
+    private int numberOfDays = 0;
+    private int numberOfTrees = 0;
+    private int numberOfVehicle = 0;
 
      private enum FunctionalityState
     {
@@ -150,7 +154,37 @@ public class GameManager : MonoBehaviour
             callback.Invoke(result.Value);
     }
 
+    public void StopGame()
+    {
+        gameOverPanel.SetActive(true);
+        Time.timeScale = 0f;
+        //FindObjectOfType<UIController>().UpdateGameOverPanel(numberOfDays);
+    UIController uiController = FindAnyObjectByType<UIController>();
+    uiController.UpdateGameOverPanel(numberOfDays, GetNumberOfTrees(), GetNumberOfVehicles());
 
+    }
 
+    public void IncrementDays()
+    {
+        numberOfDays++;
+    }
+    public void IncrementTrees()
+    {
+        numberOfTrees++;
+    }
+
+    public int GetNumberOfTrees()
+    {
+        return numberOfTrees;
+    }
+
+    public void IncrementVehicles()
+    {
+        numberOfVehicle++;
+    }
    
+   public int GetNumberOfVehicles()
+   {
+        return numberOfVehicle;
+   }
 }

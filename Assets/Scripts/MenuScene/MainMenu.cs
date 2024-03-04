@@ -14,4 +14,14 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void AboutUs()
+    {
+        SceneManager.LoadScene("AboutUS");
+    }
+
+    public void LearnHub()
+    {
+        SceneManager.LoadScene("LearnHub");
+    }
 }
