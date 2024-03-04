@@ -16,12 +16,13 @@ namespace SimpleCity.AI
         [SerializeField]
         private Marker incomming, outgoing;
 
-
+        // Will REMOVE
         public virtual Marker GetPositioForCarToSpawn(Vector3 nextPathPosition)
         {
             return outgoing;
         }
-
+        
+        // Will REMOVE
         public virtual Marker GetPositioForCarToEnd(Vector3 previousPathPosition)
         {
             return incomming;

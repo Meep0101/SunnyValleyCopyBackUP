@@ -274,6 +274,15 @@ public class PlacementManager : MonoBehaviour
 
     #region GetPositions NoExplanation
 
+    public StructureModel GetStructureAt(Vector3Int position)
+    {
+        if (structureDictionary.ContainsKey(position))
+        {
+            return structureDictionary[position];
+        }
+        return null;
+    }
+    
     public List<StructureModel> GetAllHouses()
     {
         List<StructureModel> returnList = new List<StructureModel>();
@@ -323,15 +332,6 @@ public class PlacementManager : MonoBehaviour
         //     returnList.Add(structureDictionary[new Vector3Int(point.X, 0, point.Y)]);
         // }
         // return returnList;
-    }
-
-    public StructureModel GetStructureAt(Vector3Int position)
-    {
-        if (structureDictionary.ContainsKey(position))
-        {
-            return structureDictionary[position];
-        }
-        return null;
     }
 
     //Will REMOVE

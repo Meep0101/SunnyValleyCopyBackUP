@@ -14,7 +14,7 @@ public class ResourceGathererUnit : MonoBehaviour, IUnit {
     private const float speed = 1f;
 
     private Vector3 targetPosition;
-    private float stopDistance;
+    private float stopDistance; // arriveDistance or lastPointArriveDistance
     private Action onArrivedAtPosition;
     private State state;
 
@@ -57,7 +57,7 @@ public class ResourceGathererUnit : MonoBehaviour, IUnit {
         }
         else
         {
-            // Arrived
+            // Arrived, last point in the path
             if (onArrivedAtPosition != null)
             {
                 Action tmpAction = onArrivedAtPosition;

@@ -16,8 +16,7 @@ namespace SimpleCity.AI
 
         List<Vector3> carPath = new List<Vector3>();
 
-
-        public void SpawnACar()
+        public void SpawnACar() // Will REMOVE since it will spawn at terminals
         {
             Debug.Log("Clicked: SpawnACar");
             foreach (var structureObject in placementManager.GetAllHouses())
@@ -28,7 +27,8 @@ namespace SimpleCity.AI
             }
         }
 
-        private void TrySpawninACar(StructureModel startStructure, StructureModel endStructure)
+        //Will REMOVE since the Vehicle has its own State
+        private void TrySpawninACar(StructureModel startStructure, StructureModel endStructure) // No need hanapin start and end
         {
             if (startStructure != null && endStructure != null)
             {
@@ -58,11 +58,14 @@ namespace SimpleCity.AI
             }
         }
 
+        //NOT SURE - Will Remove rin sine connected sa taas lang
         private List<Vector3> GetCarPath(List<Vector3Int> path, Vector3 startPosition, Vector3 endPosition)
         {
             carGraph.ClearGraph();
             CreatACarGraph(path);
             Debug.Log(carGraph);
+
+            //Maybe relevant to stay
             return AdjacencyGraph.AStarSearch(carGraph, startPosition, endPosition);
         }
 
