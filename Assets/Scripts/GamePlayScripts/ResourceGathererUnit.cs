@@ -48,6 +48,8 @@ public class ResourceGathererUnit : MonoBehaviour, IUnit {
         //     }
         // }
     #endregion
+        
+        //Possible dito ang MARKERS
         if (Vector3.Distance(transform.position, targetPosition) > stopDistance)
         {
             Vector3 moveDir = (targetPosition - transform.position).normalized;
