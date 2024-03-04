@@ -14,17 +14,7 @@ public class ModeManager : MonoBehaviour
   
   
 
-    // void Update()
-    // {
-    //     if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-    //         {
-    //             cameraMode = !cameraMode;
-
-    //             scrollAndPinch.enabled = !cameraMode;
-    //             roadManager.enabled = cameraMode;
-    //         }
-    // }
- 
+    
  void Update()
     {
         if (Input.touchCount > 0)

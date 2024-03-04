@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
+
 
 public class PlacementManager : MonoBehaviour
 {
@@ -21,6 +23,10 @@ public class PlacementManager : MonoBehaviour
     public float treeSpawnIntervalMax = 5f;
     public GameObject roadPrefab;
 
+    private int treeCount = 0;
+    public Text treeCountText;
+
+
    
 
     private Dictionary<Vector3Int, StructureModel> temporaryRoadobjects = new Dictionary<Vector3Int, StructureModel>();
@@ -36,6 +42,14 @@ public class PlacementManager : MonoBehaviour
         carbonMeter = FindObjectOfType<CarbonMeter>();
 
         StartCoroutine(SpawnTreesRandomly());
+    }
+
+    void Update()
+    {
+        if (treeCountText != null)
+        {
+            treeCountText.text =treeCount.ToString();
+        }
     }
     
     public void TogglePlacingRoad(bool isEnabled)
@@ -94,6 +108,9 @@ public class PlacementManager : MonoBehaviour
 
             Vector3 treeOffset = new Vector3(UnityEngine.Random.Range(-1f, 1f), 0, UnityEngine.Random.Range(-1f, 1f));
             
+            GameObject tree = Instantiate(treePrefab, parent.position + treeOffset, Quaternion.identity);
+            tree.transform.SetParent(parent);
+            treeCount++;
         }
     }
 
@@ -198,7 +215,7 @@ public class PlacementManager : MonoBehaviour
         foreach (var hit in hits)
         {
             Destroy(hit.collider.gameObject);
-            //FindObjectOfType<CarbonMeter>().DecreaseCarbonMeter();
+            treeCount--;
             Debug.Log("Tree Destroy");
         }
     }
