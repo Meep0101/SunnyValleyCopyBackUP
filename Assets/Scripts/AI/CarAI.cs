@@ -43,6 +43,7 @@ public class CarAI : MonoBehaviour
         set { stop = value; }
     }
 
+    // Will be removed since may States sa CarAI
     [field: SerializeField]
     public UnityEvent<Vector2> OnDrive { get; set; }  // Button event feature where CarController is placed
 
@@ -57,23 +58,6 @@ public class CarAI : MonoBehaviour
             currentTargetPosition = path[index];
         }
 
-        // You can find the CarbonMeter script in the scene if it's not assigned in the Unity Editor
-        // if (carbonMeter == null)
-        // {
-        //     carbonMeter = FindObjectOfType<CarbonMeter>();
-        //     if (carbonMeter == null)
-        //     {
-        //         Debug.LogError("CarbonMeter script not found in the scene!");
-        //     }
-        // }
-        // if (aiDirector == null)
-        // {
-        //     aiDirector = FindObjectOfType<AiDirector>();
-        //     if (aiDirector == null)
-        //     {
-        //         Debug.LogError("AiDirector script not found in the scene!");
-        //     }
-        // }
     }
 
     public void SetPath(List<Vector3> path)
@@ -98,7 +82,7 @@ public class CarAI : MonoBehaviour
 
     private void Update()
     {
-        CheckIfArrived();
+        CheckIfArrived();   // HandlrMovement()
         Drive();
         CheckForCollisions();
     }
@@ -147,7 +131,7 @@ public class CarAI : MonoBehaviour
             {
                 distanceToCheck = lastPointArriveDistance; // Switched
             }
-            if(Vector3.Distance(currentTargetPosition,transform.position) < distanceToCheck)
+            if(Vector3.Distance(currentTargetPosition,transform.position) < distanceToCheck)    // CM CarAI
             {
                 SetNextTargetIndex();
             }
@@ -155,7 +139,6 @@ public class CarAI : MonoBehaviour
     }
 
 
-    //private bool home = false;
     private void SetNextTargetIndex()
     {
         

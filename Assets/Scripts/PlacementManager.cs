@@ -254,26 +254,25 @@ public class PlacementManager : MonoBehaviour
             structureDictionary[position].SwapModel(newModel, rotation);
     }
 
+    internal Vector3Int WorldToGridPosition(Vector3 worldPosition)
+    {
+        // Convert world position to grid position based on grid cell size
+        int x = Mathf.FloorToInt(worldPosition.x);
+        int z = Mathf.FloorToInt(worldPosition.z);
+        return new Vector3Int(x, 0 ,z);
+    }
+    
+    public Vector3Int WorldToCell(Vector3 position)
+    {
+        return new Vector3Int(
+            Mathf.FloorToInt(position.x),
+            Mathf.FloorToInt(position.y),
+            Mathf.FloorToInt(position.z)
+        );
+    }
 
 
     #region GetPositions NoExplanation
-    public StructureModel GetRandomRoad()
-    {
-        var point = placementGrid.GetRandomRoadPoint();
-        return GetStructureAt(point);
-    }
-
-    public StructureModel GetRandomSpecialStrucutre()
-    {
-        var point = placementGrid.GetRandomSpecialStructurePoint();
-        return GetStructureAt(point);
-    }
-
-    public StructureModel GetRandomHouseStructure()
-    {
-        var point = placementGrid.GetRandomHouseStructurePoint();
-        return GetStructureAt(point);
-    }
 
     public List<StructureModel> GetAllHouses()
     {
@@ -326,16 +325,6 @@ public class PlacementManager : MonoBehaviour
         // return returnList;
     }
 
-    private StructureModel GetStructureAt(Point point) //Ask  the PlacementManager what is in the given structure
-    {
-        if (point != null)
-        {
-            return structureDictionary[new Vector3Int(point.X, 0, point.Y)];
-        }
-        Debug.Log("No GetStructureAt Point");
-        return null;
-    }
-
     public StructureModel GetStructureAt(Vector3Int position)
     {
         if (structureDictionary.ContainsKey(position))
@@ -344,23 +333,38 @@ public class PlacementManager : MonoBehaviour
         }
         return null;
     }
+
+    //Will REMOVE
+    // public StructureModel GetRandomRoad()   //Will Remove
+    // {
+    //     var point = placementGrid.GetRandomRoadPoint();
+    //     return GetStructureAt(point);
+    // }
+
+    // public StructureModel GetRandomSpecialStrucutre()   //Will Remove
+    // {
+    //     var point = placementGrid.GetRandomSpecialStructurePoint();
+    //     return GetStructureAt(point);
+    // }
+
+    // public StructureModel GetRandomHouseStructure() //Will Remove
+    // {
+    //     var point = placementGrid.GetRandomHouseStructurePoint();
+    //     return GetStructureAt(point);
+    // }
+
+    //Will REMOVE
+    // private StructureModel GetStructureAt(Point point) //Ask  the PlacementManager what is in the given structure
+    // {
+    //     if (point != null)
+    //     {
+    //         return structureDictionary[new Vector3Int(point.X, 0, point.Y)];
+    //     }
+    //     Debug.Log("No GetStructureAt Point");
+    //     return null;
+    // }
     #endregion
 
-    internal Vector3Int WorldToGridPosition(Vector3 worldPosition)
-    {
-        // Convert world position to grid position based on grid cell size
-        int x = Mathf.FloorToInt(worldPosition.x);
-        int z = Mathf.FloorToInt(worldPosition.z);
-        return new Vector3Int(x, 0 ,z);
-    }
-    
-    public Vector3Int WorldToCell(Vector3 position)
-    {
-        return new Vector3Int(
-            Mathf.FloorToInt(position.x),
-            Mathf.FloorToInt(position.y),
-            Mathf.FloorToInt(position.z)
-        );
-    }
+
 
 }

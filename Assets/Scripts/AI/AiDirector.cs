@@ -23,7 +23,7 @@ namespace SimpleCity.AI
             foreach (var structureObject in placementManager.GetAllHouses())
             {
                 Debug.Log("There is a structureObject in GetAllHouses");
-                TrySpawninACar(structureObject, placementManager.GetRandomSpecialStrucutre());
+                //TrySpawninACar(structureObject, placementManager.GetRandomSpecialStrucutre());
                  // Gets house then special structure
             }
         }
@@ -50,7 +50,7 @@ namespace SimpleCity.AI
                 if (path.Count == 0 && path.Count>2)
                     return;
 
-                var startMarkerPosition = placementManager.GetStructureAt(startRoadPosition).GetCarSpawnMarker(path[1]);
+                var startMarkerPosition = placementManager.GetStructureAt(startRoadPosition).GetCarSpawnMarker(path[1]);    // Gets outgoing carmarker to spawn the car
 
                 var endMarkerPosition = placementManager.GetStructureAt(endRoadPosition).GetCarEndMarker(path[path.Count-2]);
 
