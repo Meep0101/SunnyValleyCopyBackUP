@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -76,5 +77,10 @@ public class UIController : MonoBehaviour
         numberOfDaysText.text = "Number of Days: " + numberOfDays.ToString();
         numberOfTreesText.text = "Number of Tree: " + numberOfTrees.ToString();
         numberOfVehiclesText.text = "Number of Vehicles: " + numberOfVehicle.ToString();
+    }
+
+    public void RestartButton()
+    {
+        SceneManager.LoadScene("TownScene");
     }
 }
