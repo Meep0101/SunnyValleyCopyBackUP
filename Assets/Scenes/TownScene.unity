@@ -1624,6 +1624,7 @@ MonoBehaviour:
   treeSpawnIntervalMax: 1
   roadPrefab: {fileID: 2093395482}
   treeCountText: {fileID: 261841691}
+  roadManager: {fileID: 0}
 --- !u!4 &540532164
 Transform:
   m_ObjectHideFlags: 0
@@ -2077,6 +2078,7 @@ MonoBehaviour:
   numberOfDaysText: {fileID: 41795268}
   numberOfTreesText: {fileID: 118523124}
   numberOfVehiclesText: {fileID: 1943502895}
+  placementManager: {fileID: 540532163}
 --- !u!114 &681313530
 MonoBehaviour:
   m_ObjectHideFlags: 0

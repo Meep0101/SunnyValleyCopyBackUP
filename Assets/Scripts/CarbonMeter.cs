@@ -7,7 +7,7 @@ public class CarbonMeter : MonoBehaviour
 {
     public Text carbonMeterText; // Reference to the UI Text element
 
-    private int carbonMeterValue = 95;
+    private int carbonMeterValue = 80;
 
      void Start()
     {
@@ -46,7 +46,7 @@ public class CarbonMeter : MonoBehaviour
     // Function to reset the carbon meter value
     public void ResetCarbonMeter()
     {
-        carbonMeterValue = 95;
+        carbonMeterValue = 80;
         UpdateCarbonMeter(); // Update UI when CarbonMeter changes
     }
 

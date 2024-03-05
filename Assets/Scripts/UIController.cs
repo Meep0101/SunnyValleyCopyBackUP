@@ -21,6 +21,8 @@ public class UIController : MonoBehaviour
     public Text numberOfDaysText;
     public Text numberOfTreesText;
     public Text numberOfVehiclesText;
+    public PlacementManager placementManager;
+
     
 
 
@@ -73,11 +75,16 @@ public class UIController : MonoBehaviour
 
     public void UpdateGameOverPanel(int numberOfDays, int numberOfTrees, int numberOfVehicle)
     {
-        
+        int actualTreeCount = placementManager.GetTreeCount();
+
         numberOfDaysText.text = "Number of Days: " + numberOfDays.ToString();
-        numberOfTreesText.text = "Number of Tree: " + numberOfTrees.ToString();
+        numberOfTreesText.text = "Number of Tree: " + actualTreeCount.ToString();
         numberOfVehiclesText.text = "Number of Vehicles: " + numberOfVehicle.ToString();
+    
+      
+    
     }
+    
 
     public void RestartButton()
     {

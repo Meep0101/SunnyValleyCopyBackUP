@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
@@ -27,7 +28,7 @@ public class PlacementManager : MonoBehaviour
     public Text treeCountText;
     private int vehicleCount = 0;
 
-
+    public RoadManager roadManager;
    
 
     private Dictionary<Vector3Int, StructureModel> temporaryRoadobjects = new Dictionary<Vector3Int, StructureModel>();
@@ -43,6 +44,8 @@ public class PlacementManager : MonoBehaviour
         carbonMeter = FindObjectOfType<CarbonMeter>();
 
         StartCoroutine(SpawnTreesRandomly());
+
+        roadManager = FindObjectOfType<RoadManager>();
     }
 
     void Update()
@@ -52,6 +55,8 @@ public class PlacementManager : MonoBehaviour
             treeCountText.text =treeCount.ToString();
         }
     }
+
+    
     
     public void TogglePlacingRoad(bool isEnabled)
      {
@@ -116,6 +121,14 @@ public class PlacementManager : MonoBehaviour
         return position.x >= 0 && position.x < width;
     }
 
+    private void UpdateTreeCOuntUI()
+    {
+        if (treeCountText != null)
+        {
+            treeCountText.text = "Total Trees: " + treeCount.ToString();
+        }
+    }
+
     private void Spawntrees(Transform parent)
     {
         for (int i = 0; i < numberOfTrees; i++)
@@ -126,6 +139,8 @@ public class PlacementManager : MonoBehaviour
             GameObject tree = Instantiate(treePrefab, parent.position + treeOffset, Quaternion.identity);
             tree.transform.SetParent(parent);
             treeCount++;
+
+            UpdateTreeCOuntUI();
         }
     }
 
@@ -232,6 +247,8 @@ public class PlacementManager : MonoBehaviour
             Destroy(hit.collider.gameObject);
             treeCount--;
             Debug.Log("Tree Destroy");
+
+            UpdateTreeCOuntUI();
         }
     }
 
@@ -395,7 +412,7 @@ public class PlacementManager : MonoBehaviour
     {
         return treeCount;
     }
-    public int GetVehicleCount()
+    private int GetVehicleCount()
     {
         return vehicleCount;
     }
