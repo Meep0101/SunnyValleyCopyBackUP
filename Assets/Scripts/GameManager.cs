@@ -22,9 +22,13 @@ public class GameManager : MonoBehaviour
     public PlacementManager placementManager;
 
     [SerializeField] private GathererAI[] gathererAIArray;
+    // [SerializeField] private Miner[] minerUnits;
+    // [SerializeField] private Woodcutter[] woodcutterUnits;
     [SerializeField] private Transform[] goldNodeTransformArray;
     [SerializeField] private Transform[] treeNodeTransformArray;
-    [SerializeField] private Transform storageTransform;
+    //[SerializeField] private Transform storageTransform;
+    [SerializeField] private Transform[] goldStorageArray; // New field
+    [SerializeField] private Transform[] treeStorageArray; // New field
     private List<ResourceNode> resourceNodeList; //Resurce Node object
 
 
@@ -51,6 +55,24 @@ public class GameManager : MonoBehaviour
         foreach (Transform treeNodeTransform in treeNodeTransformArray){
             resourceNodeList.Add(new ResourceNode(treeNodeTransform, GameResources.StationType.Wood));
         }
+
+        // // Initialize miner units
+        // foreach (Miner miner in minerUnits)
+        // {
+        //     // Example initialization for each miner unit
+        //     miner.speed = 5f; // Set the speed
+        //     miner.collectionCapacity = 2; // Set the collection capacity
+        //     // Add more initialization if needed
+        // }
+
+        // // Initialize woodcutter units
+        // foreach (Woodcutter woodcutter in woodcutterUnits)
+        // {
+        //     // Example initialization for each woodcutter unit
+        //     woodcutter.speed = 7f; // Set the speed
+        //     woodcutter.collectionCapacity = 3; // Set the collection capacity
+        //     // Add more initialization if needed
+        // }
     }
 
     private void RemoveRoadHandler()
@@ -157,15 +179,35 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private Transform GetStorage() {
-        return storageTransform;
+    // private Transform GetStorage() {
+    //     return storageTransform;
+    // }
+
+    // public static Transform GetStorage_Static() {
+    //     return instance.GetStorage();
+    // }
+
+    private Transform GetStorage(GameResources.StationType stationType)
+    {
+        if (stationType == GameResources.StationType.Gold)
+        {
+            return goldStorageArray[UnityEngine.Random.Range(0, goldStorageArray.Length)];
+        }
+        else if (stationType == GameResources.StationType.Wood)
+        {
+            return treeStorageArray[UnityEngine.Random.Range(0, treeStorageArray.Length)];
+        }
+        else
+        {
+            Debug.LogError("Unknown resource type!");
+            return null;
+        }
     }
 
-    public static Transform GetStorage_Static() {
-        return instance.GetStorage();
+    public static Transform GetStorage_Static(GameResources.StationType stationType)
+    {
+        return instance.GetStorage(stationType);
     }
-
-
 }
 
 

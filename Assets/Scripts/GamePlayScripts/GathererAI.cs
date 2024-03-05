@@ -21,6 +21,9 @@ public class GathererAI : MonoBehaviour {
 
     private Transform storageTransform;
 
+    private int maxPassengerHold = 3;
+    private float carbonEmit = 0.2f;
+
     //private int goldInventoryAmount;
     //Dictionary for resourcetype/stationtype
     private Dictionary<GameResources.StationType, int> inventoryAmountDictionary;
@@ -48,7 +51,7 @@ public class GathererAI : MonoBehaviour {
     }
 
     private bool IsInventoryFull(){
-        return GetTotalInventoryAmount() >= 3;
+        return GetTotalInventoryAmount() >= maxPassengerHold; // Max amount of vehicle capacity
     }
 
     private void DropInventoryAmountIntoGameResources() {
@@ -94,8 +97,9 @@ public class GathererAI : MonoBehaviour {
                 //if (goldInventoryAmount >= 3)
                 if (IsInventoryFull() || !resourceNode.HasResources()) { 
                     // Move to storage when have more than 3 units/passenger
-                    storageTransform = GameManager.GetStorage_Static();
-                    //resourceNode = GameHandler.GetResourceNodeType_Static(resourceNode.GetStationType()); 
+                    GameResources.StationType resourceType = resourceNode.GetStationType();
+                    storageTransform = GameManager.GetStorage_Static(resourceType);
+                    //storageTransform = GameManager.GetStorage_Static(); 
                     state = State.MovingToStorage;
                 } else {
                     // Gather resources
@@ -107,14 +111,6 @@ public class GathererAI : MonoBehaviour {
                         GrabResourceFromNode();
                         break;
                     }
-                    
-                    //goldInventoryAmount++;
-
-                    // unit.PlayAnimationMine(resourceNode.GetPosition(), () => {
-                    //     resourceNode.GrabResource();     
-                    //     goldInventoryAmount++;
-                    //     UpdateInventoryText();
-                    // });
                 }
             }
             break;
@@ -127,8 +123,6 @@ public class GathererAI : MonoBehaviour {
                     Debug.Log("Gold Amount: " + GameResources.GetStationAmount(GameResources.StationType.Gold));
                     Debug.Log("Wood Amount: " + GameResources.GetStationAmount(GameResources.StationType.Wood));
 
-                    //goldInventoryAmount = 0;
-                    //DropInventoryAmountIntoGameResources();
                     UpdateInventoryText(); // passenger count na nakuha, pabalik na
                     state = State.Idle;
                 });
