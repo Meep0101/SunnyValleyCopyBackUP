@@ -78,50 +78,6 @@ public class GameManager : MonoBehaviour
         //inputManager.OnMouseClick += TrySelectingAgent;
     }
 
-    // private void TrySelectingAgent(Ray ray)
-    // {
-    //     GameObject hitObject = objectDetector.RaycastAll(ray);
-    //     if(hitObject != null)
-    //     {
-    //         var agentScript = hitObject.GetComponent<AiAgent>();
-    //         agentScript?.ShowPath();
-    //     }
-    // }
-
-    #region BigStructurePlacement
-    // private void BigStructurePlacement()
-    // {
-    //     ClearInputActions();
-
-    //     inputManager.OnMouseClick += (pos) =>
-    //     {
-    //         ProcessInputAndCall(structureManager.PlaceBigStructure, pos);
-    //     };
-    //     inputManager.OnEscape += HandleEscape;
-    // }
-
-    // private void SpecialPlacementHandler()
-    // {
-    //     ClearInputActions();
-
-    //     inputManager.OnMouseClick += (pos) =>
-    //     {
-    //         ProcessInputAndCall(structureManager.PlaceStation, pos);
-    //     };
-    //     inputManager.OnEscape += HandleEscape;
-    // }
-
-    // private void HousePlacementHandler()
-    // {
-    //     ClearInputActions();
-
-    //     inputManager.OnMouseClick += (pos) =>
-    //     {
-    //         ProcessInputAndCall(structureManager.PlaceTerminal, pos);
-    //     };
-    //     inputManager.OnEscape += HandleEscape;
-    // }
-    #endregion
 
     private void RoadPlacementHandler()
     {
@@ -208,10 +164,6 @@ public class GameManager : MonoBehaviour
     public static Transform GetStorage_Static() {
         return instance.GetStorage();
     }
-
-
-
-
 
 
 }

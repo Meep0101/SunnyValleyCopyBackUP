@@ -46,15 +46,9 @@ public class ResourceNode {
                 case GameResources.StationType.Wood:
                     stationNodeTransform.GetComponent<SpriteRenderer>().sprite = Assets.i.treeNodeDepletedSprite;
                     break;
-
-            // Node is depleted
-            // stationNodeTransform.GetComponent<SpriteRenderer>().sprite = GameAssets.i.goldNodeDepletedSprite;      // NILIPAT sa UpdateSprite() , Using CodeMoney Utilities - GameAssets
-            //UpdateSprite();
             }
         }
         return stationType;
-
-        //FunctionTimer.Create(ResetResourceAmount, 5f);     //using CodeMonkey utilities
 
         //CMDebug.TextPopupMouse("stationAmount: " + stationAmount);   //using CodeMonkey utilities
     }
