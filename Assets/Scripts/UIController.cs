@@ -81,6 +81,7 @@ public class UIController : MonoBehaviour
 
     public void RestartButton()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("TownScene");
     }
 }
