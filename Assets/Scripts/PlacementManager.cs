@@ -88,17 +88,12 @@ public class PlacementManager : MonoBehaviour
         {
             randomPosition = new Vector3Int(Mathf.RoundToInt(randomPosition.x), 0, Mathf.RoundToInt(randomPosition.z)); //problem - it spawns out of bounds in x axis
             
-            if(!CheckIfTreeWillSpawnInBounds(randomPosition))
-            {
-                Debug.Log("Tree would spawn out of bounds at position (X-Axis): " + randomPosition);
-                continue;
-            }
-            
+                       
             GameObject nature = Instantiate(treePrefab, randomPosition, Quaternion.identity);
             Spawntrees(nature.transform);
 
 
-            carbonMeter.IncreaseCarbonMeter();
+            carbonMeter.IncreaseCarbonMeter();  //change this to decrease once the vehicle is attached
             FindObjectOfType<GameManager>().IncrementTrees();
             
         }
@@ -125,7 +120,7 @@ public class PlacementManager : MonoBehaviour
     {
         if (treeCountText != null)
         {
-            treeCountText.text = "Total Trees: " + treeCount.ToString();
+            treeCountText.text =  treeCount.ToString();
         }
     }
 
@@ -136,8 +131,7 @@ public class PlacementManager : MonoBehaviour
 
             Vector3 treeOffset = new Vector3(UnityEngine.Random.Range(-1f, 1f), 0, UnityEngine.Random.Range(-1f, 1f));
             
-            GameObject tree = Instantiate(treePrefab, parent.position + treeOffset, Quaternion.identity);
-            tree.transform.SetParent(parent);
+            
             treeCount++;
 
             UpdateTreeCOuntUI();

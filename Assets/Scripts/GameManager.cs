@@ -164,6 +164,8 @@ public class GameManager : MonoBehaviour
         gameOverPanel.SetActive(true);
         Time.timeScale = 0f;
         
+
+        //Add another condition for the OverCrowding and BothCarbonMeter & OverCrowding
         if(carbonMeter.GetCarbonMeterValue() >= 100)
         {
             gameOverCause = GameOverCause.CarbonMeterFull;
