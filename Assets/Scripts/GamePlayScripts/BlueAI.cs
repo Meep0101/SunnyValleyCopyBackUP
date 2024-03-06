@@ -23,7 +23,7 @@ public class BlueAI : MonoBehaviour
     [SerializeField]
     private float carbonEmit = 0.2f;
     [SerializeField]
-    private float vehicleSpeed = 1f;
+    private float stopDistance = 1f;
 
     private Dictionary<GameResources.StationType, int> inventoryAmountDictionary;
     private TextMeshPro inventoryTextMesh; // besides the AI
@@ -74,13 +74,12 @@ public class BlueAI : MonoBehaviour
         case State.Idle:
             resourceNode = GameManager.GetResourceNodeType_Static(GameResources.StationType.Blue);    // Finds resources available from the GameHandler
             if (resourceNode != null) { //If there is a station pasengger avalible
-                Debug.Log("Found Blue resource node.");
                 state = State.MovingToResourceNode;
             }
             break;
         case State.MovingToResourceNode:
             if (unit.IsIdle()) {
-                unit.MoveTo(resourceNode.GetPosition(), vehicleSpeed, () => {
+                unit.MoveTo(resourceNode.GetPosition(), stopDistance, () => {
                     state = State.GatheringResources;
                 });
             }
@@ -89,14 +88,9 @@ public class BlueAI : MonoBehaviour
             if (unit.IsIdle() || !resourceNode.HasPassengers()) {
                 //if (goldInventoryAmount >= 3)
                 if (IsInventoryFull() || !resourceNode.HasPassengers()) { 
-                    // Move to storage when have more than 3 units/passenger
-                    //GameResources.StationType storageType = storageNode.GetStorageType();
                     storageNode = GameManager.GetStorageNodeType_Static(GameResources.StationType.Blue);
                     if (storageNode != null){
-                        Debug.Log("Moving to Blue storage node.");
                         state = State.MovingToStorage;
-                    } else {
-                        Debug.LogWarning("No Blue storage node found!");
                     }
                     
                 } else {
@@ -118,14 +112,11 @@ public class BlueAI : MonoBehaviour
         case State.MovingToStorage:
             if (unit.IsIdle()) {
 
-                unit.MoveTo(storageNode.GetAPosition(), vehicleSpeed, () => {
+                unit.MoveTo(storageNode.GetAPosition(), stopDistance, () => {
     
                     DropInventoryAmountIntoGameResources();
-                    Debug.Log("Dropped inventory at Blue storage node.");
 
-                    Debug.Log("RedAmount: " + GameResources.GetStationAmount(GameResources.StationType.Red));
                     Debug.Log("Blue Amount: " + GameResources.GetStationAmount(GameResources.StationType.Blue));
-                    Debug.Log("Yellow Amount: " + GameResources.GetStationAmount(GameResources.StationType.Yellow));
 
                     UpdateInventoryText(); // passenger count na nakuha, pabalik na
                     state = State.Idle;

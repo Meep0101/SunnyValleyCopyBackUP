@@ -11,7 +11,7 @@ public class ResourceGathererUnit : MonoBehaviour, IUnit {
         //Animating,
     }
 
-    private const float speed = 1f;
+    [SerializeField] private float vehicleSpeed = 1f;
 
     private Vector3 targetPosition;
     private float stopDistance; // arriveDistance or lastPointArriveDistance
@@ -36,7 +36,7 @@ public class ResourceGathererUnit : MonoBehaviour, IUnit {
 
         //     float distanceBefore = Vector3.Distance(transform.position, targetPosition);
         //     animatedWalker.SetMoveVector(moveDir);
-        //     transform.position = transform.position + moveDir * speed * Time.deltaTime;
+        //     transform.position = transform.position + moveDir * vehicleSpeed * Time.deltaTime;
         // } else {
         //     // Arrived
         //     animatedWalker.SetMoveVector(Vector3.zero);
@@ -53,7 +53,7 @@ public class ResourceGathererUnit : MonoBehaviour, IUnit {
         if (Vector3.Distance(transform.position, targetPosition) > stopDistance)
         {
             Vector3 moveDir = (targetPosition - transform.position).normalized;
-            transform.position += moveDir * speed * Time.deltaTime;
+            transform.position += moveDir * vehicleSpeed * Time.deltaTime;
         }
         else
         {

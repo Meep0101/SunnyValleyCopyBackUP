@@ -24,7 +24,7 @@ public class YellowAI : MonoBehaviour
     [SerializeField]
     private float carbonEmit = 0.2f;
     [SerializeField]
-    private float vehicleSpeed = 1f;
+    private float stopDistance = 1f;
 
     private Dictionary<GameResources.StationType, int> inventoryAmountDictionary;
     private TextMeshPro inventoryTextMesh; // besides the AI
@@ -80,7 +80,7 @@ public class YellowAI : MonoBehaviour
             break;
         case State.MovingToResourceNode:
             if (unit.IsIdle()) {
-                unit.MoveTo(resourceNode.GetPosition(), vehicleSpeed, () => {
+                unit.MoveTo(resourceNode.GetPosition(), stopDistance, () => {
                     state = State.GatheringResources;
                 });
             }
@@ -89,11 +89,11 @@ public class YellowAI : MonoBehaviour
             if (unit.IsIdle() || !resourceNode.HasPassengers()) {
                 //if (goldInventoryAmount >= 3)
                 if (IsInventoryFull() || !resourceNode.HasPassengers()) { 
-                    // Move to storage when have more than 3 units/passenger
-                    GameResources.StationType storageType = resourceNode.GetStationType();
                     storageNode = GameManager.GetStorageNodeType_Static(GameResources.StationType.Yellow);
+                    if (storageNode != null){
+                        state = State.MovingToStorage;
+                    } 
                     
-                    state = State.MovingToStorage;
                 } else {
                     // Gather resources
                     switch (resourceNode.GetStationType()) {
@@ -113,12 +113,10 @@ public class YellowAI : MonoBehaviour
         case State.MovingToStorage:
             if (unit.IsIdle()) {
 
-                unit.MoveTo(storageNode.GetAPosition(), vehicleSpeed, () => {
+                unit.MoveTo(storageNode.GetAPosition(), stopDistance, () => {
     
                     DropInventoryAmountIntoGameResources();
 
-                    Debug.Log("RedAmount: " + GameResources.GetStationAmount(GameResources.StationType.Red));
-                    Debug.Log("Blue Amount: " + GameResources.GetStationAmount(GameResources.StationType.Blue));
                     Debug.Log("Yellow Amount: " + GameResources.GetStationAmount(GameResources.StationType.Yellow));
 
                     UpdateInventoryText(); // passenger count na nakuha, pabalik na
