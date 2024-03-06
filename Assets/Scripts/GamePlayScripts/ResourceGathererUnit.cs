@@ -77,10 +77,12 @@ public class ResourceGathererUnit : MonoBehaviour, IUnit {
         return state == State.Idle;
     }
 
+    // Vector3 position is the target object
     public void MoveTo(Vector3 position, float stopDistance, Action onArrivedAtPosition) {
         SetTargetPosition(position);
         this.stopDistance = stopDistance;
         this.onArrivedAtPosition = onArrivedAtPosition;
         state = State.Moving;
     }
+    
 }

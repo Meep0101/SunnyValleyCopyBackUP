@@ -19,10 +19,10 @@ namespace SimpleCity.AI
         public void SpawnACar() // Will REMOVE since it will spawn at terminals
         {
             Debug.Log("Clicked: SpawnACar");
-            foreach (var structureObject in placementManager.GetAllHouses())
+            foreach (var structureObject in placementManager.GetAllHouses())    // Gets the Terminal points
             {
                 Debug.Log("There is a structureObject in GetAllHouses");
-                //TrySpawninACar(structureObject, placementManager.GetRandomSpecialStrucutre());
+                //TrySpawninACar(structureObject, placementManager.GetRandomSpecialStrucutre());    //Gets ONE Station point
                  // Gets house then special structure
             }
         }
@@ -45,7 +45,7 @@ namespace SimpleCity.AI
 
                 var endMarkerPosition = placementManager.GetStructureAt(endRoadPosition).GetCarEndMarker(path[path.Count-2]);
 
-                carPath = GetCarPath(path, startMarkerPosition.Position, endMarkerPosition.Position);
+                carPath = GetCarPath(path, startMarkerPosition.Position, endMarkerPosition.Position);   //Path of the car
 
                 if(carPath.Count > 0)
                 {
