@@ -8,11 +8,10 @@ public static class GameResources
     public static event EventHandler OnStationAmountChanged;
 
     public enum StationType {
-        Gold,
-        Wood,
-        Metal,
+        Red,
+        Blue,
+        Yellow
     }
-    //private static int goldAmount; removed since may dictionary na
 
     // To make the code adaptable for the resource amount using a DICTIONARY<key, value>:
     private static Dictionary<StationType, int> stationAmountDictionary;

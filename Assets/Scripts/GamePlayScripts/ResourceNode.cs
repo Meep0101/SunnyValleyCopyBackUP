@@ -19,7 +19,7 @@ public class ResourceNode {
         stationAmountMax = 3; //Starts with 3 passenger
         stationAmount = stationAmountMax;
 
-        FunctionPeriodic.Create(RegenerateSingleResourceAmount, 2f);  //code monkey utilities
+        FunctionPeriodic.Create(RegenerateSinglePassengerAmount, 2f);  //code monkey utilities
 
         CMDebug.TextUpdater(() => "" + stationAmount, Vector3.zero, stationNodeTransform);  //Displays current stationAmount, code monkey utilities
     }
@@ -40,10 +40,13 @@ public class ResourceNode {
         if (stationAmount <= 0) {
             switch (stationType) {
                 default:
-                case GameResources.StationType.Gold:
+                case GameResources.StationType.Red:
                     stationNodeTransform.GetComponent<SpriteRenderer>().sprite = Assets.i.goldNodeDepletedSprite;
                     break;
-                case GameResources.StationType.Wood:
+                case GameResources.StationType.Blue:
+                    stationNodeTransform.GetComponent<SpriteRenderer>().sprite = Assets.i.treeNodeDepletedSprite;
+                    break;
+                case GameResources.StationType.Yellow:
                     stationNodeTransform.GetComponent<SpriteRenderer>().sprite = Assets.i.treeNodeDepletedSprite;
                     break;
             }
@@ -53,7 +56,7 @@ public class ResourceNode {
         //CMDebug.TextPopupMouse("stationAmount: " + stationAmount);   //using CodeMonkey utilities
     }
 
-    public bool HasResources() {
+    public bool HasPassengers() {
         return stationAmount > 0;
     }
 
@@ -63,7 +66,7 @@ public class ResourceNode {
     }
 
     //Regeneration of passenger by 1
-    private void RegenerateSingleResourceAmount() {
+    private void RegenerateSinglePassengerAmount() {
         if (stationAmount < stationAmountMax) {
             stationAmount++;
             UpdateSprite();
@@ -75,10 +78,13 @@ public class ResourceNode {
             // Node has resources
             switch(stationType){
             default:
-            case GameResources.StationType.Gold:
+            case GameResources.StationType.Red:
                 stationNodeTransform.GetComponent<SpriteRenderer>().sprite = Assets.i.goldNodeSprite;      //Using CodeMoney Utilities - GameAssets
                 break;
-            case GameResources.StationType.Wood:
+            case GameResources.StationType.Blue:
+                stationNodeTransform.GetComponent<SpriteRenderer>().sprite = Assets.i.treeNodeSprite;      //Using CodeMoney Utilities - GameAssets
+                break;
+            case GameResources.StationType.Yellow:
                 stationNodeTransform.GetComponent<SpriteRenderer>().sprite = Assets.i.treeNodeSprite;      //Using CodeMoney Utilities - GameAssets
                 break;
             }
@@ -86,10 +92,13 @@ public class ResourceNode {
             // Node is depleted
             switch(stationType){
             default:
-            case GameResources.StationType.Gold:
+            case GameResources.StationType.Red:
                 stationNodeTransform.GetComponent<SpriteRenderer>().sprite = Assets.i.goldNodeDepletedSprite;      //Using CodeMoney Utilities - GameAssets
                 break;
-            case GameResources.StationType.Wood:
+            case GameResources.StationType.Blue:
+                stationNodeTransform.GetComponent<SpriteRenderer>().sprite = Assets.i.treeNodeDepletedSprite;      //Using CodeMoney Utilities - GameAssets
+                break;
+            case GameResources.StationType.Yellow:
                 stationNodeTransform.GetComponent<SpriteRenderer>().sprite = Assets.i.treeNodeDepletedSprite;      //Using CodeMoney Utilities - GameAssets
                 break;
             }

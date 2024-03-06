@@ -24,20 +24,24 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GathererAI[] gathererAIArray;
     // [SerializeField] private Miner[] minerUnits;
     // [SerializeField] private Woodcutter[] woodcutterUnits;
-    [SerializeField] private Transform[] goldNodeTransformArray;
-    [SerializeField] private Transform[] treeNodeTransformArray;
+
+    [SerializeField] private Transform[] REDNodeTransformArray;
+    [SerializeField] private Transform[] BLUENodeTransformArray;
+    [SerializeField] private Transform[] YELLOWNodeTransformArray;
     //[SerializeField] private Transform storageTransform;
-    [SerializeField] private Transform[] goldStorageArray; // New field
-    [SerializeField] private Transform[] treeStorageArray; // New field
+
+
+    [SerializeField] private Transform[] RedStorageArray; // New field
+    [SerializeField] private Transform[] BlueStorageArray; // New field
+    [SerializeField] private Transform[] YellowStorageArray; // New field
+
     private List<ResourceNode> resourceNodeList; //Resurce Node object
+    private List<StorageNode> storageNodeList; //Storage Node object
 
 
     void Start()
     {
         uiController.OnRoadPlacement += RoadPlacementHandler;
-        //uiController.OnHousePlacement += HousePlacementHandler;
-        //uiController.OnSpecialPlacement += SpecialPlacementHandler;
-        //uiController.OnBigStructurePlacement += BigStructurePlacement;
         uiController.OnRemoveRoad += RemoveRoadHandler;
         inputManager.OnEscape += HandleEscape;
     }
@@ -49,30 +53,28 @@ public class GameManager : MonoBehaviour
 
         resourceNodeList = new List<ResourceNode>();
 
-        foreach (Transform goldNodeTransform in goldNodeTransformArray){
-            resourceNodeList.Add(new ResourceNode(goldNodeTransform, GameResources.StationType.Gold));
+        foreach (Transform REDNodeTransformArray in REDNodeTransformArray){
+            resourceNodeList.Add(new ResourceNode(REDNodeTransformArray, GameResources.StationType.Red));
         }
-        foreach (Transform treeNodeTransform in treeNodeTransformArray){
-            resourceNodeList.Add(new ResourceNode(treeNodeTransform, GameResources.StationType.Wood));
+        foreach (Transform BLUENodeTransformArray in BLUENodeTransformArray){
+            resourceNodeList.Add(new ResourceNode(BLUENodeTransformArray, GameResources.StationType.Blue));
+        }
+        foreach (Transform YELLOWNodeTransformArray in YELLOWNodeTransformArray){
+            resourceNodeList.Add(new ResourceNode(YELLOWNodeTransformArray, GameResources.StationType.Yellow));
         }
 
-        // // Initialize miner units
-        // foreach (Miner miner in minerUnits)
-        // {
-        //     // Example initialization for each miner unit
-        //     miner.speed = 5f; // Set the speed
-        //     miner.collectionCapacity = 2; // Set the collection capacity
-        //     // Add more initialization if needed
-        // }
+        storageNodeList = new List<StorageNode>();
 
-        // // Initialize woodcutter units
-        // foreach (Woodcutter woodcutter in woodcutterUnits)
-        // {
-        //     // Example initialization for each woodcutter unit
-        //     woodcutter.speed = 7f; // Set the speed
-        //     woodcutter.collectionCapacity = 3; // Set the collection capacity
-        //     // Add more initialization if needed
-        // }
+        foreach (Transform RedStorageArray in RedStorageArray){
+            storageNodeList.Add(new StorageNode(RedStorageArray, GameResources.StationType.Red));
+        }
+        foreach (Transform BlueStorageArray in BlueStorageArray){
+            storageNodeList.Add(new StorageNode(BlueStorageArray, GameResources.StationType.Blue));
+        }
+        foreach (Transform YellowStorageArray in YellowStorageArray){
+            storageNodeList.Add(new StorageNode(YellowStorageArray, GameResources.StationType.Yellow));
+        }
+
     }
 
     private void RemoveRoadHandler()
@@ -139,7 +141,7 @@ public class GameManager : MonoBehaviour
         
         List<ResourceNode> tmpResourceNodeList = new List<ResourceNode>(resourceNodeList);      //Clone List only for the use of cycle
         for (int i = 0; i < tmpResourceNodeList.Count; i++){
-            if (!tmpResourceNodeList[i].HasResources()){
+            if (!tmpResourceNodeList[i].HasPassengers()){
                 //No more Resources or Passengers
                 tmpResourceNodeList.RemoveAt(i);
                 i--;
@@ -161,7 +163,7 @@ public class GameManager : MonoBehaviour
         
         List<ResourceNode> tmpResourceNodeList = new List<ResourceNode>(resourceNodeList);      //Clone List only for the use of cycle
         for (int i = 0; i < tmpResourceNodeList.Count; i++){
-            if (!tmpResourceNodeList[i].HasResources() || tmpResourceNodeList[i].GetStationType() != stationType){
+            if (!tmpResourceNodeList[i].HasPassengers() || tmpResourceNodeList[i].GetStationType() != stationType){
                 //No more Resources/Passengers or different type
                 tmpResourceNodeList.RemoveAt(i);
                 i--;
@@ -178,7 +180,6 @@ public class GameManager : MonoBehaviour
         return instance.GetResourceNodeType(stationType);
     }
 
-
     // private Transform GetStorage() {
     //     return storageTransform;
     // }
@@ -187,27 +188,41 @@ public class GameManager : MonoBehaviour
     //     return instance.GetStorage();
     // }
 
-    private Transform GetStorage(GameResources.StationType stationType)
+    private StorageNode GetStorageNodeType(GameResources.StationType storageType)
     {
-        if (stationType == GameResources.StationType.Gold)
+        foreach (StorageNode storageNode in storageNodeList)
         {
-            return goldStorageArray[UnityEngine.Random.Range(0, goldStorageArray.Length)];
+            if (storageNode.GetStorageType() == storageType)
+            {
+                return storageNode;
+            }
         }
-        else if (stationType == GameResources.StationType.Wood)
-        {
-            return treeStorageArray[UnityEngine.Random.Range(0, treeStorageArray.Length)];
-        }
-        else
-        {
-            Debug.LogError("Unknown resource type!");
-            return null;
-        }
+        return null;
+        
+        // if (storageType == GameResources.StationType.Red)
+        // {
+        //     return RedStorageArray[UnityEngine.Random.Range(0, RedStorageArray.Length)];
+        // }
+        // else if (storageType == GameResources.StationType.Blue)
+        // {
+        //     return BlueStorageArray[UnityEngine.Random.Range(0, BlueStorageArray.Length)];
+        // }
+        // else if (storageType == GameResources.StationType.Yellow)
+        // {
+        //     return YellowStorageArray[UnityEngine.Random.Range(0, YellowStorageArray.Length)];
+        // }
+        // else
+        // {
+        //     Debug.LogError("Unknown resource type!");
+        //     return null;
+        // }
     }
 
-    public static Transform GetStorage_Static(GameResources.StationType stationType)
+    public static StorageNode GetStorageNodeType_Static(GameResources.StationType storageType)
     {
-        return instance.GetStorage(stationType);
+        return instance.GetStorageNodeType(storageType);
     }
+
 }
 
 

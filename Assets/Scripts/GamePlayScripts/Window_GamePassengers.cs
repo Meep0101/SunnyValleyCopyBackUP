@@ -17,13 +17,14 @@ public class Window_GamePassengers : MonoBehaviour
 
 
     private void UpdateResourceTextObject() {
-        var TotalResources = GameResources.GetStationAmount(GameResources.StationType.Gold) + GameResources.GetStationAmount(GameResources.StationType.Wood);
+        var TotalResources = GameResources.GetStationAmount(GameResources.StationType.Red) + GameResources.GetStationAmount(GameResources.StationType.Blue) + GameResources.GetStationAmount(GameResources.StationType.Yellow);
         transform.Find("passengerAmount").GetComponent<Text>().text = "Passenger: " + TotalResources;
 
 
         // If wanted separate values
-        // "GOLD: " + GameResources.GetStationAmount(GameResources.StationType.Gold) + "\n" +
-        // "WOOD: " + GameResources.GetStationAmount(GameResources.StationType.Wood) + "\n";
+        // "RED: " + GameResources.GetStationAmount(GameResources.StationType.Red) + "\n" +
+        // "BLUE: " + GameResources.GetStationAmount(GameResources.StationType.Blue) + "\n";
+        // "YELLOW: " + GameResources.GetStationAmount(GameResources.StationType.Yellow) + "\n";
     }
 
 

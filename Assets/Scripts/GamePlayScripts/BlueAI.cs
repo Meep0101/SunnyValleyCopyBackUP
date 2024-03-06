@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-
-public class GathererAI : MonoBehaviour {
-
+public class BlueAI : MonoBehaviour
+{
     private enum State {
         Idle,
         MovingToResourceNode,
@@ -23,7 +22,8 @@ public class GathererAI : MonoBehaviour {
     private int maxPassengerHold = 3;
     [SerializeField]
     private float carbonEmit = 0.2f;
-
+    [SerializeField]
+    private float vehicleSpeed = 1f;
 
     private Dictionary<GameResources.StationType, int> inventoryAmountDictionary;
     private TextMeshPro inventoryTextMesh; // besides the AI
@@ -67,26 +67,20 @@ public class GathererAI : MonoBehaviour {
         } else {
             inventoryTextMesh.text = ""; // if 0 passenger get
         }
-
-        // if (goldInventoryAmount > 0 ) {
-        //     inventoryTextMesh.text = "" + goldInventoryAmount;
-        // } else {
-        //     inventoryTextMesh.text = ""; // if 0 passenger get
-        // }
     }
 
     private void Update() {
         switch (state) {
         case State.Idle:
-            resourceNode = GameManager.GetResourceNodeType_Static(GameResources.StationType.Red);    // Finds resources available from the GameHandler, Removed on player click
+            resourceNode = GameManager.GetResourceNodeType_Static(GameResources.StationType.Blue);    // Finds resources available from the GameHandler
             if (resourceNode != null) { //If there is a station pasengger avalible
+                Debug.Log("Found Blue resource node.");
                 state = State.MovingToResourceNode;
             }
             break;
         case State.MovingToResourceNode:
             if (unit.IsIdle()) {
-                //resourceNode = GameHandler.GetResourceNodeType_Static(resourceNode.GetStationType());
-                unit.MoveTo(resourceNode.GetPosition(), 1f, () => {
+                unit.MoveTo(resourceNode.GetPosition(), vehicleSpeed, () => {
                     state = State.GatheringResources;
                 });
             }
@@ -96,10 +90,15 @@ public class GathererAI : MonoBehaviour {
                 //if (goldInventoryAmount >= 3)
                 if (IsInventoryFull() || !resourceNode.HasPassengers()) { 
                     // Move to storage when have more than 3 units/passenger
-                    GameResources.StationType storageType = resourceNode.GetStationType();
-                    storageNode = GameManager.GetStorageNodeType_Static(storageType);
+                    //GameResources.StationType storageType = storageNode.GetStorageType();
+                    storageNode = GameManager.GetStorageNodeType_Static(GameResources.StationType.Blue);
+                    if (storageNode != null){
+                        Debug.Log("Moving to Blue storage node.");
+                        state = State.MovingToStorage;
+                    } else {
+                        Debug.LogWarning("No Blue storage node found!");
+                    }
                     
-                    state = State.MovingToStorage;
                 } else {
                     // Gather resources
                     switch (resourceNode.GetStationType()) {
@@ -119,9 +118,10 @@ public class GathererAI : MonoBehaviour {
         case State.MovingToStorage:
             if (unit.IsIdle()) {
 
-                unit.MoveTo(storageNode.GetAPosition(), 1f, () => {
+                unit.MoveTo(storageNode.GetAPosition(), vehicleSpeed, () => {
     
                     DropInventoryAmountIntoGameResources();
+                    Debug.Log("Dropped inventory at Blue storage node.");
 
                     Debug.Log("RedAmount: " + GameResources.GetStationAmount(GameResources.StationType.Red));
                     Debug.Log("Blue Amount: " + GameResources.GetStationAmount(GameResources.StationType.Blue));
@@ -139,8 +139,5 @@ public class GathererAI : MonoBehaviour {
         GameResources.StationType stationType = resourceNode.GrabResource();
         inventoryAmountDictionary[stationType]++;
         UpdateInventoryText(); // Text beside the character
-        // resourceNode.GrabResource();
-        // inventoryAmountDictionary[GameResources.StationType.Gold]++;
     }
-
 }
