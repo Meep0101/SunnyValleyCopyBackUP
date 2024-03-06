@@ -104,13 +104,11 @@ public class PlacementManager : MonoBehaviour
         structureDictionary.Add(position, structure);
         //DestroyNatureAt(position);
 
-        //StructureModel structure = CreateANewStructureModel(position, structurePrefab, type);
-
         // Sets NEAREST ROAD position for each structure so that we can access it when finding a path betweeb each structure 
         var structureNeedingRoad = structure.GetComponent<INeedingRoad>();
         if (structureNeedingRoad != null)
         {
-            structureNeedingRoad.RoadPosition = GetNearestRoad(position, width, height).Value;
+            structureNeedingRoad.RoadPosition = GetNearestRoad(position, width, height).Value;  //Where the structure requires a near ROAD
             Debug.Log("My nearest road position is: " + structureNeedingRoad.RoadPosition);
         }
     }
