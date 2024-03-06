@@ -902,7 +902,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0e0bb72ca40607e4c8c09cbc92afd37f, type: 2}
+  - {fileID: 2100000, guid: 24d5a168732030e4092a88ab7f3eb9c8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2079,6 +2079,7 @@ MonoBehaviour:
   numberOfTreesText: {fileID: 118523124}
   numberOfVehiclesText: {fileID: 1943502895}
   placementManager: {fileID: 540532163}
+  gameOverMessageText: {fileID: 1734849035}
 --- !u!114 &681313530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6868,6 +6869,7 @@ MonoBehaviour:
   pathVisualizer: {fileID: 1818247020}
   placementManager: {fileID: 540532163}
   gameOverPanel: {fileID: 1174482087}
+  carbonMeter: {fileID: 1208555310}
 --- !u!4 &2039921796
 Transform:
   m_ObjectHideFlags: 0

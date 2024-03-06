@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-   // public CameraMovement cameraMovement;
+  
     public RoadManager roadManager;
     public InputManager inputManager;
 
@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     private int numberOfDays = 0;
     private int numberOfTrees = 0;
     private int numberOfVehicle = 0;
+    public CarbonMeter carbonMeter;
+
+    
 
      private enum FunctionalityState
     {
@@ -42,6 +45,7 @@ public class GameManager : MonoBehaviour
         uiController.OnSpecialPlacement += SpecialPlacementHandler;
         uiController.OnRemoveRoad += RemoveRoadHandler;
         inputManager.OnEscape += HandleEscape;
+      
     }
 
    private void ToggleRoadPlacement()
@@ -156,12 +160,23 @@ public class GameManager : MonoBehaviour
 
     public void StopGame()
     {
+        if(gameOverPanel != null){
         gameOverPanel.SetActive(true);
         Time.timeScale = 0f;
-        //FindObjectOfType<UIController>().UpdateGameOverPanel(numberOfDays);
-    UIController uiController = FindAnyObjectByType<UIController>();
-    uiController.UpdateGameOverPanel(numberOfDays, GetNumberOfTrees(), GetNumberOfVehicles());
+        
+        if(carbonMeter.GetCarbonMeterValue() >= 100)
+        {
+            gameOverCause = GameOverCause.CarbonMeterFull;
+        }
 
+        
+        
+        UIController uiController = FindAnyObjectByType<UIController>();
+        uiController.UpdateGameOverPanel(numberOfDays, GetNumberOfTrees(), GetNumberOfVehicles(), gameOverCause);
+        }
+        else{
+            Debug.LogError("GAME PANEL NOT ASSIGNED");
+        }
     }
 
     public void IncrementDays()
@@ -187,4 +202,15 @@ public class GameManager : MonoBehaviour
    {
         return numberOfVehicle;
    }
+
+    private GameOverCause gameOverCause = GameOverCause.None;
+   public enum GameOverCause
+   {
+    None,
+    CarbonMeterFull,
+    OverCrowdedStations,
+    BothCarbonMeterAndOverCrowded,
+   }
+
+  
 }

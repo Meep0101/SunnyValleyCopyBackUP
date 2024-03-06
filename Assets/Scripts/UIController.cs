@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class UIController : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class UIController : MonoBehaviour
     public Text numberOfTreesText;
     public Text numberOfVehiclesText;
     public PlacementManager placementManager;
+    public Text gameOverMessageText;
 
     
 
@@ -73,7 +75,7 @@ public class UIController : MonoBehaviour
         removeButtonEnabled = true;
     }
 
-    public void UpdateGameOverPanel(int numberOfDays, int numberOfTrees, int numberOfVehicle)
+    public void UpdateGameOverPanel(int numberOfDays, int numberOfTrees, int numberOfVehicle, GameManager.GameOverCause gameOverCause)
     {
         int actualTreeCount = placementManager.GetTreeCount();
 
@@ -81,7 +83,20 @@ public class UIController : MonoBehaviour
         numberOfTreesText.text = "Number of Tree: " + actualTreeCount.ToString();
         numberOfVehiclesText.text = "Number of Vehicles: " + numberOfVehicle.ToString();
     
-      
+      switch (gameOverCause)
+      {
+        case GameManager.GameOverCause.CarbonMeterFull:
+        gameOverMessageText.text = "Cabon Meter Reached 100%";
+        break;
+
+        case GameManager.GameOverCause.OverCrowdedStations:
+        gameOverMessageText.text = "OverCrowded";
+        break;
+
+        default:
+        gameOverMessageText.text = "end";
+        break;
+      }
     
     }
     
