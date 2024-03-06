@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
 
     public void AboutUs()
     {
-        SceneManager.LoadScene("AboutUS");
+        SceneManager.LoadScene("About US");
     }
 
     public void LearnHub()

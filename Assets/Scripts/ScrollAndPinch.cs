@@ -9,7 +9,7 @@ public class ScrollAndPinch : MonoBehaviour
     public float DecreaseCameraPanSpeed = 2; //Default speed is 1
     public float CameraUpperHeightBound; //Zoom out
     public float CameraLowerHeightBound; //Zoom in
-    //public float PinchZoomSpeed = 0.1f;
+   
 
     private Vector3 cameraStartPosition;
 
@@ -50,31 +50,7 @@ public class ScrollAndPinch : MonoBehaviour
             var pos1b = PlanePosition(Input.GetTouch(0).position - Input.GetTouch(0).deltaPosition);
             var pos2b = PlanePosition(Input.GetTouch(1).position - Input.GetTouch(1).deltaPosition);
 
-            // //calc zoom
-            // var zoom = Vector3.Distance(pos1, pos2) /
-            //            Vector3.Distance(pos1b, pos2b);
-
-            // //edge case
-            // if (zoom == 0 || zoom > 10)
-            //     return;
-
-            // //Move cam amount the mid ray
-            // Vector3 camPositionBeforeAdjustment = Camera.transform.position;
-            // Camera.transform.position = Vector3.LerpUnclamped(pos1, Camera.transform.position, 1 / zoom);
-
-            // //Restricts zoom height 
-            
-            // //Upper (ZoomOut)
-            // if (Camera.transform.position.y > (cameraStartPosition.y + CameraUpperHeightBound))
-            // {
-            //     Camera.transform.position = camPositionBeforeAdjustment;
-            // }
-            // //Lower (Zoom in)
-            // if (Camera.transform.position.y < (cameraStartPosition.y - CameraLowerHeightBound) || Camera.transform.position.y <= 1)
-            // {
-            //     Camera.transform.position = camPositionBeforeAdjustment;
-            // }
-
+        
             
             // //Rotation Function
             if (Rotate && pos2b != pos2)

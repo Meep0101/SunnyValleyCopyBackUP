@@ -12,7 +12,7 @@ public class AnalogClock : MonoBehaviour
     
     private DateTime currentTime;
     private float secondsPerGameMinute = 0.2f; // 0.03f speed for fast forward
-    private string[] daysOfWeek = {"Monday", "Monday","Tuesday", "Wednesday", "Thursday",  "Friday", "Saturday", "Sunday"};  
+    private string[] daysOfWeek = {"Mon", "Mon","Tue", "Wed", "Thu",  "Fri", "Sat", "Sun"};  
     
     private int currentDayIndex = 0;
     private int daysPassed = 0;
@@ -21,7 +21,8 @@ public class AnalogClock : MonoBehaviour
 
    
     private void Start()
-    {
+    {   
+        
 
         // Update initial clock hands and day of the week text
         UpdateClockHands();
@@ -70,7 +71,7 @@ public class AnalogClock : MonoBehaviour
 
         // Rotate the clock hands
         
-       minuteHand.rotation = Quaternion.Euler(0f, 0f, 90f - minutes * 6f); // 6 degrees per minute
+       minuteHand.rotation = Quaternion.Euler(0f, 0f, 0f - minutes * 6f); // 6 degrees per minute
     }
 
     // UpdateDayOfWeekText updates the displayed day of the week text

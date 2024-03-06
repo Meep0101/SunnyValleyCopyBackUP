@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Car
+  - GameMusic
   layers:
   - Default
   - TransparentFX
