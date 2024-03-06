@@ -59,7 +59,7 @@ namespace CodeMonkey {
         }
 
         // Text Updater in World, (parent == null) = world position
-        public static FunctionUpdater TextUpdater(Func<string> GetTextFunc, Vector3 localPosition, Transform parent = null, int fontSize = 40, Color? color = null, TextAnchor textAnchor = TextAnchor.UpperLeft, TextAlignment textAlignment = TextAlignment.Left, int sortingOrder = UtilsClass.sortingOrderDefault) {
+        public static FunctionUpdater TextUpdater(Func<string> GetTextFunc, Vector3 localPosition, Transform parent = null, int fontSize = 10, Color? color = null, TextAnchor textAnchor = TextAnchor.UpperLeft, TextAlignment textAlignment = TextAlignment.Left, int sortingOrder = UtilsClass.sortingOrderDefault) {
             return UtilsClass.CreateWorldTextUpdater(GetTextFunc, localPosition, parent, fontSize, color, textAnchor, textAlignment, sortingOrder);
         }
 

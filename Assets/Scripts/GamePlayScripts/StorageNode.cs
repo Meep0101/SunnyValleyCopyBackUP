@@ -21,7 +21,7 @@ public class StorageNode {
         //vehicleMax = 3; 
         vehicleNum = 0; //Starts with 0 vehicle
 
-        FunctionPeriodic.Create(RegenerateSingleVehicleAmount, 2f);  //code monkey utilities
+        //FunctionPeriodic.Create(RegenerateSingleVehicleAmount, 2f);  //code monkey utilities
 
         CMDebug.TextUpdater(() => "" + vehicleNum, Vector3.zero, storageNodeTransform);  //Displays current vehicleNum, code monkey utilities
     }
