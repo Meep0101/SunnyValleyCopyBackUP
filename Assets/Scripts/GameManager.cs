@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     private int numberOfVehicle = 0;
     public CarbonMeter carbonMeter;
 
-    
+    private bool isGamePaused = false;
 
      private enum FunctionalityState
     {
@@ -45,7 +45,50 @@ public class GameManager : MonoBehaviour
         uiController.OnSpecialPlacement += SpecialPlacementHandler;
         uiController.OnRemoveRoad += RemoveRoadHandler;
         inputManager.OnEscape += HandleEscape;
+        uiController.OnPause += TogglePause;
+        uiController.OnPlay += ResumeGame;
       
+    }
+
+    private void TogglePause()
+    {
+        isGamePaused = !isGamePaused;
+
+        if(isGamePaused)
+        {
+            PauseGame();
+        }
+        else
+        {
+            ResumeGame();
+        }
+
+
+    }
+    private void PauseGame()
+    {
+        if(gameOverPanel != null)
+        {
+            
+            Time.timeScale = 0f;
+        }
+
+        else{
+            Debug.LogError("Game Panel not assigned");
+        }
+    }
+
+    private void ResumeGame()
+    {
+        if (gameOverPanel != null)
+        {
+            
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            Debug.LogError("Game Panel not assigned");
+        }
     }
 
    private void ToggleRoadPlacement()

@@ -24,6 +24,9 @@ public class UIController : MonoBehaviour
     public Text numberOfVehiclesText;
     public PlacementManager placementManager;
     public Text gameOverMessageText;
+    public Button pauseButton, playButton;
+    public Action OnPause, OnPlay;
+
 
     
 
@@ -42,8 +45,28 @@ public class UIController : MonoBehaviour
         placeHouseButton.onClick.AddListener(() => ToggleButton(placeHouseButton, ref roadButtonEnabled, OnHousePlacement));
         placeSpecialButton.onClick.AddListener(() => ToggleButton(placeSpecialButton, ref removeButtonEnabled, OnSpecialPlacement));
 
+        pauseButton.onClick.AddListener(PauseButtonClicked);
+        playButton.onClick.AddListener(PlayButtonClicked);
+
+
         // Initialize the roadManager reference
         roadManager = FindObjectOfType<RoadManager>();
+    }
+
+    private void PlayButtonClicked()
+    {
+       if(OnPlay != null)
+       {
+        OnPlay.Invoke();
+       }
+    }
+
+    private void PauseButtonClicked()
+    {
+       if(OnPause != null)
+       {
+        OnPause.Invoke();
+       }
     }
 
     private void ToggleButton(Button button, ref bool isEnabled, Action toggleAction = null)
@@ -79,9 +102,9 @@ public class UIController : MonoBehaviour
     {
         int actualTreeCount = placementManager.GetTreeCount();
 
-        numberOfDaysText.text = "Number of Days: " + numberOfDays.ToString();
-        numberOfTreesText.text = "Number of Tree: " + actualTreeCount.ToString();
-        numberOfVehiclesText.text = "Number of Vehicles: " + numberOfVehicle.ToString();
+        numberOfDaysText.text = numberOfDays.ToString();
+        numberOfTreesText.text = actualTreeCount.ToString();
+        numberOfVehiclesText.text =numberOfVehicle.ToString();
     
       switch (gameOverCause)
       {

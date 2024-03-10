@@ -19,6 +19,8 @@ public class AnalogClock : MonoBehaviour
 
     public CarbonMeter carbonMeter;
 
+    private bool isGamePaused = false;
+
    
     private void Start()
     {   
@@ -34,7 +36,7 @@ public class AnalogClock : MonoBehaviour
 
     private void UpdateGameTime()
     {
-       if(carbonMeter.GetCarbonMeterValue() >= 100)
+       if(isGamePaused || carbonMeter.GetCarbonMeterValue() >= 100)
        {
         StopClock();
         return;
@@ -54,6 +56,8 @@ public class AnalogClock : MonoBehaviour
 
             FindObjectOfType<GameManager>().IncrementDays();
         }
+
+
     }
 
     private void StopClock()

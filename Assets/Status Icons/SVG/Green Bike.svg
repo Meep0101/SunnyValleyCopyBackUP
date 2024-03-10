@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 273.15 271.89">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #5f8039;
+        stroke: #e8e8e8;
+        stroke-miterlimit: 10;
+        stroke-width: 1.89px;
+      }
+    </style>
+  </defs>
+  <g id="Layer_58" data-name="Layer 58">
+    <g>
+      <circle class="cls-1" cx="135.94" cy="135.94" r="135"/>
+      <image width="512" height="512" transform="translate(62.57 68.94) scale(.29)" xlink:href="../../../../../../../Downloads/motorcycle.png"/>
+      <circle class="cls-1" cx="223.43" cy="222.17" r="48.78"/>
+    </g>
+  </g>
+</svg>
