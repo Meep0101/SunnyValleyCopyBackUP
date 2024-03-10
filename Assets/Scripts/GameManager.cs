@@ -190,32 +190,29 @@ public class GameManager : MonoBehaviour
 
     private StorageNode GetStorageNodeType(GameResources.StationType storageType)
     {
-        foreach (StorageNode storageNode in storageNodeList)
-        {
-            if (storageNode.GetStorageType() == storageType)
-            {
-                return storageNode;
+        List<StorageNode> tmpStorageNodeList = new List<StorageNode>(storageNodeList);      //Clone List only for the use of cycle
+        for (int i = 0; i < tmpStorageNodeList.Count; i++){
+            if (tmpStorageNodeList[i].GetStorageType() != storageType){
+                //No more Resources/Passengers or different type
+                tmpStorageNodeList.RemoveAt(i);
+                i--;
             }
         }
-        return null;
+        if (tmpStorageNodeList.Count > 0){
+            return tmpStorageNodeList[UnityEngine.Random.Range(0, tmpStorageNodeList.Count)];     //Return that have resources or passengers
+        } else {
+            return null;
+        }
+        // foreach (StorageNode storageNode in storageNodeList)
+        // {
+        //     if (storageNode.GetStorageType() == storageType)
+        //     {
+        //         return storageNode;
+        //     }
+        // }
+        // return null;
         
-        // if (storageType == GameResources.StationType.Red)
-        // {
-        //     return RedStorageArray[UnityEngine.Random.Range(0, RedStorageArray.Length)];
-        // }
-        // else if (storageType == GameResources.StationType.Blue)
-        // {
-        //     return BlueStorageArray[UnityEngine.Random.Range(0, BlueStorageArray.Length)];
-        // }
-        // else if (storageType == GameResources.StationType.Yellow)
-        // {
-        //     return YellowStorageArray[UnityEngine.Random.Range(0, YellowStorageArray.Length)];
-        // }
-        // else
-        // {
-        //     Debug.LogError("Unknown resource type!");
-        //     return null;
-        // }
+       
     }
 
     public static StorageNode GetStorageNodeType_Static(GameResources.StationType storageType)

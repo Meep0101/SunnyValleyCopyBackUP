@@ -5416,7 +5416,7 @@ PrefabInstance:
     - target: {fileID: 3955837591812271323, guid: 3527735cc30c8554aadd1222f91bf61f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.19999981
       objectReference: {fileID: 0}
     - target: {fileID: 3955837591812271323, guid: 3527735cc30c8554aadd1222f91bf61f,
         type: 3}
@@ -5426,7 +5426,7 @@ PrefabInstance:
     - target: {fileID: 3955837591812271323, guid: 3527735cc30c8554aadd1222f91bf61f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.5000086
       objectReference: {fileID: 0}
     - target: {fileID: 3955837591812271323, guid: 3527735cc30c8554aadd1222f91bf61f,
         type: 3}
@@ -17070,6 +17070,24 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1111135267}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1126782720 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7508653602823579070, guid: fdf9e71908de94a42a5dbc6891f453ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 2011771908}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61f8c048f923bc24196736b3af8a3b2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1126782723 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2497229174948973876, guid: fdf9e71908de94a42a5dbc6891f453ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 2011771908}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1128566210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25181,7 +25199,7 @@ PrefabInstance:
     - target: {fileID: 3955837591812271323, guid: 3527735cc30c8554aadd1222f91bf61f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.3000002
       objectReference: {fileID: 0}
     - target: {fileID: 3955837591812271323, guid: 3527735cc30c8554aadd1222f91bf61f,
         type: 3}
@@ -25280,6 +25298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   terminals:
   - {fileID: 1225598384}
+  - {fileID: 1126782720}
   jeepButton: {fileID: 1940014938}
   pedicabButton: {fileID: 1441238313}
   motorcycleButton: {fileID: 2060372922}
@@ -32129,6 +32148,95 @@ Transform:
   - {fileID: 712149880}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2011771908
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 620359805322157200, guid: fdf9e71908de94a42a5dbc6891f453ba,
+        type: 3}
+      propertyPath: VehiclesTab
+      value: 
+      objectReference: {fileID: 1626919790}
+    - target: {fileID: 2497229174948973876, guid: fdf9e71908de94a42a5dbc6891f453ba,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497229174948973876, guid: fdf9e71908de94a42a5dbc6891f453ba,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497229174948973876, guid: fdf9e71908de94a42a5dbc6891f453ba,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497229174948973876, guid: fdf9e71908de94a42a5dbc6891f453ba,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497229174948973876, guid: fdf9e71908de94a42a5dbc6891f453ba,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497229174948973876, guid: fdf9e71908de94a42a5dbc6891f453ba,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497229174948973876, guid: fdf9e71908de94a42a5dbc6891f453ba,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497229174948973876, guid: fdf9e71908de94a42a5dbc6891f453ba,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497229174948973876, guid: fdf9e71908de94a42a5dbc6891f453ba,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497229174948973876, guid: fdf9e71908de94a42a5dbc6891f453ba,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672843515275346196, guid: fdf9e71908de94a42a5dbc6891f453ba,
+        type: 3}
+      propertyPath: m_Name
+      value: RedTerminal (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084254962060320861, guid: fdf9e71908de94a42a5dbc6891f453ba,
+        type: 3}
+      propertyPath: jeepPrefab
+      value: 
+      objectReference: {fileID: 1482915244474201369, guid: e38ae1c436b301b45986d376b0c9afa9,
+        type: 3}
+    - target: {fileID: 7202294673474419993, guid: fdf9e71908de94a42a5dbc6891f453ba,
+        type: 3}
+      propertyPath: m_Name
+      value: Shop1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7508653602823579070, guid: fdf9e71908de94a42a5dbc6891f453ba,
+        type: 3}
+      propertyPath: VehiclesTab
+      value: 
+      objectReference: {fileID: 1626919790}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fdf9e71908de94a42a5dbc6891f453ba, type: 3}
 --- !u!1001 &2018633413
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32607,6 +32715,7 @@ MonoBehaviour:
   - {fileID: 2004339488}
   RedStorageArray:
   - {fileID: 1225598383}
+  - {fileID: 1126782723}
   BlueStorageArray:
   - {fileID: 1471274106}
   YellowStorageArray:
@@ -34533,5 +34642,6 @@ SceneRoots:
   - {fileID: 1743768342}
   - {fileID: 2004339488}
   - {fileID: 5082246360161810636}
+  - {fileID: 2011771908}
   - {fileID: 6649160441800075046}
   - {fileID: 2816594962956203426}
