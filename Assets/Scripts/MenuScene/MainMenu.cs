@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void PlayGame()
+    public void Play()
     {
         SceneManager.LoadScene("MapSelection");
+        
     }
 
     public void QuitGame()
@@ -23,5 +24,5 @@ public class MainMenu : MonoBehaviour
     public void LearnHub()
     {
         SceneManager.LoadScene("LearnHub");
-    }
-}
+        
+}}
