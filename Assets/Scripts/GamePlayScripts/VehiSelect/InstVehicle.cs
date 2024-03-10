@@ -9,7 +9,7 @@ public class InstVehicle : MonoBehaviour
     public GameObject motorcyclePrefab;
     public GameObject busPrefab;
     //private Terminal terminal;
-    private Terminal terminalInstance;
+    //private Terminal terminalInstance;
 
 
     public void SpawnVehicle(string vehicleType, Terminal terminal)
@@ -47,33 +47,4 @@ public class InstVehicle : MonoBehaviour
 
 }
 
-    // private void Start()
-    // {
-    //     terminal = GameObject.Find("Terminal").GetComponent<Terminal>();
-    // }
 
-    // public void SpawnVehicle(string vehicleType)
-    // {
-    //     GameObject prefab = null;
-    //     switch (vehicleType)
-    //     {
-    //         case "Jeep":
-    //             prefab = jeepPrefab;
-    //             break;
-    //         case "Pedicab":
-    //             prefab = pedicabPrefab;
-    //             break;
-    //         case "Motorcycle":
-    //             prefab = motorcyclePrefab;
-    //             break;
-    //         case "Bus":
-    //             prefab = busPrefab;
-    //             break;
-    //     }
-
-    //     if (prefab != null && terminal.currentCount >= 0)
-    //     {
-    //         Instantiate(prefab, terminal.transform.position, Quaternion.identity);
-    //         terminal.DecrementCount();
-    //     }
-    // }

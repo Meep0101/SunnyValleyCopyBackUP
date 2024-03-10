@@ -7,7 +7,7 @@ public class Terminal : MonoBehaviour
 {
     // public Color emptyColor = Color.white;
     // public Color currentColor = Color.white;
-    private int _currentCount; // Private backing field
+    private int _currentCount = 2; // Private backing field
     //public int currentCount; 
     public int CurrentCount // Public property
     {
@@ -26,7 +26,7 @@ public class Terminal : MonoBehaviour
 
     private void Start()
     {
-        CurrentCount = 2;
+        //CurrentCount = 2;
         Debug.Log("Initial current count: " + CurrentCount);
         //VehiclesTab = GameObject.Find("VehiclesTab");
         // Ensure that the pop-up tab is initially inactive
@@ -46,8 +46,8 @@ public class Terminal : MonoBehaviour
         {
             vehicleSpawner.SpawnVehicle(vehicleType, this);
             DecrementCount(1);
-            IsClicked = false;
-            VehiclesTab.SetActive(false);
+            // IsClicked = false;
+            // VehiclesTab.SetActive(false);
         }
     }
 
@@ -55,9 +55,8 @@ public class Terminal : MonoBehaviour
     {
         CurrentCount-= count;
         Debug.Log("Current count: " + CurrentCount);
+        IsClicked = false;
+        VehiclesTab.SetActive(false);
     }
 
-    // public void DecrementCounter(int countNum){
-    //     DecrementCount(countNum);
-    // }
 }
