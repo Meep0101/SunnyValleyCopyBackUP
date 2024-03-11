@@ -32,8 +32,8 @@ namespace SimpleCity.AI
         {
             if (startStructure != null && endStructure != null)
             {
-                var startRoadPosition = ((INeedingRoad)startStructure).RoadPosition;
-                var endRoadPosition = ((INeedingRoad)endStructure).RoadPosition;
+                var startRoadPosition = startStructure.RoadPosition;
+                var endRoadPosition = endStructure.RoadPosition;
 
                 var path = placementManager.GetPathBetween(startRoadPosition, endRoadPosition, true);
                 path.Reverse(); // Since the A* returns the path from the end pos to start pos

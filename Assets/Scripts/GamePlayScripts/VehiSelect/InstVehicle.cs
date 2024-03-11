@@ -33,6 +33,7 @@ public class InstVehicle : MonoBehaviour
 
         if (prefab != null && terminal.CurrentCount > 0)
         {
+            //var spawnMark = GetCarSpawnMarker;
             Instantiate(prefab, terminal.transform.position, Quaternion.identity);
             //terminal.DecrementCount();
             // if (terminalInstance == null)

@@ -7,10 +7,7 @@ public class PlacementManager : MonoBehaviour
 {
     public int width, height;
     Grid placementGrid;
-    public RoadFixer roadFixer;
 
-    // List to store information about manually placed objects
-    public List<PlacedObject> manuallyPlacedObjects = new List<PlacedObject>();
     //List for temporary roadobjects
     private Dictionary<Vector3Int, StructureModel> temporaryRoadobjects = new Dictionary<Vector3Int, StructureModel>();
     // Allow us to access objects that are already placed on the map
@@ -28,49 +25,7 @@ public class PlacementManager : MonoBehaviour
         //RetrieveManuallyPlacedObjects(); //Manually placed objects
     }
 
-    // public void RetrieveManuallyPlacedObjects() //Manually placed objects
-    // {
-    //     // Clear the list before retrieving new objects
-    //     manuallyPlacedObjects.Clear();
 
-    //     // Find all objects with the "Structure" tag and add them to the list
-    //     GameObject[] structures = GameObject.FindGameObjectsWithTag("Structure");
-    //     foreach (GameObject structure in structures)
-    //     {
-    //         PlacedObject placedObject;
-    //         placedObject.position = structure.transform.position;
-    //         placedObject.cellType = CellType.Structure; // Assuming it's a structure
-    //         manuallyPlacedObjects.Add(placedObject);
-        
-        
-    //         Debug.Log("Position: " + placedObject.position);
-    //     }
-
-    //     // Find all objects with the "SpecialStructure" tag and add them to the list
-    //     GameObject[] specialStructures = GameObject.FindGameObjectsWithTag("SpecialStructure");
-    //     foreach (GameObject specialStructure in specialStructures)
-    //     {
-    //         PlacedObject placedObject;
-    //         placedObject.position = specialStructure.transform.position;
-    //         placedObject.cellType = CellType.SpecialStructure; // Assuming it's a special structure
-    //         manuallyPlacedObjects.Add(placedObject);
-
-    //         Debug.Log("SSPosition: " + placedObject.position);
-    //     }
-    // }
-
-    // Method to check if a cell is occupied by a structure or special structure
-    public bool IsCellOccupied(Vector3 position)
-    {
-        foreach (var placedObject in manuallyPlacedObjects)
-        {
-            if (placedObject.position == position)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
     internal bool CheckIfPositionInBound(Vector3Int position)
     {
         if (position.x >= 0 && position.x < width && position.z >= 0 && position.z < height)
@@ -105,12 +60,12 @@ public class PlacementManager : MonoBehaviour
         //DestroyNatureAt(position);
 
         // Sets NEAREST ROAD position for each structure so that we can access it when finding a path betweeb each structure 
-        var structureNeedingRoad = structure.GetComponent<INeedingRoad>();
-        if (structureNeedingRoad != null)
-        {
-            structureNeedingRoad.RoadPosition = GetNearestRoad(position, width, height).Value;  //Where the structure requires a near ROAD
-            Debug.Log("My nearest road position is: " + structureNeedingRoad.RoadPosition);
-        }
+        // var structureNeedingRoad = structure.GetComponent<INeedingRoad>();
+        // if (structureNeedingRoad != null)
+        // {
+        //     structureNeedingRoad.RoadPosition = GetNearestRoad(position, width, height).Value;  //Where the structure requires a near ROAD
+        //     Debug.Log("My nearest road position is: " + structureNeedingRoad.RoadPosition);
+        // }
     }
 
     //RoadFixer
@@ -146,39 +101,6 @@ public class PlacementManager : MonoBehaviour
     }
 
 
-    public void RemoveRoadObject(Vector3Int position)
-    {
-        if (structureDictionary.ContainsKey(position))
-        {
-            // 1. Remove the road object from the grid.
-            placementGrid[position.x, position.z] = CellType.Empty;
-            //Debug.Log("GUMANA KA NA PLEASE");
-
-            // 2. Remove the road object from the structureDictionary.
-            StructureModel removedStructure = structureDictionary[position];
-            structureDictionary.Remove(position); //Here, position is a Vector3Int that represents the position you want to remove from the dictionary. After executing this line, the entry for positionToRemove will be removed from the structureDictionary, effectively deleting the association between that position and the structure.
-
-            // 3. Optionally, destroy the associated GameObject.
-            Destroy(removedStructure.gameObject);
-
-            Debug.Log("GUMANA KA NA PLEASE");
-
-            // 4. Fix the neighboring road prefabs.
-            FixRoadPrefabs(position, roadFixer);
-        }
-    }
-
-    private void FixRoadPrefabs(Vector3Int position, RoadFixer roadFixer)
-    {
-        // Get the neighboring road positions around the deleted road position
-        var neighbors = GetNeighboursOfTypeFor(position, CellType.Road);
-
-        foreach (var neighborPosition in neighbors)
-        {
-            roadFixer.FixRoadAtPosition(this, neighborPosition);
-        }
-    }
-
     //Create a path between two structures
     private Vector3Int? GetNearestRoad(Vector3Int position, int width, int height)
     {
@@ -205,8 +127,6 @@ public class PlacementManager : MonoBehaviour
             Destroy(item.collider.gameObject);
         }
     }
-
-
 
     //A*
     internal List<Vector3Int> GetPathBetween(Vector3Int startPosition, Vector3Int endPosition, bool isAgent = false)
@@ -241,15 +161,6 @@ public class PlacementManager : MonoBehaviour
             DestroyNatureAt(structure.Key);
         }
         temporaryRoadobjects.Clear();
-    }
-
-    //RoadFixer
-    public void ModifyStructureModel(Vector3Int position, GameObject newModel, Quaternion rotation)
-    {
-        if (temporaryRoadobjects.ContainsKey(position))
-            temporaryRoadobjects[position].SwapModel(newModel, rotation);
-        else if (structureDictionary.ContainsKey(position))
-            structureDictionary[position].SwapModel(newModel, rotation);
     }
 
     internal Vector3Int WorldToGridPosition(Vector3 worldPosition)

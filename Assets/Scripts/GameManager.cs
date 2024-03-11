@@ -12,24 +12,17 @@ public class GameManager : MonoBehaviour
     public CameraMovement cameraMovement;
     public RoadManager roadManager;
     public InputManager inputManager;
-
     public UIController uiController;
 
-    public StructureManager structureManager;
-
     public ObjectDetector objectDetector;
-    //public PathVisualizer pathVisualizer;
+    public PathVisualizer pathVisualizer;
     public PlacementManager placementManager;
 
     [SerializeField] private GathererAI[] gathererAIArray;
-    // [SerializeField] private Miner[] minerUnits;
-    // [SerializeField] private Woodcutter[] woodcutterUnits;
 
     [SerializeField] private Transform[] REDNodeTransformArray;
     [SerializeField] private Transform[] BLUENodeTransformArray;
     [SerializeField] private Transform[] YELLOWNodeTransformArray;
-    //[SerializeField] private Transform storageTransform;
-
 
     [SerializeField] private Transform[] RedStorageArray; // New field
     [SerializeField] private Transform[] BlueStorageArray; // New field
@@ -41,9 +34,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        uiController.OnRoadPlacement += RoadPlacementHandler;
-        uiController.OnRemoveRoad += RemoveRoadHandler;
-        inputManager.OnEscape += HandleEscape;
+       // uiController.OnRoadPlacement += RoadPlacementHandler;
+        //uiController.OnRemoveRoad += RemoveRoadHandler;
+        //inputManager.OnEscape += HandleEscape;
     }
 
     private void Awake() {
@@ -77,23 +70,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void RemoveRoadHandler()
-    {
-        
-        ClearInputActions();
-
-        inputManager.OnMouseClick += (pos) =>
-        {
-            ProcessInputAndCall(placementManager.RemoveRoadObject, pos);
-        };
-        inputManager.OnMouseUp += roadManager.FinishPlacingRoad;
-        inputManager.OnMouseHold += (pos) =>
-        {
-            ProcessInputAndCall(placementManager.RemoveRoadObject, pos);
-        };
-        inputManager.OnEscape += HandleEscape;
-    }
-
     private void HandleEscape()
     {
         ClearInputActions();
@@ -102,22 +78,6 @@ public class GameManager : MonoBehaviour
         //inputManager.OnMouseClick += TrySelectingAgent;
     }
 
-
-    private void RoadPlacementHandler()
-    {
-        ClearInputActions();
-
-        inputManager.OnMouseClick += (pos) =>
-        {
-            ProcessInputAndCall(roadManager.PlaceRoad, pos);
-        };
-        inputManager.OnMouseUp += roadManager.FinishPlacingRoad;
-        inputManager.OnMouseHold += (pos) =>
-        {
-            ProcessInputAndCall(roadManager.PlaceRoad, pos);
-        };
-        inputManager.OnEscape += HandleEscape;
-    }
 
     private void ClearInputActions()
     {
@@ -212,7 +172,6 @@ public class GameManager : MonoBehaviour
         // }
         // return null;
         
-       
     }
 
     public static StorageNode GetStorageNodeType_Static(GameResources.StationType storageType)
