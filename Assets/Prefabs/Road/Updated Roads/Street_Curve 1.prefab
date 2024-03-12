@@ -13,6 +13,51 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4636789610407049689, guid: 52fddcaaf1023ce4197b759fd14956e7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0409
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636789610407049689, guid: 52fddcaaf1023ce4197b759fd14956e7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.1162063
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636789610407049689, guid: 52fddcaaf1023ce4197b759fd14956e7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0205
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636789610407049689, guid: 52fddcaaf1023ce4197b759fd14956e7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0582
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835551922635300048, guid: 52fddcaaf1023ce4197b759fd14956e7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.10409
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835551922635300048, guid: 52fddcaaf1023ce4197b759fd14956e7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.11162062
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835551922635300048, guid: 52fddcaaf1023ce4197b759fd14956e7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0205
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835551922635300048, guid: 52fddcaaf1023ce4197b759fd14956e7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.075
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835551922635300048, guid: 52fddcaaf1023ce4197b759fd14956e7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0582
+      objectReference: {fileID: 0}
     - target: {fileID: 5743225874265229292, guid: 52fddcaaf1023ce4197b759fd14956e7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -68,8 +113,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Street_Curve 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6979323623410833228, guid: 52fddcaaf1023ce4197b759fd14956e7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.142
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260112837910684491, guid: 52fddcaaf1023ce4197b759fd14956e7,
+        type: 3}
+      propertyPath: pedestrianMarkers.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260112837910684491, guid: 52fddcaaf1023ce4197b759fd14956e7,
+        type: 3}
+      propertyPath: pedestrianMarkers.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6495635855933457113, guid: 52fddcaaf1023ce4197b759fd14956e7, type: 3}
+    - {fileID: 3672874651059110511, guid: 52fddcaaf1023ce4197b759fd14956e7, type: 3}
+    - {fileID: 34875044059522416, guid: 52fddcaaf1023ce4197b759fd14956e7, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52fddcaaf1023ce4197b759fd14956e7, type: 3}
