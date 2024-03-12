@@ -105,6 +105,7 @@ public class UIController : MonoBehaviour
         numberOfDaysText.text = numberOfDays.ToString();
         numberOfTreesText.text = actualTreeCount.ToString();
         numberOfVehiclesText.text =numberOfVehicle.ToString();
+        
     
       switch (gameOverCause)
       {
@@ -115,6 +116,9 @@ public class UIController : MonoBehaviour
         case GameManager.GameOverCause.OverCrowdedStations:
         gameOverMessageText.text = "OverCrowded";
         break;
+        //  case GameManager.GameOverCause.Both:
+        //     gameOverMessageText.text = "Both Carbon Meter and Overcrowding";
+        //     break;
 
         default:
         gameOverMessageText.text = "end";

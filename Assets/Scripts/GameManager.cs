@@ -212,6 +212,7 @@ public class GameManager : MonoBehaviour
         if(carbonMeter.GetCarbonMeterValue() >= 100)
         {
             gameOverCause = GameOverCause.CarbonMeterFull;
+
         }
 
         

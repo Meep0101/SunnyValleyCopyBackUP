@@ -106,7 +106,7 @@ public class PlacementManager : MonoBehaviour
 
     private void StopSpawningTrees() //makes tree stop
     {
-       Debug.Log("TREES STOP!");
+       //Debug.Log("TREES STOP!");
 
        FindObjectOfType<GameManager>().StopGame();
     }
