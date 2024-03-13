@@ -7,18 +7,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private static GameManager instance;
   
     public RoadManager roadManager;
     public InputManager inputManager;
-
     public UIController uiController;
-
     public StructureManager structureManager;
-
     public ObjectDetector objectDetector;
-
     public PathVisualizer pathVisualizer;
-
     public PlacementManager placementManager;
     public GameObject gameOverPanel;
     private int numberOfDays = 0;
@@ -27,6 +23,20 @@ public class GameManager : MonoBehaviour
     public CarbonMeter carbonMeter;
 
     private bool isGamePaused = false;
+
+    // Station
+    [SerializeField] private Transform[] REDNodeTransformArray;
+    [SerializeField] private Transform[] BLUENodeTransformArray;
+    [SerializeField] private Transform[] YELLOWNodeTransformArray;
+
+    // Terminal
+    [SerializeField] private Transform[] RedStorageArray; // New field
+    [SerializeField] private Transform[] BlueStorageArray; // New field
+    [SerializeField] private Transform[] YellowStorageArray; // New field
+
+    private List<ResourceNode> resourceNodeList; //Resurce Node object
+    private List<StorageNode> storageNodeList; //Storage Node object
+
 
      private enum FunctionalityState
     {
@@ -50,6 +60,114 @@ public class GameManager : MonoBehaviour
       
     }
 
+    private void Awake() {
+        instance = this;
+
+        GameResources.Init();
+
+        resourceNodeList = new List<ResourceNode>();
+
+        foreach (Transform REDNodeTransformArray in REDNodeTransformArray){
+            resourceNodeList.Add(new ResourceNode(REDNodeTransformArray, GameResources.StationType.Red));
+        }
+        foreach (Transform BLUENodeTransformArray in BLUENodeTransformArray){
+            resourceNodeList.Add(new ResourceNode(BLUENodeTransformArray, GameResources.StationType.Blue));
+        }
+        foreach (Transform YELLOWNodeTransformArray in YELLOWNodeTransformArray){
+            resourceNodeList.Add(new ResourceNode(YELLOWNodeTransformArray, GameResources.StationType.Yellow));
+        }
+
+        storageNodeList = new List<StorageNode>();
+
+        foreach (Transform RedStorageArray in RedStorageArray){
+            storageNodeList.Add(new StorageNode(RedStorageArray, GameResources.StationType.Red));
+        }
+        foreach (Transform BlueStorageArray in BlueStorageArray){
+            storageNodeList.Add(new StorageNode(BlueStorageArray, GameResources.StationType.Blue));
+        }
+        foreach (Transform YellowStorageArray in YellowStorageArray){
+            storageNodeList.Add(new StorageNode(YellowStorageArray, GameResources.StationType.Yellow));
+        }
+
+    }
+
+    private ResourceNode GetResourceNode() {
+        //List<Transform> resourceNodeList = new List<Transform>() { goldNode1Transform, goldNode2Transform, goldNode3Transform };
+        
+        List<ResourceNode> tmpResourceNodeList = new List<ResourceNode>(resourceNodeList);      //Clone List only for the use of cycle
+        for (int i = 0; i < tmpResourceNodeList.Count; i++){
+            if (!tmpResourceNodeList[i].HasPassengers()){
+                //No more Resources or Passengers
+                tmpResourceNodeList.RemoveAt(i);
+                i--;
+            }
+        }
+        if (tmpResourceNodeList.Count > 0){
+            return tmpResourceNodeList[UnityEngine.Random.Range(0, tmpResourceNodeList.Count)];     //Return that have resources or passengers
+        } else {
+            return null;
+        }
+    }
+
+    public static ResourceNode GetResourceNode_Static() {
+        return instance.GetResourceNode();
+    }
+
+    private ResourceNode GetResourceNodeType(GameResources.StationType stationType) {
+        //List<Transform> resourceNodeList = new List<Transform>() { goldNode1Transform, goldNode2Transform, goldNode3Transform };
+        
+        List<ResourceNode> tmpResourceNodeList = new List<ResourceNode>(resourceNodeList);      //Clone List only for the use of cycle
+        for (int i = 0; i < tmpResourceNodeList.Count; i++){
+            if (!tmpResourceNodeList[i].HasPassengers() || tmpResourceNodeList[i].GetStationType() != stationType){
+                //No more Resources/Passengers or different type
+                tmpResourceNodeList.RemoveAt(i);
+                i--;
+            }
+        }
+        if (tmpResourceNodeList.Count > 0){
+            return tmpResourceNodeList[UnityEngine.Random.Range(0, tmpResourceNodeList.Count)];     //Return that have resources or passengers
+        } else {
+            return null;
+        }
+    }
+
+    public static ResourceNode GetResourceNodeType_Static(GameResources.StationType stationType) {
+        return instance.GetResourceNodeType(stationType);
+    }
+
+    private StorageNode GetStorageNodeType(GameResources.StationType storageType)
+    {
+        List<StorageNode> tmpStorageNodeList = new List<StorageNode>(storageNodeList);      //Clone List only for the use of cycle
+        for (int i = 0; i < tmpStorageNodeList.Count; i++){
+            if (tmpStorageNodeList[i].GetStorageType() != storageType){
+                //No more Resources/Passengers or different type
+                tmpStorageNodeList.RemoveAt(i);
+                i--;
+            }
+        }
+        if (tmpStorageNodeList.Count > 0){
+            return tmpStorageNodeList[UnityEngine.Random.Range(0, tmpStorageNodeList.Count)];     //Return that have resources or passengers
+        } else {
+            return null;
+        }
+        // foreach (StorageNode storageNode in storageNodeList)
+        // {
+        //     if (storageNode.GetStorageType() == storageType)
+        //     {
+        //         return storageNode;
+        //     }
+        // }
+        // return null;
+        
+       
+    }
+
+    public static StorageNode GetStorageNodeType_Static(GameResources.StationType storageType)
+    {
+        return instance.GetStorageNodeType(storageType);
+    }
+
+
     private void TogglePause()
     {
         isGamePaused = !isGamePaused;
@@ -57,9 +175,7 @@ public class GameManager : MonoBehaviour
         if(isGamePaused)
         {
             PauseGame();
-        }
-        else
-        {
+        }else{
             ResumeGame();
         }
 
@@ -69,11 +185,8 @@ public class GameManager : MonoBehaviour
     {
         if(gameOverPanel != null)
         {
-            
             Time.timeScale = 0f;
-        }
-
-        else{
+        }else{
             Debug.LogError("Game Panel not assigned");
         }
     }
@@ -82,11 +195,8 @@ public class GameManager : MonoBehaviour
     {
         if (gameOverPanel != null)
         {
-            
             Time.timeScale = 1f;
-        }
-        else
-        {
+        }else{
             Debug.LogError("Game Panel not assigned");
         }
     }
@@ -96,9 +206,7 @@ public class GameManager : MonoBehaviour
         if (currentFunctionality == FunctionalityState.RoadPlacement)
         {
             currentFunctionality = FunctionalityState.None;
-        }
-        else
-        {
+        }else{
             currentFunctionality = FunctionalityState.RoadPlacement;
             ClearInputActions();
             inputManager.OnMouseClick += (pos) =>
@@ -134,8 +242,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
-
     private void HandleEscape()
     {
         ClearInputActions();
@@ -144,9 +250,6 @@ public class GameManager : MonoBehaviour
        
     }
 
- 
-
-    
     private void SpecialPlacementHandler()
     {
         ClearInputActions();
@@ -214,8 +317,6 @@ public class GameManager : MonoBehaviour
             gameOverCause = GameOverCause.CarbonMeterFull;
 
         }
-
-        
         
         UIController uiController = FindAnyObjectByType<UIController>();
         uiController.UpdateGameOverPanel(numberOfDays, GetNumberOfTrees(), GetNumberOfVehicles(), gameOverCause);
