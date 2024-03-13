@@ -26,7 +26,7 @@ public class BlueAI : MonoBehaviour
     private float stopDistance = 1f;
 
     private Dictionary<GameResources.StationType, int> inventoryAmountDictionary;
-    private TextMeshPro inventoryTextMesh; // besides the AI
+    //private TextMeshPro inventoryTextMesh; // besides the AI
 
     private void Awake() {
         unit = gameObject.GetComponent<IUnit>();
@@ -37,8 +37,8 @@ public class BlueAI : MonoBehaviour
             inventoryAmountDictionary[stationType] = 0;
         }
 
-        inventoryTextMesh = transform.Find("inventoryTextMesh").GetComponent<TextMeshPro>();
-        UpdateInventoryText();
+        // inventoryTextMesh = transform.Find("inventoryTextMesh").GetComponent<TextMeshPro>();
+        // UpdateInventoryText();
     }
 
     private int GetTotalInventoryAmount(){
@@ -62,11 +62,11 @@ public class BlueAI : MonoBehaviour
 
     private void UpdateInventoryText(){ //Updates the text beside the player
         int inventoryamount = GetTotalInventoryAmount();
-        if (inventoryamount > 0 ) {
-            inventoryTextMesh.text = "" + inventoryamount;
-        } else {
-            inventoryTextMesh.text = ""; // if 0 passenger get
-        }
+        // if (inventoryamount > 0 ) {
+        //     inventoryTextMesh.text = "" + inventoryamount;
+        // } else {
+        //     inventoryTextMesh.text = ""; // if 0 passenger get
+        // }
     }
 
     private void Update() {
