@@ -5406,6 +5406,75 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 505560123}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &505574160
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5136739920135268810, guid: c6272e84aacbfa44998cf0bd9956b46c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5136739920135268810, guid: c6272e84aacbfa44998cf0bd9956b46c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5136739920135268810, guid: c6272e84aacbfa44998cf0bd9956b46c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 11.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 5136739920135268810, guid: c6272e84aacbfa44998cf0bd9956b46c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5136739920135268810, guid: c6272e84aacbfa44998cf0bd9956b46c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5136739920135268810, guid: c6272e84aacbfa44998cf0bd9956b46c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5136739920135268810, guid: c6272e84aacbfa44998cf0bd9956b46c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5136739920135268810, guid: c6272e84aacbfa44998cf0bd9956b46c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5136739920135268810, guid: c6272e84aacbfa44998cf0bd9956b46c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5136739920135268810, guid: c6272e84aacbfa44998cf0bd9956b46c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5477095203029087088, guid: c6272e84aacbfa44998cf0bd9956b46c,
+        type: 3}
+      propertyPath: m_Name
+      value: BlueJeepney (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3198905771373422070, guid: c6272e84aacbfa44998cf0bd9956b46c, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c6272e84aacbfa44998cf0bd9956b46c, type: 3}
 --- !u!1001 &539964198
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6261,6 +6330,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1586490721}
+    - targetCorrespondingSourceObject: {fileID: 1022557707155347388, guid: c9105309f52fd904c97afdc90d357ae4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1586490724}
   m_SourcePrefab: {fileID: 100100000, guid: c9105309f52fd904c97afdc90d357ae4, type: 3}
 --- !u!4 &576750792 stripped
 Transform:
@@ -14375,6 +14448,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NormalCar1
       objectReference: {fileID: 0}
+    - target: {fileID: 1022944502496512919, guid: dcd528f3c0b2bf042babb9d110962ab7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18075,7 +18153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cded365cfc0065b41b084487fd2a0f8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VehiclesTab: {fileID: 0}
+  VehiclesTab: {fileID: 1172772433}
 --- !u!114 &1586490722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18088,10 +18166,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b360b40a6bab3ca40a1bdff5b69c1b1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jeepPrefab: {fileID: 0}
+  jeepPrefab: {fileID: 5477095203029087088, guid: c6272e84aacbfa44998cf0bd9956b46c,
+    type: 3}
   pedicabPrefab: {fileID: 0}
   motorcyclePrefab: {fileID: 0}
   busPrefab: {fileID: 0}
+--- !u!65 &1586490724
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586490720}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1589827811
 GameObject:
   m_ObjectHideFlags: 0
@@ -22082,8 +22182,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -318.44824, y: -94.19571}
-  m_SizeDelta: {x: 83.1035, y: 40.3914}
+  m_AnchoredPosition: {x: -227, y: -93.13755}
+  m_SizeDelta: {x: 311.667, y: 38.2751}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1955512391
 MonoBehaviour:
@@ -22700,7 +22800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6490e749365b88438bcb4dbdb163db2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPassengerHold: 3
+  maxPassengerHold: 2
   carbonEmit: 0.2
   stopDistance: 1
 --- !u!114 &2023499236
@@ -24193,3 +24293,4 @@ SceneRoots:
   - {fileID: 846497927}
   - {fileID: 9084838816058441012}
   - {fileID: 1288533253}
+  - {fileID: 505574160}
