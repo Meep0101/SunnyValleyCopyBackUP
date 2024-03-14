@@ -143,7 +143,33 @@ public PassengerCounter passengerCounter;
     public void RestartButton()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("TownScene");
+
+        // Get the current active scene
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        // Restart the scene based on its name
+        switch (currentScene.name)
+        {
+            case "Map 1 (BGC)":
+                SceneManager.LoadScene("Map 1 (BGC)");
+                break;
+            case "Map 2 (Cebu)":
+                SceneManager.LoadScene("Map 2 (Cebu)");
+                break;
+            case "Map 3 (Bulacan)":
+                SceneManager.LoadScene("Map 3 (Bulacan)");
+                break;
+            case "Map 4 (Davao)":
+                SceneManager.LoadScene("Map 4 (Davao)");
+                break;
+            case "Map 5 (Baguio)":
+                SceneManager.LoadScene("Map 5 (Baguio)");
+                break;
+           
+            default:
+                Debug.LogWarning("Scene not recognized for restart.");
+                break;
+        }
     }
 
     

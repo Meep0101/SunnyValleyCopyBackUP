@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ public class ModeManager : MonoBehaviour
 {
     public RoadManager roadManager;
     public ScrollAndPinch scrollAndPinch;
+    public PinchZoom pinchZoom;
     
 
     private bool cameraMode = true;
@@ -27,7 +29,9 @@ public class ModeManager : MonoBehaviour
                 if (touchCount == 1)
                 {
                     // Disable camera movement on the first touch
-                    scrollAndPinch.enabled = false;
+                    //scrollAndPinch.enabled = false;
+                    DisableCameraMovement();
+                    
                 }
                 else if (touchCount == 2)
                 {
@@ -39,9 +43,17 @@ public class ModeManager : MonoBehaviour
         }
     }
 
+    private void DisableCameraMovement()
+    {
+        pinchZoom.enabled = false;
+        scrollAndPinch.enabled = false;
+        roadManager.enabled = true;
+    }
+
     void EnableCameraRotation()
     {
         scrollAndPinch.enabled = true;
+        pinchZoom.enabled = true;
         roadManager.enabled = false;
     }
 }

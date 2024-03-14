@@ -5585,7 +5585,7 @@ MonoBehaviour:
   numberOfTrees: 1
   roadFixer: {fileID: 2093395485}
   treeSpawnIntervalMin: 1
-  treeSpawnIntervalMax: 5
+  treeSpawnIntervalMax: 1
   roadPrefab: {fileID: 2093395482}
   treeCountText: {fileID: 261841691}
   roadManager: {fileID: 0}
@@ -10139,7 +10139,7 @@ Transform:
   m_GameObject: {fileID: 904782452}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 6.5, y: 15.02002, z: 7.15}
+  m_LocalPosition: {x: 17.7, y: 12.8, z: 14.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10157,8 +10157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f81d5913fafd752409f89206ac4fc2fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perspectiveZoomSpeed: 0.1
-  orthoZoomSpeed: 0.1
+  perspectiveZoomSpeed: 0.01
+  orthoZoomSpeed: 0.01
   panSpeed: 2
   cam: {fileID: 904782453}
 --- !u!114 &904782459
@@ -20607,6 +20607,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roadManager: {fileID: 2093395483}
   scrollAndPinch: {fileID: 1058882862}
+  pinchZoom: {fileID: 904782458}
 --- !u!1 &1834718577 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4562548672302205612, guid: bb8a349e47100e3438e3350c256e20e3,
@@ -24228,8 +24229,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 700186810}
-  - {fileID: 2044889012}
   - {fileID: 2039921796}
+  - {fileID: 2044889012}
   - {fileID: 904782456}
   - {fileID: 1058882863}
   - {fileID: 899223844}
