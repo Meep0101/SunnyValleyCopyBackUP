@@ -93,7 +93,7 @@ public class PlacementManager : MonoBehaviour
             Spawntrees(nature.transform);
 
 
-            carbonMeter.IncreaseCarbonMeter();  //change this to decrease once the vehicle is attached
+            carbonMeter.DecreaseCarbonMeter();  //change this to decrease once the vehicle is attached
             FindObjectOfType<GameManager>().IncrementTrees();
             
         }

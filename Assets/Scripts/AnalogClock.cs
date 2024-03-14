@@ -83,6 +83,6 @@ public class AnalogClock : MonoBehaviour
     {
         // Set the text to the current day of the week based on the index
         dayOfWeekText.text = daysOfWeek[currentDayIndex];
-        Debug.Log("The day today is " + daysOfWeek[currentDayIndex]);
+        //Debug.Log("The day today is " + daysOfWeek[currentDayIndex]);
     }
 }

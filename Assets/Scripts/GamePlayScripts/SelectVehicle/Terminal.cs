@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,7 @@ public class Terminal : MonoBehaviour
 
     public GameObject VehiclesTab; // Reference to the pop-up tab GameObject
     private InstVehicle vehicleSpawner;
+    public CarbonMeter carbonMeter;
 
     // public void ChangeColor(Color newColor)
     // {
@@ -48,6 +50,15 @@ public class Terminal : MonoBehaviour
             DecrementCount(1);
             // IsClicked = false;
             // VehiclesTab.SetActive(false);
+            IncrementCarbonMeter();
+        }
+    }
+
+    private void IncrementCarbonMeter()
+    {
+        if (carbonMeter != null)
+        {
+            carbonMeter.IncreaseCarbonMeter();
         }
     }
 

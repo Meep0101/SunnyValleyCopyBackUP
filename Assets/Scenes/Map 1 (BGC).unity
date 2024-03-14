@@ -2814,6 +2814,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 217854200}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &219078671 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5073263713554191779, guid: c6272e84aacbfa44998cf0bd9956b46c,
+    type: 3}
+  m_PrefabInstance: {fileID: 505574160}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6490e749365b88438bcb4dbdb163db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &233899575
 GameObject:
   m_ObjectHideFlags: 0
@@ -5585,7 +5597,7 @@ MonoBehaviour:
   numberOfTrees: 1
   roadFixer: {fileID: 2093395485}
   treeSpawnIntervalMin: 1
-  treeSpawnIntervalMax: 1
+  treeSpawnIntervalMax: 10
   roadPrefab: {fileID: 2093395482}
   treeCountText: {fileID: 261841691}
   roadManager: {fileID: 0}
@@ -7672,6 +7684,7 @@ MonoBehaviour:
   passengerCounter: {fileID: 1500403089}
   passengerText: {fileID: 826213130}
   gameManager: {fileID: 2039921795}
+  blueAI: {fileID: 219078671}
 --- !u!114 &681313530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18158,6 +18171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VehiclesTab: {fileID: 1172772433}
+  carbonMeter: {fileID: 0}
 --- !u!114 &1586490722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21118,6 +21132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VehiclesTab: {fileID: 691529250}
+  carbonMeter: {fileID: 0}
 --- !u!114 &1893275693
 MonoBehaviour:
   m_ObjectHideFlags: 0

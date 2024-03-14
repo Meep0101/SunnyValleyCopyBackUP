@@ -17,6 +17,7 @@ public class ResourceGathererUnit : MonoBehaviour, IUnit {
     private float stopDistance; // arriveDistance or lastPointArriveDistance
     private Action onArrivedAtPosition;
     private State state;
+    private Terminal terminal;
 
     private void Update() {
         switch (state) {
@@ -81,8 +82,20 @@ public class ResourceGathererUnit : MonoBehaviour, IUnit {
     public void MoveTo(Vector3 position, float stopDistance, Action onArrivedAtPosition) {
         SetTargetPosition(position);
         this.stopDistance = stopDistance;
-        this.onArrivedAtPosition = onArrivedAtPosition;
+        this.onArrivedAtPosition =() =>
+        {
+            IncreaseCarbonMeter();
+            onArrivedAtPosition?.Invoke();
+        }; //onArrivedAtPosition
         state = State.Moving;
     }
-    
+
+    private void IncreaseCarbonMeter()
+    {
+        CarbonMeter carbonMeter = FindObjectOfType<CarbonMeter>();
+        if (carbonMeter != null)
+        {
+            carbonMeter.IncreaseCarbonMeter();
+        }
+    }
 }

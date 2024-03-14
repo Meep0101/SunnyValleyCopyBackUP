@@ -42,7 +42,19 @@ public class BlueAI : MonoBehaviour
         // UpdateInventoryText();
 
         totalCarsSpawned++;
+        IncrementCarbonMeter();
     }
+
+     private void IncrementCarbonMeter()
+    {
+        CarbonMeter carbonMeter = FindObjectOfType<CarbonMeter>();
+        if (carbonMeter != null)
+        {
+            carbonMeter.IncreaseCarbonMeter();
+        }
+    }
+
+    
 
     public static void ResetTotalCarsSpawned()
     {
@@ -144,4 +156,5 @@ public class BlueAI : MonoBehaviour
         inventoryAmountDictionary[stationType]++;
         UpdateInventoryText(); // Text beside the character
     }
+    
 }
