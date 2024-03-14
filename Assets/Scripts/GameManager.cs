@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     private int numberOfVehicle = 0;
     public CarbonMeter carbonMeter;
 
+
     private bool isGamePaused = false;
 
     // Station
@@ -57,7 +58,8 @@ public class GameManager : MonoBehaviour
         inputManager.OnEscape += HandleEscape;
         uiController.OnPause += TogglePause;
         uiController.OnPlay += ResumeGame;
-      
+        
+      uiController = FindObjectOfType<UIController>();
     }
 
     private void Awake() {
@@ -319,7 +321,8 @@ public class GameManager : MonoBehaviour
         }
         
         UIController uiController = FindAnyObjectByType<UIController>();
-        uiController.UpdateGameOverPanel(numberOfDays, GetNumberOfTrees(), GetNumberOfVehicles(), gameOverCause);
+        int totalCarsSpawned = BlueAI.GetTotalCarsSpawned();
+        uiController.UpdateGameOverPanel(numberOfDays, GetNumberOfTrees(), totalCarsSpawned, gameOverCause);
         }
         else{
             Debug.LogError("GAME PANEL NOT ASSIGNED");
@@ -339,16 +342,12 @@ public class GameManager : MonoBehaviour
     {
         return numberOfTrees;
     }
-
     public void IncrementVehicles()
     {
         numberOfVehicle++;
     }
-   
-   public int GetNumberOfVehicles()
-   {
-        return numberOfVehicle;
-   }
+
+    
 
     private GameOverCause gameOverCause = GameOverCause.None;
    public enum GameOverCause

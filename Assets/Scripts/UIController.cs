@@ -26,7 +26,11 @@ public class UIController : MonoBehaviour
     public Text gameOverMessageText;
     public Button pauseButton, playButton;
     public Action OnPause, OnPlay;
+public PassengerCounter passengerCounter;
+    public Text passengerText;
 
+
+    public GameManager gameManager;
 
     
 
@@ -101,12 +105,20 @@ public class UIController : MonoBehaviour
     public void UpdateGameOverPanel(int numberOfDays, int numberOfTrees, int numberOfVehicle, GameManager.GameOverCause gameOverCause)
     {
         int actualTreeCount = placementManager.GetTreeCount();
+        int totalPassengers = passengerCounter.GetTotalPassengers();
+        int totalCarsSpawned = BlueAI.GetTotalCarsSpawned();
 
-        numberOfDaysText.text = numberOfDays.ToString();
-        numberOfTreesText.text = actualTreeCount.ToString();
-        numberOfVehiclesText.text =numberOfVehicle.ToString();
+
+    numberOfDaysText.text = numberOfDays.ToString();
+    numberOfTreesText.text = actualTreeCount.ToString();
+    numberOfVehiclesText.text = totalCarsSpawned.ToString();
+    passengerText.text = totalPassengers.ToString();
+   
         
-    
+
+        
+
+
       switch (gameOverCause)
       {
         case GameManager.GameOverCause.CarbonMeterFull:
@@ -133,4 +145,7 @@ public class UIController : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("TownScene");
     }
+
+    
+
 }

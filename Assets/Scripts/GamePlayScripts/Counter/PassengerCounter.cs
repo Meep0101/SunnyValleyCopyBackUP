@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class Window_GamePassengers : MonoBehaviour
+public class PassengerCounter : MonoBehaviour
 {
     private void Start(){
         GameResources.OnStationAmountChanged += delegate (object sender, EventArgs e) {
@@ -18,7 +18,7 @@ public class Window_GamePassengers : MonoBehaviour
 
     private void UpdateResourceTextObject() {
         var TotalResources = GameResources.GetStationAmount(GameResources.StationType.Red) + GameResources.GetStationAmount(GameResources.StationType.Blue) + GameResources.GetStationAmount(GameResources.StationType.Yellow);
-        transform.Find("passengerAmount").GetComponent<Text>().text = "Passenger: " + TotalResources;
+        transform.Find("passengerAmount").GetComponent<Text>().text =  TotalResources.ToString();
 
 
         // If wanted separate values
@@ -26,6 +26,17 @@ public class Window_GamePassengers : MonoBehaviour
         // "BLUE: " + GameResources.GetStationAmount(GameResources.StationType.Blue) + "\n";
         // "YELLOW: " + GameResources.GetStationAmount(GameResources.StationType.Yellow) + "\n";
     }
+
+    public int GetTotalPassengers()
+    {
+       int totalPassengers = GameResources.GetStationAmount(GameResources.StationType.Red) +
+                              GameResources.GetStationAmount(GameResources.StationType.Blue) +
+                              GameResources.GetStationAmount(GameResources.StationType.Yellow);
+
+        return totalPassengers; 
+    }
+
+    
 
 
 }

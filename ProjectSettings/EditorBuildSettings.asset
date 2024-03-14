@@ -21,6 +21,18 @@ EditorBuildSettings:
     path: Assets/Scenes/About US.unity
     guid: 577c5b7992aa25047a27953f4383e424
   - enabled: 1
-    path: Assets/Scenes/TownScene.unity
+    path: Assets/Scenes/Map 1 (BGC).unity
     guid: 441fbe92ce761e54894952527870a92b
+  - enabled: 1
+    path: Assets/Scenes/Map 2 (Cebu).unity
+    guid: 69a5751915a7d4741a01a84ad3ff7567
+  - enabled: 1
+    path: Assets/Scenes/Map 3 (Bulacan).unity
+    guid: 8d2e22645a2f7d04bb53119b65184b9f
+  - enabled: 1
+    path: Assets/Scenes/Map 4 (Davao).unity
+    guid: f98da642808a7f04184dbd35aadac60c
+  - enabled: 1
+    path: Assets/Scenes/Map 5 (Baguio).unity
+    guid: fd228c7244d11b843ac39b78d55cc754
   m_configObjects: {}

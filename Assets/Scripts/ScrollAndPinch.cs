@@ -38,9 +38,14 @@ public class ScrollAndPinch : MonoBehaviour
         {
             //Get distance camera should travel
             Delta1 = PlanePositionDelta(Input.GetTouch(0))/DecreaseCameraPanSpeed;
-            if (Input.GetTouch(0).phase == TouchPhase.Moved)
+
+            // if (Input.GetTouch(0).phase == TouchPhase.Moved)
+            // {
                 Camera.transform.Translate(Delta1, Space.World);
+                Debug.Log("Touch 1");
+            //}
         }
+
 
         //Pinch (Zoom Function)
         if (Input.touchCount >= 2)
