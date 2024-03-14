@@ -7,7 +7,7 @@ public class Terminal : MonoBehaviour
 {
     // public Color emptyColor = Color.white;
     // public Color currentColor = Color.white;
-    private int _currentCount = 2; // Private backing field
+    private int _currentCount = 5; // Private backing field
     //public int currentCount; 
     public int CurrentCount // Public property
     {

@@ -26,11 +26,10 @@ public class UIController : MonoBehaviour
     public Text gameOverMessageText;
     public Button pauseButton, playButton;
     public Action OnPause, OnPlay;
-public PassengerCounter passengerCounter;
+    public PassengerCounter passengerCounter;
     public Text passengerText;
-
-
     public GameManager gameManager;
+    public BlueAI blueAI;
 
     
 
@@ -143,6 +142,8 @@ public PassengerCounter passengerCounter;
     public void RestartButton()
     {
         Time.timeScale = 1f;
+        BlueAI.totalCarsSpawned = 0;
+       
 
         // Get the current active scene
         Scene currentScene = SceneManager.GetActiveScene();

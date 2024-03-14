@@ -24,7 +24,7 @@ public class BlueAI : MonoBehaviour
     private float carbonEmit = 0.2f;
     [SerializeField]
     private float stopDistance = 1f;
-    private static int totalCarsSpawned = 0;
+    public static int totalCarsSpawned = 0;
 
     private Dictionary<GameResources.StationType, int> inventoryAmountDictionary;
     //private TextMeshPro inventoryTextMesh; // besides the AI
@@ -42,6 +42,11 @@ public class BlueAI : MonoBehaviour
         // UpdateInventoryText();
 
         totalCarsSpawned++;
+    }
+
+    public static void ResetTotalCarsSpawned()
+    {
+        totalCarsSpawned = 0;
     }
 
     public static int GetTotalCarsSpawned()
