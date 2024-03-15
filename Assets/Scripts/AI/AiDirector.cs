@@ -21,6 +21,7 @@ namespace SimpleCity.AI
 
         public void SpawnACar()
         {
+            // Replace foreach to specific
             foreach (var house in placementManager.GetAllHouses())
             {
                 TrySpawninACar(house, placementManager.GetRandomSpecialStrucutre());
@@ -30,6 +31,7 @@ namespace SimpleCity.AI
         public void RespawnACar()
         {
             Debug.Log("TestTttttttttT");
+            // Replace foreach to specific
             foreach (var specialStructure in placementManager.GetAllSpecialStructures())
             {
                 TrySpawninACarHome(specialStructure, placementManager.GetRandomHouseStructure());
