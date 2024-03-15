@@ -17194,6 +17194,93 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1475389213}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1493105129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1493105131}
+  - component: {fileID: 1493105130}
+  m_Layer: 0
+  m_Name: A*
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1493105130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493105129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78396926cbbfc4ac3b48fc5fc34a87d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  data:
+    dataString: UEsDBBQAAAgIAABAIewsoOYpYQIAAB0FAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMty4jAQ/BVK503KD0ySve06hOyBhAq7lYsvQh5jFbLk0oNHUvz7SrLAjnPBpqd7pmc08ieiXLVAtJALSculKAH9nCD3jn5M+uAzHPFW8DX9gAvnnZa6diTsOW9YU2Hx2MmUaEBLSn7xLXPkyIKG00rIZl5uIRdKKwtXmCmwISm0U3MLfU7QMQhO4fnhnpOzfSPANcieFWe3s+ldNps+jOhxejtLszRLYq8znDDctFA6/708nQZZmnkat50FhuuCCMaoCraQPrW+7Ry3ytimLKGk2LbpDTl+DXRba/snGYpfq0qBDt4kPj1SaafVZUW/RTfCBqtd52uPmYFrw13K5bfoTddXJUXzfKkaR66CrinZveETwUoPJjyEH7/aNvyA2Q5vGLzXwF/EQgrDSxvU0jipUZA8DlJdO8trILue13kdgab9fqZxf6Zn3/sxZ7TZOOR22gFrJvy0H5wGpD2XP9aw3xEVMlnUmfin4C/eDpcpBJ6oVNqGQkHu3G2EkY6K5n5mrhmjcyE5eDh4boFjpk8rm0aPD3AUG5QdRZ6wuzaheIhdbsNI4uGeH0Wj0EocroelanFYgqpfjWaUQ2/aBV7snHLBebdfw5lcZGsjK0wGsq2h5dfVQlGUTNNZTJIs22ziiNzEkN0nif1J73GC0zvkd49y2ydmq85oGI89Nd4n53bPLl+TyULi1u96KfFhQT8aMRg55ZVYEwnAX7sMV+MgbRF7J8t5Se2A1qA15f680WeBmCA7KItrosJ3Oj9qiYs+S4FauhfaIQXK/TekQA6+rvJKwp7CwRW/JDuj839QSwMEFAAACAgAAEAh7MZh5nNsAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tJKBgZGJsZlhspGpaVKSoUGyrmGqqYWREZAwtkg0SjQ2V4oFqi+pLEj1S8xNhegJSCzJSMvMS8nMS9dzL8pMcQcZrRRbCwBQSwECLQAUAAAICAAAQCHsLKDmKWECAAAdBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAQCHsxmHmc2wAAAB4AAAACQAkAAAAAAAAAAAAAACuAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAGUDAAAAAA==
+    upgradeData: 
+    file_cachedStartup: {fileID: 0}
+    data_cachedStartup: 
+    cacheStartup: 0
+  showNavGraphs: 1
+  showUnwalkableNodes: 1
+  debugMode: 0
+  debugFloor: 0
+  debugRoof: 1
+  manualDebugFloorRoof: 0
+  showSearchTree: 0
+  unwalkableNodeDebugSize: 0.3
+  logPathResults: 1
+  maxNearestNodeDistance: 100
+  scanOnStartup: 1
+  fullGetNearestSearch: 0
+  prioritizeGraphs: 0
+  prioritizeGraphsLimit: 1
+  colorSettings:
+    _SolidColor: {r: 0.11764706, g: 0.4, b: 0.7882353, a: 0.9}
+    _UnwalkableNode: {r: 1, g: 0, b: 0, a: 0.5}
+    _BoundsHandles: {r: 0.29, g: 0.454, b: 0.741, a: 0.9}
+    _ConnectionLowLerp: {r: 0, g: 1, b: 0, a: 0.5}
+    _ConnectionHighLerp: {r: 1, g: 0, b: 0, a: 0.5}
+    _MeshEdgeColor: {r: 0, g: 0, b: 0, a: 0.5}
+    _AreaColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+  tagNames: []
+  heuristic: 2
+  heuristicScale: 1
+  threadCount: 1
+  maxFrameTime: 10
+  batchGraphUpdates: 0
+  graphUpdateBatchingInterval: 0.2
+  euclideanEmbedding:
+    mode: 0
+    seed: 0
+    pivotPointRoot: {fileID: 0}
+    spreadOutCount: 1
+  showGraphs: 1
+--- !u!4 &1493105131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493105129}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 14.791212, y: 1.6683707, z: 13.556588}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1493919782
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24274,3 +24361,4 @@ SceneRoots:
   - {fileID: 9084838816058441012}
   - {fileID: 1288533253}
   - {fileID: 505574160}
+  - {fileID: 1493105131}
