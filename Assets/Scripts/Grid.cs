@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
 /// Source https://github.com/lordjesus/Packt-Introduction-to-graph-algorithms-for-game-developers
@@ -71,17 +72,37 @@ public class Grid
     public int Width { get { return _width; } }
     private int _height;
     public int Height { get { return _height; } }
+    private float _cellSize;
 
     private List<Point> _roadList = new List<Point>();
     private List<Point> _specialStructure = new List<Point>();
     private List<Point> _houseStructure = new List<Point>();
 
     // Constructor for the Grid class, initializing the grid with the specified width and height.
-    public Grid(int width, int height)
+    public Grid(int width, int height, float cellSize)
     {
         _width = width;
         _height = height;
+        _cellSize = cellSize;
         _grid = new CellType[width, height];
+
+        for (int x = 0; x < width; x++){
+            for(int y = 0; y < height; y++){
+
+                _grid[x, y] = CellType.Empty;
+
+                Debug.DrawLine(GetWorldPos(x, y), GetWorldPos(x, y + 1), Color.black, 100);
+                Debug.DrawLine(GetWorldPos(x, y), GetWorldPos(x + 1, y), Color.black, 100);
+            }
+        }
+
+        Debug.DrawLine(GetWorldPos(0, height), GetWorldPos(width, height), Color.black, 100);
+        Debug.DrawLine(GetWorldPos(width, 0), GetWorldPos(width, height), Color.black, 100);
+    }
+
+
+    public Vector3 GetWorldPos(int x, int y){
+        return new Vector3(x, 0, y) * _cellSize;
     }
 
     // Adding index operator to our Grid class so that we can use grid[][] to access specific cell from our grid. 

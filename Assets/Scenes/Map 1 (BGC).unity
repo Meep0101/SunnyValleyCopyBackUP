@@ -5446,6 +5446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 30
   height: 30
+  cellSize: 1
   carbonMeter: {fileID: 0}
   treePrefab: {fileID: 1834718577}
   numberOfTrees: 1
@@ -8123,6 +8124,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Street_4Way
       objectReference: {fileID: 0}
+    - target: {fileID: 3351635067702010651, guid: f4402828bce58b54791119f89fa2df61,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5155644068091976813, guid: f4402828bce58b54791119f89fa2df61,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10698,7 +10704,7 @@ Transform:
   m_GameObject: {fileID: 970204963}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.85, y: 0, z: 7.33}
+  m_LocalPosition: {x: 4.8, y: 0, z: 7.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13367,7 +13373,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1241647859
 MonoBehaviour:
   m_ObjectHideFlags: 0

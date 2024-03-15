@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +10,7 @@ using UnityEngine.UIElements;
 public class PlacementManager : MonoBehaviour
 {
     public int width, height;
+    public float cellSize;
     Grid placementGrid;
     public CarbonMeter carbonMeter;
    
@@ -40,7 +41,9 @@ public class PlacementManager : MonoBehaviour
      
     private void Start()
     {
-        placementGrid = new Grid(width, height);
+        placementGrid = new Grid(width, height, cellSize);
+
+
         carbonMeter = FindObjectOfType<CarbonMeter>();
 
         StartCoroutine(SpawnTreesRandomly());
