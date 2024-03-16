@@ -17,7 +17,7 @@ public class PlacementManager : MonoBehaviour
     public GameObject treePrefab;
     public int numberOfTrees = 1; //kung ilan ang spawn
 
-    private StructureModel selectedRoadObject;
+    //private StructureModel selectedRoadObject;
 
     public RoadFixer roadFixer;
 
@@ -70,7 +70,7 @@ public class PlacementManager : MonoBehaviour
      {
         if(placingRoadEnabled)
         {
-            PlaceObjectOnTheMap(position, roadPrefab, CellType.Road, 1, 1);
+            RecordObjectOnTheMap(position, roadPrefab, CellType.Road, 1, 1);
         }
      }
     private IEnumerator SpawnTreesRandomly()
@@ -155,16 +155,16 @@ public class PlacementManager : MonoBehaviour
         return false;
     }
 
-    internal void PlaceObjectOnTheMap(Vector3Int position, GameObject structurePrefab, CellType type, int width = 1, int height = 1)
+    internal void RecordObjectOnTheMap(Vector3Int position, GameObject structurePrefab, CellType type, int width = 1, int height = 1)
     {
         StructureModel structure = CreateANewStructureModel(position, structurePrefab, type);
 
-        var structureNeedingRoad = structure.GetComponent<INeedingRoad>();
-        if (structureNeedingRoad != null)
-        {
-            structureNeedingRoad.RoadPosition = GetNearestRoad(position, width, height).Value;
-            Debug.Log("My nearest road position is: " + structureNeedingRoad.RoadPosition);
-        }
+        // var structureNeedingRoad = structure.GetComponent<INeedingRoad>();
+        // if (structureNeedingRoad != null)
+        // {
+        //     structureNeedingRoad.RoadPosition = GetNearestRoad(position, width, height).Value;
+        //     Debug.Log("My nearest road position is: " + structureNeedingRoad.RoadPosition);
+        // }
 
         for (int x = 0; x < width; x++)
         {
@@ -189,21 +189,17 @@ public class PlacementManager : MonoBehaviour
             // 1. Remove the road object from the grid.
             placementGrid[position.x, position.z] = CellType.Empty;
            
-
             // 2. Remove the road object from the structureDictionary.
             StructureModel removedStructure = structureDictionary[position];
             structureDictionary.Remove(position); //Here, position is a Vector3Int that represents the position you want to remove from the dictionary. After executing this line, the entry for positionToRemove will be removed from the structureDictionary, effectively deleting the association between that position and the structure.
+            
 
             // 3. Optionally, destroy the associated GameObject.
             Destroy(removedStructure.gameObject);
 
-            
-
             // 4. Fix the neighboring road prefabs.
             FixRoadPrefabs(position, roadFixer);
 
-            // Update the grid and UI to reflect the changes.
-            // Example: Handle visual updates here.
         }
         
     }
@@ -338,6 +334,7 @@ public class PlacementManager : MonoBehaviour
         temporaryRoadobjects.Clear();
     }
 
+    //Road fixer
     public void ModifyStructureModel(Vector3Int position, GameObject newModel, Quaternion rotation)
     {
         if (temporaryRoadobjects.ContainsKey(position))
@@ -346,11 +343,11 @@ public class PlacementManager : MonoBehaviour
             structureDictionary[position].SwapModel(newModel, rotation);
     }
 
-    public StructureModel GetRandomRoad()
-    {
-        var point = placementGrid.GetRandomRoadPoint();
-        return GetStructureAt(point);
-    }
+    // public StructureModel GetRandomRoad()
+    // {
+    //     var point = placementGrid.GetRandomRoadPoint();
+    //     return GetStructureAt(point);
+    // }
 
     public StructureModel GetRandomSpecialStrucutre()
     {

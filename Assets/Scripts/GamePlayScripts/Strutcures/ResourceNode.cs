@@ -10,7 +10,7 @@ public class ResourceNode {
     private GameResources.StationType stationType;
 
     //Amount of Station
-    private int stationAmount; //Resource amount field to reresent the amount of resources present in a node
+    private int stationAmount; //Resource amount field to represent the amount of resources present in a node
     private int stationAmountMax;
 
     public ResourceNode(Transform stationNodeTransform, GameResources.StationType stationType) {
@@ -19,7 +19,7 @@ public class ResourceNode {
         stationAmountMax = 3; //Starts with 3 passenger
         stationAmount = stationAmountMax;
 
-        FunctionPeriodic.Create(RegenerateSinglePassengerAmount, 2f);  //code monkey utilities
+        FunctionPeriodic.Create(RegenerateSinglePassengerAmount, 5f);  //code monkey utilities
 
         CMDebug.TextUpdater(() => "" + stationAmount, Vector3.zero, stationNodeTransform);  //Displays current stationAmount, code monkey utilities
     }
@@ -62,14 +62,14 @@ public class ResourceNode {
 
     private void ResetResourceAmount() {
         stationAmount = stationAmountMax;
-        UpdateSprite();
+       //UpdateSprite();
     }
 
     //Regeneration of passenger by 1
     private void RegenerateSinglePassengerAmount() {
         if (stationAmount < stationAmountMax) {
             stationAmount++;
-            UpdateSprite();
+            //UpdateSprite();
         }
     }
 

@@ -3672,25 +3672,11 @@ MonoBehaviour:
   - prefab: {fileID: 2769822920355022703, guid: 7102e40a9ba863a44838c4fd828cc22b,
       type: 3}
     weight: 1
-  - prefab: {fileID: 801535651834448878, guid: 3240703552f47d04d9bf7207ca5bfa85, type: 3}
-    weight: 1
-  - prefab: {fileID: 8067785501733222628, guid: 4617fd335db984f4bb34f5eb561fd82b,
-      type: 3}
-    weight: 1
   specialPrefabs:
   - prefab: {fileID: 8028572972740798329, guid: b4e018779a1b9aa44b2a988c6d8ddfda,
       type: 3}
     weight: 0.25
   - prefab: {fileID: 3702253504043930072, guid: 838f9b485bb510747a4b89e3cb91e1bd,
-      type: 3}
-    weight: 1
-  bigStructuresPrefabs:
-  - prefab: {fileID: 948695418406959342, guid: b23d8607810fd19468a49ab4b829a8ce, type: 3}
-    weight: 0.25
-  - prefab: {fileID: 2315885335286750609, guid: dec092f7a8e04ce4a9b2a6eb1ff0cc4e,
-      type: 3}
-    weight: 1
-  - prefab: {fileID: 5985451652230937832, guid: 08bf96a139f4a7e4aaeda03d2c9f932e,
       type: 3}
     weight: 1
   placementManager: {fileID: 540532163}
@@ -8132,17 +8118,17 @@ PrefabInstance:
     - target: {fileID: 5155644068091976813, guid: f4402828bce58b54791119f89fa2df61,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.0145999
       objectReference: {fileID: 0}
     - target: {fileID: 5155644068091976813, guid: f4402828bce58b54791119f89fa2df61,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00999999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5155644068091976813, guid: f4402828bce58b54791119f89fa2df61,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.9870999
       objectReference: {fileID: 0}
     - target: {fileID: 5155644068091976813, guid: f4402828bce58b54791119f89fa2df61,
         type: 3}
@@ -8292,14 +8278,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22264e8b01cee4d4da98f4c8bb1aaa6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placementManager: {fileID: 540532163}
-  pedestrianPrefabs:
-  - {fileID: 918228557285261549, guid: c0433b3a51a88af47ac66d23eab55138, type: 3}
-  - {fileID: 5928032463670676373, guid: 646488162f240a949a4e48ed1686ccda, type: 3}
-  - {fileID: 2278821950334863235, guid: 0811cac021ab5f645ae41584a145f4a1, type: 3}
-  - {fileID: 8964402343246118786, guid: 6415100e42056474fb95481c5c3046f3, type: 3}
-  carPrefab: {fileID: 569683081087099838, guid: d21a40f03474908428ab3808f8773fc4,
-    type: 3}
 --- !u!4 &729311224
 Transform:
   m_ObjectHideFlags: 0
@@ -10704,7 +10682,7 @@ Transform:
   m_GameObject: {fileID: 970204963}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.8, y: 0, z: 7.36}
+  m_LocalPosition: {x: 5, y: 0, z: 7.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16634,7 +16612,7 @@ MonoBehaviour:
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
     cacheStartup: 0
-  showNavGraphs: 0
+  showNavGraphs: 1
   showUnwalkableNodes: 1
   debugMode: 0
   debugFloor: 0
@@ -16679,7 +16657,7 @@ Transform:
   m_GameObject: {fileID: 1493105129}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.791212, y: 1.6683707, z: 13.556588}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17629,8 +17607,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.4600816, z: 1}
-  m_Center: {x: 0, y: 0.2300408, z: 0}
+  m_Size: {x: 1, y: 0.6157916, z: 1}
+  m_Center: {x: 0, y: -0.19210395, z: 0}
 --- !u!1 &1589827811
 GameObject:
   m_ObjectHideFlags: 0
