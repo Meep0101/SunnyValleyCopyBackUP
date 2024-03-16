@@ -23,7 +23,7 @@ public class PlacementManager : MonoBehaviour
 
     public float treeSpawnIntervalMin = 2f;
     public float treeSpawnIntervalMax = 5f;
-    public GameObject roadPrefab;
+    //public GameObject roadPrefab;
 
     private int treeCount = 0;
     public Text treeCountText;
@@ -36,7 +36,7 @@ public class PlacementManager : MonoBehaviour
     private Dictionary<Vector3Int, StructureModel> structureDictionary = new Dictionary<Vector3Int, StructureModel>();
 
 
-     private bool placingRoadEnabled = true;
+     //private bool placingRoadEnabled = true;
 
      
     private void Start()
@@ -61,18 +61,18 @@ public class PlacementManager : MonoBehaviour
 
     
     
-    public void TogglePlacingRoad(bool isEnabled)
-     {
-        placingRoadEnabled = isEnabled;
-     }
+    // public void TogglePlacingRoad(bool isEnabled)
+    //  {
+    //     placingRoadEnabled = isEnabled;
+    //  }
 
-     public void PlaceRoadObject(Vector3Int position)
-     {
-        if(placingRoadEnabled)
-        {
-            RecordObjectOnTheMap(position, roadPrefab, CellType.Road, 1, 1);
-        }
-     }
+    //  public void PlaceRoadObject(Vector3Int position)
+    //  {
+    //     if(placingRoadEnabled)
+    //     {
+    //         RecordObjectOnTheMap(position, roadPrefab, CellType.Road, 1, 1);
+    //     }
+    //  }
     private IEnumerator SpawnTreesRandomly()
     {
         while (true)
