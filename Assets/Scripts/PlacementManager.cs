@@ -29,7 +29,7 @@ public class PlacementManager : MonoBehaviour
     public Text treeCountText;
     private int vehicleCount = 0;
 
-    public RoadManager roadManager;
+    //public RoadManager roadManager;
    
 
     private Dictionary<Vector3Int, StructureModel> temporaryRoadobjects = new Dictionary<Vector3Int, StructureModel>();
@@ -48,7 +48,7 @@ public class PlacementManager : MonoBehaviour
 
         StartCoroutine(SpawnTreesRandomly());
 
-        roadManager = FindObjectOfType<RoadManager>();
+        //roadManager = FindObjectOfType<RoadManager>();
     }
 
     void Update()
