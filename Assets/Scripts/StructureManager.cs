@@ -29,40 +29,6 @@ public class StructureManager : MonoBehaviour
         }
     }
 
-    // internal void PlaceBigStructure(Vector3Int position)
-    // {
-    //     int width = 2;
-    //     int height = 2;
-    //     if(CheckBigStructure(position, width , height))
-    //     {
-    //         int randomIndex = GetRandomWeightedIndex(bigStructureWeights);
-    //         placementManager.RecordObjectOnTheMap(position, bigStructuresPrefabs[randomIndex].prefab, CellType.Structure, width, height);
-    //         AudioPlayer.instance.PlayPlacementSound();
-    //     }
-    // }
-
-    // private bool CheckBigStructure(Vector3Int position, int width, int height)
-    // {
-    //     bool nearRoad = false;
-    //     for (int x = 0; x < width; x++)
-    //     {
-    //         for (int z = 0; z < height; z++)
-    //         {
-    //             var newPosition = position + new Vector3Int(x, 0, z);
-                
-    //             if (DefaultCheck(newPosition)==false)
-    //             {
-    //                 return false;
-    //             }
-    //             if (nearRoad == false)
-    //             {
-    //                 nearRoad = RoadCheck(newPosition);
-    //             }
-    //         }
-    //     }
-    //     return nearRoad;
-    // }
-
     public void PlaceSpecial(Vector3Int position)
     {
         if (CheckPositionBeforePlacement(position))
@@ -141,3 +107,37 @@ public struct StructurePrefabWeighted
     [Range(0,1)]
     public float weight;
 }
+
+    // internal void PlaceBigStructure(Vector3Int position)
+    // {
+    //     int width = 2;
+    //     int height = 2;
+    //     if(CheckBigStructure(position, width , height))
+    //     {
+    //         int randomIndex = GetRandomWeightedIndex(bigStructureWeights);
+    //         placementManager.RecordObjectOnTheMap(position, bigStructuresPrefabs[randomIndex].prefab, CellType.Structure, width, height);
+    //         AudioPlayer.instance.PlayPlacementSound();
+    //     }
+    // }
+
+    // private bool CheckBigStructure(Vector3Int position, int width, int height)
+    // {
+    //     bool nearRoad = false;
+    //     for (int x = 0; x < width; x++)
+    //     {
+    //         for (int z = 0; z < height; z++)
+    //         {
+    //             var newPosition = position + new Vector3Int(x, 0, z);
+                
+    //             if (DefaultCheck(newPosition)==false)
+    //             {
+    //                 return false;
+    //             }
+    //             if (nearRoad == false)
+    //             {
+    //                 nearRoad = RoadCheck(newPosition);
+    //             }
+    //         }
+    //     }
+    //     return nearRoad;
+    // }
