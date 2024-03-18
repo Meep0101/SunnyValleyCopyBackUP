@@ -17,7 +17,8 @@ public class GameManager : MonoBehaviour
     public PathVisualizer pathVisualizer;
     public PlacementManager placementManager;
     public GameObject gameOverPanel;
-    private int numberOfDays = 0;
+    public int numberOfDays = 0;
+    public int SnumberOfDays = 0;
     private int numberOfTrees = 0;
     private int numberOfVehicle = 0;
     public CarbonMeter carbonMeter;
@@ -52,8 +53,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         uiController.OnRoadPlacement += RoadPlacementHandler;
-        //uiController.OnHousePlacement += HousePlacementHandler;
-        //uiController.OnSpecialPlacement += SpecialPlacementHandler;
+        uiController.OnHousePlacement += HousePlacementHandler;
+        uiController.OnSpecialPlacement += SpecialPlacementHandler;
         uiController.OnRemoveRoad += RemoveRoadHandler;
         inputManager.OnEscape += HandleEscape;
         uiController.OnPause += TogglePause;
@@ -252,27 +253,27 @@ public class GameManager : MonoBehaviour
        
     }
 
-    // private void SpecialPlacementHandler()
-    // {
-    //     ClearInputActions();
+    private void SpecialPlacementHandler()
+    {
+        ClearInputActions();
 
-    //     inputManager.OnMouseClick += (pos) =>
-    //     {
-    //         ProcessInputAndCall(structureManager.PlaceSpecial, pos);
-    //     };
-    //     inputManager.OnEscape += HandleEscape;
-    // }
+        inputManager.OnMouseClick += (pos) =>
+        {
+            ProcessInputAndCall(structureManager.PlaceSpecial, pos);
+        };
+        inputManager.OnEscape += HandleEscape;
+    }
 
-    // private void HousePlacementHandler()
-    // {
-    //     ClearInputActions();
+    private void HousePlacementHandler()
+    {
+        ClearInputActions();
 
-    //     inputManager.OnMouseClick += (pos) =>
-    //     {
-    //         ProcessInputAndCall(structureManager.PlaceHouse, pos);
-    //     };
-    //     inputManager.OnEscape += HandleEscape;
-    // }
+        inputManager.OnMouseClick += (pos) =>
+        {
+            ProcessInputAndCall(structureManager.PlaceHouse, pos);
+        };
+        inputManager.OnEscape += HandleEscape;
+    }
 
     private void RoadPlacementHandler()
     {

@@ -30,6 +30,11 @@ public class UIController : MonoBehaviour
     public Text passengerText;
     public GameManager gameManager;
     public BlueAI blueAI;
+    public GameObject successPanel;
+    public Text SpassengerText;
+    public Text SDaysText;
+    public Text SnumberOfTreesText;
+    public Text SnumberOfVehiclesText;
 
     
 
@@ -55,6 +60,42 @@ public class UIController : MonoBehaviour
         // Initialize the roadManager reference
         roadManager = FindObjectOfType<RoadManager>();
     }
+
+    private void Update()
+    {
+        // Check if passenger count reaches 10
+        int totalPassengers = passengerCounter.GetTotalPassengers();
+        if (totalPassengers >= 10)
+        {
+            ShowSuccessPanel();
+        }
+    }
+
+    private void ShowSuccessPanel()
+    {
+        Time.timeScale = 0f;
+
+        if (successPanel != null)
+        {
+            successPanel.SetActive(true);
+            UpdateSuccessPanel(gameManager.SnumberOfDays, placementManager.GetTreeCount(), BlueAI.GetTotalCarsSpawned(), gameManager.numberOfDays);
+            
+        }
+        else{
+            Debug.LogError("WALA SIYA SA INSPECTOR");
+        }
+    }
+
+    private void UpdateSuccessPanel(int SnumberOfDays, int numberOfTrees, int numberOfVehicles, int numberOfDays)
+    {
+
+        // Update Text UI elements with game statistics
+    SpassengerText.text = "Passengers: " + passengerCounter.GetTotalPassengers().ToString();
+    SDaysText.text = SnumberOfDays.ToString();
+    SnumberOfVehiclesText.text = "Vehicles: " + BlueAI.GetTotalCarsSpawned().ToString();
+    SnumberOfTreesText.text = "Trees: " + placementManager.GetTreeCount().ToString();
+    }
+            
 
     private void PlayButtonClicked()
     {
