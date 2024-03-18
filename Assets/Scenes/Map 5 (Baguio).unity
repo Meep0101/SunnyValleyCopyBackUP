@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18090543, g: 0.22645362, b: 0.30723208, a: 1}
+  m_IndirectSpecularColor: {r: 0.1809051, g: 0.22645304, b: 0.30723083, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3745,16 +3745,8 @@ MonoBehaviour:
   - prefab: {fileID: 3702253504043930072, guid: 838f9b485bb510747a4b89e3cb91e1bd,
       type: 3}
     weight: 1
-  bigStructuresPrefabs:
-  - prefab: {fileID: 948695418406959342, guid: b23d8607810fd19468a49ab4b829a8ce, type: 3}
-    weight: 0.25
-  - prefab: {fileID: 2315885335286750609, guid: dec092f7a8e04ce4a9b2a6eb1ff0cc4e,
-      type: 3}
-    weight: 1
-  - prefab: {fileID: 5985451652230937832, guid: 08bf96a139f4a7e4aaeda03d2c9f932e,
-      type: 3}
-    weight: 1
   placementManager: {fileID: 540532163}
+  instantiationInterval: 10
 --- !u!4 &319897189
 Transform:
   m_ObjectHideFlags: 0
@@ -5580,15 +5572,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 30
   height: 30
+  cellSize: 0
   carbonMeter: {fileID: 0}
   treePrefab: {fileID: 1834718577}
   numberOfTrees: 1
   roadFixer: {fileID: 2093395485}
   treeSpawnIntervalMin: 1
   treeSpawnIntervalMax: 5
-  roadPrefab: {fileID: 2093395482}
   treeCountText: {fileID: 261841691}
-  roadManager: {fileID: 0}
 --- !u!4 &540532164
 Transform:
   m_ObjectHideFlags: 0
@@ -7672,6 +7663,12 @@ MonoBehaviour:
   passengerCounter: {fileID: 1500403089}
   passengerText: {fileID: 826213130}
   gameManager: {fileID: 2039921795}
+  blueAI: {fileID: 0}
+  successPanel: {fileID: 0}
+  SpassengerText: {fileID: 0}
+  SDaysText: {fileID: 0}
+  SnumberOfTreesText: {fileID: 0}
+  SnumberOfVehiclesText: {fileID: 0}
 --- !u!114 &681313530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8497,14 +8494,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22264e8b01cee4d4da98f4c8bb1aaa6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placementManager: {fileID: 540532163}
-  pedestrianPrefabs:
-  - {fileID: 918228557285261549, guid: c0433b3a51a88af47ac66d23eab55138, type: 3}
-  - {fileID: 5928032463670676373, guid: 646488162f240a949a4e48ed1686ccda, type: 3}
-  - {fileID: 2278821950334863235, guid: 0811cac021ab5f645ae41584a145f4a1, type: 3}
-  - {fileID: 8964402343246118786, guid: 6415100e42056474fb95481c5c3046f3, type: 3}
-  carPrefab: {fileID: 569683081087099838, guid: d21a40f03474908428ab3808f8773fc4,
-    type: 3}
 --- !u!4 &729311224
 Transform:
   m_ObjectHideFlags: 0
@@ -11609,11 +11598,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 618d58c7a8dccc44184229b065d5d341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Camera: {fileID: 0}
-  Rotate: 1
-  DecreaseCameraPanSpeed: 2
-  CameraUpperHeightBound: 0
-  CameraLowerHeightBound: 0
 --- !u!4 &1058882863
 Transform:
   m_ObjectHideFlags: 0
@@ -18158,6 +18142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VehiclesTab: {fileID: 1172772433}
+  carbonMeter: {fileID: 0}
 --- !u!114 &1586490722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21118,6 +21103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VehiclesTab: {fileID: 691529250}
+  carbonMeter: {fileID: 0}
 --- !u!114 &1893275693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22893,6 +22879,8 @@ MonoBehaviour:
   pathVisualizer: {fileID: 1818247020}
   placementManager: {fileID: 540532163}
   gameOverPanel: {fileID: 1174482087}
+  numberOfDays: 0
+  SnumberOfDays: 0
   carbonMeter: {fileID: 1448075907}
   REDNodeTransformArray:
   - {fileID: 1360764215}
@@ -23795,7 +23783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deadEnd: {fileID: 1120765361980748800, guid: 126bc1b54aa974c45b523eabbb58d51e, type: 3}
-  roadStraight: {fileID: 9139297382752943835, guid: 517d485f602757a429ab601e6d7cb91b,
+  roadStraight: {fileID: 7198532356290096606, guid: 1d4cfb7c9d1c7e64f9550a6f20e7c981,
     type: 3}
   corner: {fileID: 5424512348592698954, guid: e552d858f25a4af4e9cc71dfa8d4ebfe, type: 3}
   threeWay: {fileID: 2384947387477557946, guid: 2524a8437a2d4394da7f7a0546a71f3d,

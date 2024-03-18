@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18090543, g: 0.22645362, b: 0.30723208, a: 1}
+  m_IndirectSpecularColor: {r: 0.1809051, g: 0.22645304, b: 0.30723083, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3759,6 +3759,7 @@ MonoBehaviour:
       type: 3}
     weight: 1
   placementManager: {fileID: 540532163}
+  instantiationInterval: 10
 --- !u!4 &319897189
 Transform:
   m_ObjectHideFlags: 0
@@ -12021,11 +12022,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 618d58c7a8dccc44184229b065d5d341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Camera: {fileID: 0}
-  Rotate: 0
-  DecreaseCameraPanSpeed: 2
-  CameraUpperHeightBound: 0
-  CameraLowerHeightBound: 0
 --- !u!4 &1058882863
 Transform:
   m_ObjectHideFlags: 0
@@ -24350,7 +24346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deadEnd: {fileID: 1120765361980748800, guid: 126bc1b54aa974c45b523eabbb58d51e, type: 3}
-  roadStraight: {fileID: 9139297382752943835, guid: 517d485f602757a429ab601e6d7cb91b,
+  roadStraight: {fileID: 7198532356290096606, guid: 1d4cfb7c9d1c7e64f9550a6f20e7c981,
     type: 3}
   corner: {fileID: 5424512348592698954, guid: e552d858f25a4af4e9cc71dfa8d4ebfe, type: 3}
   threeWay: {fileID: 2384947387477557946, guid: 2524a8437a2d4394da7f7a0546a71f3d,

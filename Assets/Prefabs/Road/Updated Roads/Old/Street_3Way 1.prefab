@@ -119,7 +119,7 @@ Transform:
   m_GameObject: {fileID: 570043047087178665}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -567,9 +567,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6249065214986960462}
   - component: {fileID: 4251862683454419789}
+  - component: {fileID: 7763889336173555756}
   - component: {fileID: 4716100336177869443}
   m_Layer: 0
-  m_Name: Street_3Way
+  m_Name: Street_3Way 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -584,7 +585,7 @@ Transform:
   m_GameObject: {fileID: 7830266032271662041}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -634,6 +635,27 @@ MonoBehaviour:
   - {fileID: 6398318274851363901}
   - {fileID: 6278535996048933054}
   - {fileID: 344975710777205415}
+--- !u!65 &7763889336173555756
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7830266032271662041}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.9613831, y: 0.52184975, z: 0.9532976}
+  m_Center: {x: 0.0014852434, y: 0.23907512, z: -0.00007665157}
 --- !u!114 &4716100336177869443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -836,7 +858,7 @@ PrefabInstance:
     - target: {fileID: 2220506533874647641, guid: bcd84719fb8bd5d4cb74fed568691575,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2220506533874647641, guid: bcd84719fb8bd5d4cb74fed568691575,
         type: 3}
