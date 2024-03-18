@@ -73,7 +73,7 @@ public class UIController : MonoBehaviour
 
     private void ShowSuccessPanel()
     {
-        Time.timeScale = 0f;
+        
 
         if (successPanel != null)
         {
@@ -88,12 +88,12 @@ public class UIController : MonoBehaviour
 
     private void UpdateSuccessPanel(int SnumberOfDays, int numberOfTrees, int numberOfVehicles, int numberOfDays)
     {
-
+       
         // Update Text UI elements with game statistics
-    SpassengerText.text = "Passengers: " + passengerCounter.GetTotalPassengers().ToString();
-    SDaysText.text = SnumberOfDays.ToString();
-    SnumberOfVehiclesText.text = "Vehicles: " + BlueAI.GetTotalCarsSpawned().ToString();
-    SnumberOfTreesText.text = "Trees: " + placementManager.GetTreeCount().ToString();
+    SpassengerText.text = passengerCounter.GetTotalPassengers().ToString();
+    SDaysText.text = numberOfDays.ToString();
+    SnumberOfVehiclesText.text = BlueAI.GetTotalCarsSpawned().ToString();
+    SnumberOfTreesText.text = placementManager.GetTreeCount().ToString();
     }
             
 
