@@ -10,11 +10,11 @@ public class StructureModel : MonoBehaviour, INeedingRoad
 
     public Vector3Int RoadPosition { get; set; }
 
-    public void CreateModel(GameObject model)
-    {
-        var structure = Instantiate(model, transform);
-        yHeight = structure.transform.position.y;
-    }
+    // public void CreateModel(GameObject model)
+    // {
+    //     var structure = Instantiate(model, transform);
+    //     yHeight = structure.transform.position.y;
+    // }
 
     public void SwapModel(GameObject model, Quaternion rotation)
     {

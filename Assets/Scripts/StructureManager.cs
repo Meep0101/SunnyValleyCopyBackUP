@@ -1,4 +1,73 @@
-﻿// using SVS;
+﻿using UnityEngine;
+
+public class StructureManager : MonoBehaviour
+{
+    public StructurePrefabWeighted[] housesPrefabe, specialPrefabs;
+    public PlacementManager placementManager;
+    public float instantiationInterval = 10f; // Interval in seconds
+
+    private float nextInstantiationTime;
+
+    private void Start()
+    {
+        // Set the initial time for the next instantiation
+        nextInstantiationTime = Time.time + instantiationInterval;
+    }
+
+    private void Update()
+    {
+        // Check if it's time to instantiate a house or special prefab
+        if (Time.time >= nextInstantiationTime)
+        {
+            // Instantiate either a house or a special prefab
+            if (Random.value < 0.5f)
+            {
+                InstantiateRandomPrefab(housesPrefabe);
+            }
+            else
+            {
+                InstantiateRandomPrefab(specialPrefabs);
+            }
+
+            // Set the next instantiation time
+            nextInstantiationTime = Time.time + instantiationInterval;
+        }
+    }
+
+    private void InstantiateRandomPrefab(StructurePrefabWeighted[] prefabs)
+    {
+        if (prefabs.Length == 0)
+            return;
+
+        // Select a random prefab
+        int randomIndex = Random.Range(0, prefabs.Length);
+        GameObject prefab = prefabs[randomIndex].prefab;
+        //CellType cellType = (Random.value < 0.5f) ? CellType.Structure : CellType.SpecialStructure; // Randomly select cell type
+
+        // Generate a random position (you may adjust this based on your game's requirements)
+        Vector3Int position = new Vector3Int(Random.Range(10, 20), 0, Random.Range(10, 20)); // Example position range
+
+        // Instantiate the prefab at the generated position
+        GameObject newObject = Instantiate(prefab, position, Quaternion.identity);
+
+        // Record the object on the map with the selected cell type
+        placementManager.RecordObjectOnTheMap(position, newObject, CellType.Structure);
+
+        // Play the placement sound (if applicable)
+        // AudioPlayer.instance.PlayPlacementSound();
+    }
+}
+
+[System.Serializable]
+public struct StructurePrefabWeighted
+{
+    public GameObject prefab;
+    [Range(0,1)]
+    public float weight;
+}
+
+
+// using SVS;
 // using System;
 // using System.Collections;
 // using System.Collections.Generic;
@@ -142,75 +211,4 @@
 //     //     return nearRoad;
 //     // }
 
-//using SVS;
-// using System;
-// using System.Collections;
-// using System.Collections.Generic;
-// using System.Linq;
-using UnityEngine;
 
-public class StructureManager : MonoBehaviour
-{
-    public StructurePrefabWeighted[] housesPrefabe, specialPrefabs;
-    public PlacementManager placementManager;
-    public float instantiationInterval = 10f; // Interval in seconds
-
-    private float nextInstantiationTime;
-
-    private void Start()
-    {
-        // Set the initial time for the next instantiation
-        nextInstantiationTime = Time.time + instantiationInterval;
-    }
-
-    private void Update()
-    {
-        // Check if it's time to instantiate a house or special prefab
-        if (Time.time >= nextInstantiationTime)
-        {
-            // Instantiate either a house or a special prefab
-            if (Random.value < 0.5f)
-            {
-                InstantiateRandomPrefab(housesPrefabe);
-            }
-            else
-            {
-                InstantiateRandomPrefab(specialPrefabs);
-            }
-
-            // Set the next instantiation time
-            nextInstantiationTime = Time.time + instantiationInterval;
-        }
-    }
-
-    private void InstantiateRandomPrefab(StructurePrefabWeighted[] prefabs)
-    {
-        if (prefabs.Length == 0)
-            return;
-
-        // Select a random prefab
-        int randomIndex = Random.Range(0, prefabs.Length);
-        GameObject prefab = prefabs[randomIndex].prefab;
-        //CellType cellType = (Random.value < 0.5f) ? CellType.Structure : CellType.SpecialStructure; // Randomly select cell type
-
-        // Generate a random position (you may adjust this based on your game's requirements)
-        Vector3Int position = new Vector3Int(Random.Range(10, 20), 0, Random.Range(10, 20)); // Example position range
-
-        // Instantiate the prefab at the generated position
-        GameObject newObject = Instantiate(prefab, position, Quaternion.identity);
-
-        // Record the object on the map with the selected cell type
-        placementManager.RecordObjectOnTheMap(position, newObject, CellType.Structure);
-
-        // Play the placement sound (if applicable)
-        // AudioPlayer.instance.PlayPlacementSound();
-    }
-}
-
-[System.Serializable]
-public struct StructurePrefabWeighted
-{
-    public GameObject prefab;
-    [Range(0,1)]
-    public float weight;
-}

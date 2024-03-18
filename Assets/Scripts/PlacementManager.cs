@@ -155,9 +155,12 @@ public class PlacementManager : MonoBehaviour
         return false;
     }
 
-    internal void RecordObjectOnTheMap(Vector3Int position, GameObject structurePrefab, CellType type, int width = 1, int height = 1)
+    internal void RecordObjectOnTheMap(Vector3Int position, GameObject structurePrefab, CellType type)
     {
-        StructureModel structure = CreateANewStructureModel(position, structurePrefab, type);
+       
+        placementGrid[position.x, position.z] = type;
+         StructureModel structure = CreateANewStructureModel(position, structurePrefab, type);
+        structureDictionary.Add(position, structure);
 
         // var structureNeedingRoad = structure.GetComponent<INeedingRoad>();
         // if (structureNeedingRoad != null)
@@ -166,16 +169,16 @@ public class PlacementManager : MonoBehaviour
         //     Debug.Log("My nearest road position is: " + structureNeedingRoad.RoadPosition);
         // }
 
-        for (int x = 0; x < width; x++)
-        {
-            for (int z = 0; z < height; z++)
-            {
-                var newPosition = position + new Vector3Int(x, 0, z);
-                placementGrid[newPosition.x, newPosition.z] = type;
-                structureDictionary.Add(newPosition, structure);
-                DestroyNatureAt(newPosition);
-            }
-        }
+        // for (int x = 0; x < width; x++)
+        // {
+            // for (int z = 0; z < height; z++)
+            // {
+                //var newPosition = position + new Vector3Int(x, 0, z);
+                // placementGrid[newPosition.x, newPosition.z] = type;
+                // structureDictionary.Add(newPosition, structure);
+                // DestroyNatureAt(newPosition);
+            //}
+        //}
         
 
     }
@@ -298,7 +301,7 @@ public class PlacementManager : MonoBehaviour
         structure.transform.localPosition = position;
 
         StructureModel structureModel = structure.AddComponent<StructureModel>();
-        structureModel.CreateModel(structurePrefab);
+        //structureModel.CreateModel(structurePrefab);
         return structureModel;
     }
 
