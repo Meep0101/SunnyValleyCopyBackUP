@@ -35,6 +35,7 @@ public class UIController : MonoBehaviour
     public Text SDaysText;
     public Text SnumberOfTreesText;
     public Text SnumberOfVehiclesText;
+   
 
     
 
@@ -69,6 +70,15 @@ public class UIController : MonoBehaviour
         {
             ShowSuccessPanel();
         }
+
+        if (successPanel.activeSelf || gameOverPanel.activeSelf)
+        {
+            Time.timeScale = 0f;
+        }
+        else 
+        {
+            Time.timeScale = 1f;
+        }
     }
 
     private void ShowSuccessPanel()
@@ -97,7 +107,7 @@ public class UIController : MonoBehaviour
     }
             
 
-    private void PlayButtonClicked()
+    public void PlayButtonClicked()
     {
        if(OnPlay != null)
        {
@@ -105,7 +115,7 @@ public class UIController : MonoBehaviour
        }
     }
 
-    private void PauseButtonClicked()
+    public void PauseButtonClicked()
     {
        if(OnPause != null)
        {

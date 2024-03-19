@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1809051, g: 0.22645304, b: 0.30723083, a: 1}
+  m_IndirectSpecularColor: {r: 0.18090543, g: 0.22645362, b: 0.30723208, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -641,7 +641,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 33652827}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 681313529}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+        m_MethodName: PauseButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &33652826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4782,7 +4794,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6eed3ae2a5bc1a742836aa6253731994, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0e6b8d2db9e21bc43bab21e3967f75bb, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -5409,7 +5421,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 477900bffc2f7734c8e3b3181c369d68, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 174000f41628c874d9e058cb36a5d341, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -5904,7 +5916,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 545795593}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 681313529}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+        m_MethodName: PlayButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &545795592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12022,6 +12046,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 618d58c7a8dccc44184229b065d5d341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Camera: {fileID: 0}
+  Rotate: 0
+  DecreaseCameraPanSpeed: 2
+  CameraUpperHeightBound: 0
+  CameraLowerHeightBound: 0
 --- !u!4 &1058882863
 Transform:
   m_ObjectHideFlags: 0
@@ -16925,9 +16954,9 @@ RectTransform:
   - {fileID: 1679244216}
   m_Father: {fileID: 681313533}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000407, y: 162.6}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0.0000407, y: -62.399994}
   m_SizeDelta: {x: 519.67, y: 60.4382}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1448075906
@@ -20676,7 +20705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3dcc63e74160054d966bd3b475f475a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spacing: {x: 0, y: -100}
+  spacing: {x: 0, y: -150}
 --- !u!1 &1803882877
 GameObject:
   m_ObjectHideFlags: 0
@@ -21115,7 +21144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d28c57ca9b13da4790baa496ae65cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadManager: {fileID: 2093395483}
+  roadManager: {fileID: 0}
   scrollAndPinch: {fileID: 1058882862}
   pinchZoom: {fileID: 904782458}
 --- !u!1 &1834718577 stripped
