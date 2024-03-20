@@ -57,8 +57,7 @@ public class GameManager : MonoBehaviour
         // uiController.OnSpecialPlacement += SpecialPlacementHandler;
         uiController.OnRemoveRoad += RemoveRoadHandler;
         inputManager.OnEscape += HandleEscape;
-        uiController.OnPause += TogglePause;
-        uiController.OnPlay += ResumeGame;
+        
         
       uiController = FindObjectOfType<UIController>();
       
@@ -172,67 +171,14 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private void TogglePause()
-    {
-
-        if (!IsGameOver())
-    {
-        isGamePaused = !isGamePaused;
-
-        if(isGamePaused)
-        {
-            PauseGame();
-        }
-        else
-        {
-            ResumeGame();
-        }
-    }
-        // isGamePaused = !isGamePaused;
-
-        // if(isGamePaused)
-        // {
-        //     PauseGame();
-        // }else{
-        //     ResumeGame();
-        // }
-
-
-    }
+ 
 
     private bool IsGameOver()
     {
         return gameOverPanel != null && gameOverPanel.activeSelf;
     }
 
-    public void PauseGame()
-    {
-        
-        //   if (gameOverPanel != null)
-    //{
-        //gameOverPanel.SetActive(true);
-        Time.timeScale = 0f;
-    //}
-    // else
-    // {
-    //     Debug.LogError("Game Panel not assigned");
-    // }
-        
-    }
-
-    public void ResumeGame()
-    {
-       
-    //     if (gameOverPanel != null)
-    // {
-        Time.timeScale = 1f;
-    // }
-    // else
-    // {
-    //     Debug.LogError("Game Panel not assigned");
-    // }
-        
-    }
+    
 
    private void ToggleRoadPlacement()
     {

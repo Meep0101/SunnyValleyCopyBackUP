@@ -26,6 +26,7 @@ public class UIController : MonoBehaviour
     public Text gameOverMessageText;
     public Button pauseButton, playButton;
     public Action OnPause, OnPlay;
+    private bool isPaused = false;
     public PassengerCounter passengerCounter;
     public Text passengerText;
     public GameManager gameManager;
@@ -54,10 +55,9 @@ public class UIController : MonoBehaviour
         placeHouseButton.onClick.AddListener(() => ToggleButton(placeHouseButton, ref roadButtonEnabled, OnHousePlacement));
         placeSpecialButton.onClick.AddListener(() => ToggleButton(placeSpecialButton, ref removeButtonEnabled, OnSpecialPlacement));
 
-        pauseButton.onClick.AddListener(PauseButtonClicked);
-        playButton.onClick.AddListener(PlayButtonClicked);
-
-
+        pauseButton.onClick.AddListener(PauseGame);
+        playButton.onClick.AddListener(ResumeGame);
+        
         // Initialize the roadManager reference
         roadManager = FindObjectOfType<RoadManager>();
     }
@@ -71,7 +71,7 @@ public class UIController : MonoBehaviour
             ShowSuccessPanel();
         }
 
-        if (successPanel.activeSelf || gameOverPanel.activeSelf)
+        if (isPaused || successPanel.activeSelf || gameOverPanel.activeSelf)
         {
             Time.timeScale = 0f;
         }
@@ -79,6 +79,26 @@ public class UIController : MonoBehaviour
         {
             Time.timeScale = 1f;
         }
+
+        // if (isPaused)
+        // {
+        //     // Handle paused state
+        //     Time.timeScale = 0f; // Pause the game
+        // }
+        // else
+        // {
+        //     // Handle running state
+        //     Time.timeScale = 1f; // Resume normal time scale
+        // }
+    }
+
+    private void PauseGame()
+    {
+        isPaused = true;
+    }
+    private void ResumeGame()
+    {
+        isPaused = false;
     }
 
     private void ShowSuccessPanel()
@@ -107,23 +127,7 @@ public class UIController : MonoBehaviour
     }
             
 
-    public void PlayButtonClicked()
-    {
-       if(OnPlay != null)
-       {
-        OnPlay.Invoke();
-       }
-    }
-
-    public void PauseButtonClicked()
-    {
-       if(OnPause != null)
-       {
-        OnPause.Invoke();
-       }
-    }
-
-    private void ToggleButton(Button button, ref bool isEnabled, Action toggleAction = null)
+       private void ToggleButton(Button button, ref bool isEnabled, Action toggleAction = null)
     {
         isEnabled = !isEnabled;
         UpdateButtonState(button, isEnabled);
