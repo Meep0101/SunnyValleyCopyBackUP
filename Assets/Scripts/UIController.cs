@@ -8,8 +8,8 @@ using Unity.VisualScripting;
 
 public class UIController : MonoBehaviour
 {
-    public Action OnRoadPlacement, OnRemoveRoad, OnHousePlacement, OnSpecialPlacement;
-    public Button placeRoadButton, removeRoadButton, placeHouseButton, placeSpecialButton;
+    public Action OnRoadPlacement, OnRemoveRoad;
+    public Button placeRoadButton, removeRoadButton;
 
     public Color outlineColor;
     List<Button> buttonList;
@@ -41,25 +41,22 @@ public class UIController : MonoBehaviour
     
 
 
-    public bool RoadButtonEnabled
-    {
-        get { return roadButtonEnabled; }
-    }
+    
 
     private void Start()
     {
-        buttonList = new List<Button> { placeHouseButton, placeRoadButton, placeSpecialButton, removeRoadButton };
+        buttonList = new List<Button> {placeRoadButton,  removeRoadButton };
 
         placeRoadButton.onClick.AddListener(() => ToggleButton(placeRoadButton, ref roadButtonEnabled, OnRoadPlacement));
         removeRoadButton.onClick.AddListener(() => ToggleButton(removeRoadButton, ref removeButtonEnabled, OnRemoveRoad));
-        placeHouseButton.onClick.AddListener(() => ToggleButton(placeHouseButton, ref roadButtonEnabled, OnHousePlacement));
-        placeSpecialButton.onClick.AddListener(() => ToggleButton(placeSpecialButton, ref removeButtonEnabled, OnSpecialPlacement));
-
+    
         pauseButton.onClick.AddListener(PauseGame);
         playButton.onClick.AddListener(ResumeGame);
         
         // Initialize the roadManager reference
         roadManager = FindObjectOfType<RoadManager>();
+
+         
     }
 
     private void Update()
@@ -80,16 +77,7 @@ public class UIController : MonoBehaviour
             Time.timeScale = 1f;
         }
 
-        // if (isPaused)
-        // {
-        //     // Handle paused state
-        //     Time.timeScale = 0f; // Pause the game
-        // }
-        // else
-        // {
-        //     // Handle running state
-        //     Time.timeScale = 1f; // Resume normal time scale
-        // }
+     
     }
 
     private void PauseGame()
@@ -129,32 +117,56 @@ public class UIController : MonoBehaviour
 
        private void ToggleButton(Button button, ref bool isEnabled, Action toggleAction = null)
     {
-        isEnabled = !isEnabled;
-        UpdateButtonState(button, isEnabled);
 
-        if (isEnabled && toggleAction != null)
-        {
-            toggleAction.Invoke(); // Invoke the corresponding action if enabled
-        }
+
+    // Toggle the isEnabled flag
+    isEnabled = !isEnabled;
+
+    // Update the button state
+    UpdateButtonState(button, isEnabled);
+
+    // Invoke the corresponding action if enabled
+    if (!isEnabled && toggleAction != null)
+    {
+        toggleAction.Invoke();
+    }
+
+    // If the button being toggled is the placeRoadButton or removeRoadButton
+    if (button == placeRoadButton || button == removeRoadButton)
+    {
+        // Deactivate the other button
+        if (button == placeRoadButton)
+            removeButtonEnabled = !isEnabled;
+        else if (button == removeRoadButton)
+            roadButtonEnabled = !isEnabled;
+
+        // Update the state of the other button accordingly
+        UpdateButtonState(placeRoadButton, roadButtonEnabled);
+        UpdateButtonState(removeRoadButton, removeButtonEnabled);
+    }
+    // }
+
+    
+
+   
     }
 
     private void UpdateButtonState(Button button, bool isEnabled)
     {
         var outline = button.GetComponent<Outline>();
+        
+        
         outline.effectColor = isEnabled ? outlineColor : Color.black;
-        outline.enabled = isEnabled;
+        outline.enabled = !isEnabled;
+        
+
+      
+
+        
+   
     }
 
-    public void ResetButtonColor()
-    {
-        foreach (Button button in buttonList)
-        {
-            button.GetComponent<Outline>().enabled = false;
-        }
-
-        roadButtonEnabled = true;
-        removeButtonEnabled = true;
-    }
+    
 
     public void UpdateGameOverPanel(int numberOfDays, int numberOfTrees, int numberOfVehicle, GameManager.GameOverCause gameOverCause)
     {
@@ -192,6 +204,7 @@ public class UIController : MonoBehaviour
       }
     
     }
+    
     
 
     public void RestartButton()

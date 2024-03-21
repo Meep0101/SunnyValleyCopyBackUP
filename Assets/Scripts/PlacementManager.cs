@@ -178,6 +178,8 @@ public class PlacementManager : MonoBehaviour
             FixRoadPrefabs(position, roadFixer);
 
         }
+
+        
         
     }
 

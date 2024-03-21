@@ -7810,8 +7810,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placeRoadButton: {fileID: 504028732}
   removeRoadButton: {fileID: 446221432}
-  placeHouseButton: {fileID: 1325324658}
-  placeSpecialButton: {fileID: 1405492519}
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
   roadManager: {fileID: 2093395483}
   gameOverPanel: {fileID: 1174482087}
