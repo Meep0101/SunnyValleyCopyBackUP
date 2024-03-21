@@ -10,8 +10,7 @@ public class InputManager : MonoBehaviour
     public event Action OnMouseUp, OnEscape;
     private Vector2 mouseMovementVector = Vector2.zero;
     public Vector2 CameraMovementVector { get => mouseMovementVector; }
-    // [SerializeField]
-    // Camera mainCamera;
+   
     
     [SerializeField]
     private Camera isometricCamera;

@@ -34,10 +34,6 @@ public class RoadManager : MonoBehaviour
     {
         
 
-        // if (!uiController.roadButtonEnabled)
-        // {
-        //     return;
-        // }
         if (placementManager.CheckIfPositionInBound(position) == false)
             return;
         if (placementManager.CheckIfPositionIsFree(position) == false)

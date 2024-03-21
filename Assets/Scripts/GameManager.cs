@@ -40,16 +40,7 @@ public class GameManager : MonoBehaviour
     private List<StorageNode> storageNodeList; //Storage Node object
 
 
-     private enum FunctionalityState
-    {
-        None,
-        RoadPlacement,
-        RemoveRoad
-    }
-
-    private FunctionalityState currentFunctionality = FunctionalityState.None;
-
-
+ 
     void Start()
     {
         uiController.OnRoadPlacement += RoadPlacementHandler;
@@ -180,28 +171,7 @@ public class GameManager : MonoBehaviour
 
     
 
-   private void ToggleRoadPlacement()
-    {
-        if (currentFunctionality == FunctionalityState.RoadPlacement)
-        {
-            currentFunctionality = FunctionalityState.None;
-        }else{
-            currentFunctionality = FunctionalityState.RoadPlacement;
-            ClearInputActions();
-            inputManager.OnMouseClick += (pos) =>
-            {
-                ProcessInputAndCall(roadManager.PlaceRoad, pos);
-            };
-            inputManager.OnMouseUp += roadManager.FinishPlacingRoad;
-            inputManager.OnMouseHold += (pos) =>
-            {
-                ProcessInputAndCall(roadManager.PlaceRoad, pos);
-            };
-            inputManager.OnEscape += HandleEscape;
-        }
-    }
-      
-    
+     
     private void RemoveRoadHandler()
     {
         ClearInputActions();
@@ -229,28 +199,7 @@ public class GameManager : MonoBehaviour
        
     }
 
-    // private void SpecialPlacementHandler()
-    // {
-    //     ClearInputActions();
-
-    //     inputManager.OnMouseClick += (pos) =>
-    //     {
-    //         ProcessInputAndCall(structureManager.PlaceSpecial, pos);
-    //     };
-    //     inputManager.OnEscape += HandleEscape;
-    // }
-
-    // private void HousePlacementHandler()
-    // {
-    //     ClearInputActions();
-
-    //     inputManager.OnMouseClick += (pos) =>
-    //     {
-    //         ProcessInputAndCall(structureManager.PlaceHouse, pos);
-    //     };
-    //     inputManager.OnEscape += HandleEscape;
-    // }
-
+    
     private void RoadPlacementHandler()
     {
         ClearInputActions();

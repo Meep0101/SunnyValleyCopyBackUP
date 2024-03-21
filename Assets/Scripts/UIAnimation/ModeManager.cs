@@ -29,7 +29,7 @@ public class ModeManager : MonoBehaviour
                 if (touchCount == 1)
                 {
                     // Disable camera movement on the first touch
-                    //scrollAndPinch.enabled = false;
+                    scrollAndPinch.enabled = false;
                     DisableCameraMovement();
                     
                 }

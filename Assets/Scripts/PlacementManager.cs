@@ -17,27 +17,24 @@ public class PlacementManager : MonoBehaviour
     public GameObject treePrefab;
     public int numberOfTrees = 1; //kung ilan ang spawn
 
-    //private StructureModel selectedRoadObject;
+    
 
     public RoadFixer roadFixer;
 
     public float treeSpawnIntervalMin = 2f;
     public float treeSpawnIntervalMax = 5f;
-    //public GameObject roadPrefab;
-
+   
     private int treeCount = 0;
     public Text treeCountText;
     private int vehicleCount = 0;
 
-    //public RoadManager roadManager;
    
 
     private Dictionary<Vector3Int, StructureModel> temporaryRoadobjects = new Dictionary<Vector3Int, StructureModel>();
     private Dictionary<Vector3Int, StructureModel> structureDictionary = new Dictionary<Vector3Int, StructureModel>();
 
 
-     //private bool placingRoadEnabled = true;
-
+     
      
     private void Start()
     {
@@ -48,8 +45,7 @@ public class PlacementManager : MonoBehaviour
 
         StartCoroutine(SpawnTreesRandomly());
 
-        //roadManager = FindObjectOfType<RoadManager>();
-    }
+            }
 
     void Update()
     {
@@ -60,20 +56,7 @@ public class PlacementManager : MonoBehaviour
     }
 
     
-    
-    // public void TogglePlacingRoad(bool isEnabled)
-    //  {
-    //     placingRoadEnabled = isEnabled;
-    //  }
-
-    //  public void PlaceRoadObject(Vector3Int position)
-    //  {
-    //     if(placingRoadEnabled)
-    //     {
-    //         RecordObjectOnTheMap(position, roadPrefab, CellType.Road, 1, 1);
-    //     }
-    //  }
-    private IEnumerator SpawnTreesRandomly()
+       private IEnumerator SpawnTreesRandomly()
     {
         while (true)
         {
@@ -169,16 +152,7 @@ public class PlacementManager : MonoBehaviour
         //     Debug.Log("My nearest road position is: " + structureNeedingRoad.RoadPosition);
         // }
 
-        // for (int x = 0; x < width; x++)
-        // {
-            // for (int z = 0; z < height; z++)
-            // {
-                //var newPosition = position + new Vector3Int(x, 0, z);
-                // placementGrid[newPosition.x, newPosition.z] = type;
-                // structureDictionary.Add(newPosition, structure);
-                // DestroyNatureAt(newPosition);
-            //}
-        //}
+       
         
 
     }
