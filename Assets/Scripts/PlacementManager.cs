@@ -34,10 +34,21 @@ public class PlacementManager : MonoBehaviour
     private Dictionary<Vector3Int, StructureModel> structureDictionary = new Dictionary<Vector3Int, StructureModel>();
 
 
-    public GameObject[] housePrefabs; // Array of house prefabs to spawn
-    public GameObject[] specialStructurePrefabs; // Array of special structure prefabs to spawn
-    public Vector3Int[] housePositions; // Array of positions for houses
-    public Vector3Int[] specialStructurePositions; // Array of positions for special structures
+    public GameObject RedTerminal; // Array of house prefabs to spawn
+    public GameObject BlueTerminal; // Array of house prefabs to spawn
+    public GameObject YellowTerminal; // Array of house prefabs to spawn
+
+    public GameObject RedStation; // Array of special structure prefabs to spawn
+    public GameObject BlueStation; // Array of special structure prefabs to spawn
+    public GameObject YellowStation; // Array of special structure prefabs to spawn
+
+    public Vector3Int[] RedTerminalPositions; // Array of positions for houses
+    public Vector3Int[] BlueTerminalPositions; // Array of positions for houses
+    public Vector3Int[] YellowTerminalPositions; // Array of positions for houses
+
+    public Vector3Int[] RedStationPositions; // Array of positions for special structures
+    public Vector3Int[] BlueStationPositions; // Array of positions for special structures
+    public Vector3Int[] YellowStationPositions; // Array of positions for special structures
 
     public int structureSpawnInterval;  // Timer spawn interval
 
@@ -65,15 +76,17 @@ public class PlacementManager : MonoBehaviour
     
     private void SpawnStructuresWithInterval()  // private IEnumerator SpawnStructureWithInterval()
     {
-        foreach (Vector3Int housePosition in housePositions)
+        foreach (Vector3Int housePosition in RedTerminalPositions)
         {
-            SpawnStructure(housePrefabs[UnityEngine.Random.Range(0, housePrefabs.Length)], housePosition);
+            SpawnStructure(RedTerminal, housePosition);
+            //SpawnStructure(RedTerminal[UnityEngine.Random.Range(0, RedTerminal.Length)], housePosition);
             //yield return new WaitForSeconds(structureSpawnInterval);
         }
 
-        foreach (Vector3Int specialStructurePosition in specialStructurePositions)
+        foreach (Vector3Int specialStructurePosition in RedStationPositions)
         {
-            SpawnStructure(specialStructurePrefabs[UnityEngine.Random.Range(0, specialStructurePrefabs.Length)], specialStructurePosition);
+            SpawnStructure(RedStation, specialStructurePosition);
+            //SpawnStructure(RedStation[UnityEngine.Random.Range(0, RedStation.Length)], specialStructurePosition);
             //yield return new WaitForSeconds(structureSpawnInterval);
         }
     }

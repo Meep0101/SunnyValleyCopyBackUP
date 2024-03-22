@@ -5744,10 +5744,18 @@ MonoBehaviour:
   treeSpawnIntervalMin: 1
   treeSpawnIntervalMax: 10
   treeCountText: {fileID: 261841691}
-  housePrefabs: []
-  specialStructurePrefabs: []
-  housePositions: []
-  specialStructurePositions: []
+  RedTerminal: {fileID: 0}
+  BlueTerminal: {fileID: 0}
+  YellowTerminal: {fileID: 0}
+  RedStation: {fileID: 0}
+  BlueStation: {fileID: 0}
+  YellowStation: {fileID: 0}
+  RedTerminalPositions: []
+  BlueTerminalPositions: []
+  YellowTerminalPositions: []
+  RedStationPositions: []
+  BlueStationPositions: []
+  YellowStationPositions: []
   structureSpawnInterval: 0
 --- !u!4 &540532164
 Transform:
@@ -12049,6 +12057,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 618d58c7a8dccc44184229b065d5d341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Camera: {fileID: 0}
+  Rotate: 0
+  DecreaseCameraPanSpeed: 2
+  CameraUpperHeightBound: 0
+  CameraLowerHeightBound: 0
 --- !u!4 &1058882863
 Transform:
   m_ObjectHideFlags: 0
@@ -17514,7 +17527,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1493105130
 MonoBehaviour:
   m_ObjectHideFlags: 0
