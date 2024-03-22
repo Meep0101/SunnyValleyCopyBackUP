@@ -34,24 +34,57 @@ public class PlacementManager : MonoBehaviour
     private Dictionary<Vector3Int, StructureModel> structureDictionary = new Dictionary<Vector3Int, StructureModel>();
 
 
-     
-     
+    public GameObject[] housePrefabs; // Array of house prefabs to spawn
+    public GameObject[] specialStructurePrefabs; // Array of special structure prefabs to spawn
+    public Vector3Int[] housePositions; // Array of positions for houses
+    public Vector3Int[] specialStructurePositions; // Array of positions for special structures
+
+    public int structureSpawnInterval;  // Timer spawn interval
+
+
     private void Start()
     {
         placementGrid = new Grid(width, height, cellSize);
-
 
         carbonMeter = FindObjectOfType<CarbonMeter>();
 
         StartCoroutine(SpawnTreesRandomly());
 
-            }
+        SpawnStructuresWithInterval();
+        //StartCoroutine(SpawnStructuresWithInterval());
+    }
 
     void Update()
     {
         if (treeCountText != null)
         {
             treeCountText.text =treeCount.ToString();
+        }
+    }
+
+    
+    private void SpawnStructuresWithInterval()  // private IEnumerator SpawnStructureWithInterval()
+    {
+        foreach (Vector3Int housePosition in housePositions)
+        {
+            SpawnStructure(housePrefabs[UnityEngine.Random.Range(0, housePrefabs.Length)], housePosition);
+            //yield return new WaitForSeconds(structureSpawnInterval);
+        }
+
+        foreach (Vector3Int specialStructurePosition in specialStructurePositions)
+        {
+            SpawnStructure(specialStructurePrefabs[UnityEngine.Random.Range(0, specialStructurePrefabs.Length)], specialStructurePosition);
+            //yield return new WaitForSeconds(structureSpawnInterval);
+        }
+    }
+
+    // Method to spawn a structure (house or special structure) at a specific position
+    private void SpawnStructure(GameObject structurePrefab, Vector3Int position)
+    {
+        if (CheckIfPositionInBound(position) && CheckIfPositionIsFree(position))
+        {
+            GameObject structure = Instantiate(structurePrefab, position, Quaternion.identity);
+            RecordObjectOnTheMap(position, structure, CellType.Structure); // Record the structure on the map
         }
     }
 
