@@ -6,7 +6,7 @@ using CodeMonkey.Utils;
 
 public class StorageNode {
     
-    private Transform storageNodeTransform;
+    private Vector3Int storageNodeTransform;
     private GameResources.StationType storageType;
 
     //Number of vehicle in the storage
@@ -22,7 +22,7 @@ public class StorageNode {
 
 
 
-    public StorageNode (Transform storageNodeTransform, GameResources.StationType storageType) {
+    public StorageNode (Vector3Int storageNodeTransform, GameResources.StationType storageType) {
         this.storageNodeTransform = storageNodeTransform;
         this.storageType = storageType;
         vehicleMax = 2; 
@@ -30,11 +30,11 @@ public class StorageNode {
 
         //FunctionPeriodic.Create(RegenerateSingleVehicleAmount, 2f);  //code monkey utilities
 
-        CMDebug.TextUpdater(() => "" + vehicleNum, Vector3.zero, storageNodeTransform);  //Displays current vehicleNum, code monkey utilities
+        //CMDebug.TextUpdater(() => "" + vehicleNum, Vector3.zero, storageNodeTransform);  //Displays current vehicleNum, code monkey utilities
     }
 
     public Vector3 GetAPosition(){
-        return storageNodeTransform.position; //Doing this so that we can interface directly with the object and never have to deal with transforms
+        return storageNodeTransform; //Doing this so that we can interface directly with the object and never have to deal with transforms
     }
 
     public GameResources.StationType GetStorageType(){

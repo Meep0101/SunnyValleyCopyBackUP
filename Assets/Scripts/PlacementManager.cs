@@ -9,6 +9,8 @@ using UnityEngine.UIElements;
 
 public class PlacementManager : MonoBehaviour
 {
+    private static PlacementManager instance;
+
     public int width, height;
     public float cellSize;
     Grid placementGrid;
@@ -55,6 +57,8 @@ public class PlacementManager : MonoBehaviour
 
     public int structureSpawnInterval;  // Timer spawn interval
 
+    private List<ResourceNode> resourceNodeList; //Resurce Node object
+    private List<StorageNode> storageNodeList; //Storage Node object
 
     private void Start()
     {
@@ -63,6 +67,18 @@ public class PlacementManager : MonoBehaviour
         carbonMeter = FindObjectOfType<CarbonMeter>();
 
         StartCoroutine(SpawnTreesRandomly());
+
+        // SpawnREDWithInterval();
+        // SpawnBLUEWithInterval();
+        // SpawnYELLOWWithInterval();
+        // //StartCoroutine(SpawnStructuresWithInterval());
+    }
+
+    private void Awake()
+    {
+        instance = this;
+        GameResources.Init();
+        resourceNodeList = new List<ResourceNode>();
 
         SpawnREDWithInterval();
         SpawnBLUEWithInterval();
@@ -84,13 +100,14 @@ public class PlacementManager : MonoBehaviour
         foreach (Vector3Int RedPosition in RedTerminalPositions)
         {
             SpawnStructure(RedTerminal, RedPosition);
+            storageNodeList.Add(new StorageNode(RedPosition, GameResources.StationType.Red));
             //SpawnStructure(RedTerminal[UnityEngine.Random.Range(0, RedTerminal.Length)], housePosition);
             //yield return new WaitForSeconds(structureSpawnInterval);
         }
 
         foreach (Vector3Int RStationPosition in RedStationPositions)
         {
-            SpawnStructure(RedStation, RStationPosition);
+            SpawnSpecialStructure(RedStation, RStationPosition);
             //SpawnStructure(RedStation[UnityEngine.Random.Range(0, RedStation.Length)], specialStructurePosition);
             //yield return new WaitForSeconds(structureSpawnInterval);
         }
@@ -101,11 +118,12 @@ public class PlacementManager : MonoBehaviour
         foreach (Vector3Int BluePosition in BlueTerminalPositions)
         {
             SpawnStructure(BlueTerminal, BluePosition);
+            storageNodeList.Add(new StorageNode(BluePosition, GameResources.StationType.Blue));
         }
 
         foreach (Vector3Int BStationPosition in BlueStationPositions)
         {
-            SpawnStructure(BlueStation, BStationPosition);
+            SpawnSpecialStructure(BlueStation, BStationPosition);
         }
     }
 
@@ -114,11 +132,12 @@ public class PlacementManager : MonoBehaviour
         foreach (Vector3Int YellowPosition in YellowTerminalPositions)
         {
             SpawnStructure(YellowTerminal, YellowPosition);
+            storageNodeList.Add(new StorageNode(YellowPosition, GameResources.StationType.Yellow));
         }
 
         foreach (Vector3Int YStationPosition in YellowStationPositions)
         {
-            SpawnStructure(YellowStation, YStationPosition);
+            SpawnSpecialStructure(YellowStation, YStationPosition);
         }
     }
 
@@ -131,6 +150,15 @@ public class PlacementManager : MonoBehaviour
         {
             GameObject structure = Instantiate(structurePrefab, position, Quaternion.identity);
             RecordObjectOnTheMap(position, structure, CellType.Structure); // Record the structure on the map
+        }
+    }
+
+    private void SpawnSpecialStructure(GameObject structurePrefab, Vector3Int position)
+    {
+        if (CheckIfPositionInBound(position) && CheckIfPositionIsFree(position))
+        {
+            GameObject structure = Instantiate(structurePrefab, position, Quaternion.identity);
+            RecordObjectOnTheMap(position, structure, CellType.SpecialStructure); // Record the structure on the map
         }
     }
 
