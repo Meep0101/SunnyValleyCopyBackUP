@@ -61,7 +61,9 @@ public class PlacementManager : MonoBehaviour
 
         StartCoroutine(SpawnTreesRandomly());
 
-        SpawnStructuresWithInterval();
+        SpawnREDWithInterval();
+        SpawnBLUEWithInterval();
+        SpawnYELLOWWithInterval();
         //StartCoroutine(SpawnStructuresWithInterval());
     }
 
@@ -74,22 +76,53 @@ public class PlacementManager : MonoBehaviour
     }
 
     
-    private void SpawnStructuresWithInterval()  // private IEnumerator SpawnStructureWithInterval()
+    private void SpawnREDWithInterval()  // private IEnumerator SpawnStructureWithInterval()
     {
-        foreach (Vector3Int housePosition in RedTerminalPositions)
+        foreach (Vector3Int RedPosition in RedTerminalPositions)
         {
-            SpawnStructure(RedTerminal, housePosition);
+            SpawnStructure(RedTerminal, RedPosition);
             //SpawnStructure(RedTerminal[UnityEngine.Random.Range(0, RedTerminal.Length)], housePosition);
             //yield return new WaitForSeconds(structureSpawnInterval);
         }
 
-        foreach (Vector3Int specialStructurePosition in RedStationPositions)
+        foreach (Vector3Int RStationPosition in RedStationPositions)
         {
-            SpawnStructure(RedStation, specialStructurePosition);
+            SpawnStructure(RedStation, RStationPosition);
             //SpawnStructure(RedStation[UnityEngine.Random.Range(0, RedStation.Length)], specialStructurePosition);
             //yield return new WaitForSeconds(structureSpawnInterval);
         }
     }
+
+    private void SpawnBLUEWithInterval()  // private IEnumerator SpawnStructureWithInterval()
+    {
+        foreach (Vector3Int BluePosition in BlueTerminalPositions)
+        {
+            SpawnStructure(BlueTerminal, BluePosition);
+        }
+
+        foreach (Vector3Int BStationPosition in BlueStationPositions)
+        {
+            SpawnStructure(BlueStation, BStationPosition);
+        }
+    }
+
+    private void SpawnYELLOWWithInterval()  // private IEnumerator SpawnStructureWithInterval()
+    {
+        foreach (Vector3Int YellowPosition in YellowTerminalPositions)
+        {
+            SpawnStructure(YellowTerminal, YellowPosition);
+        }
+
+        foreach (Vector3Int YStationPosition in YellowStationPositions)
+        {
+            SpawnStructure(YellowStation, YStationPosition);
+        }
+    }
+
+
+
+
+
 
     // Method to spawn a structure (house or special structure) at a specific position
     private void SpawnStructure(GameObject structurePrefab, Vector3Int position)

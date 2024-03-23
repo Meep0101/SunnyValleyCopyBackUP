@@ -32,7 +32,7 @@ public class Terminal : MonoBehaviour
         Debug.Log("Initial current count: " + CurrentCount);
         //VehiclesTab = GameObject.Find("VehiclesTab");
         // Ensure that the pop-up tab is initially inactive
-        VehiclesTab.SetActive(false);
+        //VehiclesTab.SetActive(false);
         vehicleSpawner = GetComponent<InstVehicle>();
     }
 

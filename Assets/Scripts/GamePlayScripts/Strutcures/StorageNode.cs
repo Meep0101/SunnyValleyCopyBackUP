@@ -13,10 +13,19 @@ public class StorageNode {
     private int vehicleNum; //Resource amount field to reresent the amount of resources present in a node
     private int vehicleMax = 2;
 
+    public int VehicleNum // Public property
+    {
+        get { return vehicleNum; }
+        private set { vehicleNum = value; }
+    }
+    public bool IsClicked { get; private set; } // Property to track if the terminal is clicked
+
+
+
     public StorageNode (Transform storageNodeTransform, GameResources.StationType storageType) {
         this.storageNodeTransform = storageNodeTransform;
         this.storageType = storageType;
-        //vehicleMax = 3; 
+        vehicleMax = 2; 
         vehicleNum = 0; //Starts with 0 vehicle
 
         //FunctionPeriodic.Create(RegenerateSingleVehicleAmount, 2f);  //code monkey utilities
@@ -73,6 +82,14 @@ public class StorageNode {
         }
     }
 
+
+    private void DecrementCount(int count)
+    {
+        VehicleNum-= count;
+        Debug.Log("Current count: " + VehicleNum);
+        IsClicked = false;
+        //VehiclesTab.SetActive(false);
+    }
 
 
 }

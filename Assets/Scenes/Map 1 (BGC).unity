@@ -12057,11 +12057,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 618d58c7a8dccc44184229b065d5d341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Camera: {fileID: 0}
-  Rotate: 0
-  DecreaseCameraPanSpeed: 2
-  CameraUpperHeightBound: 0
-  CameraLowerHeightBound: 0
 --- !u!4 &1058882863
 Transform:
   m_ObjectHideFlags: 0
@@ -21667,7 +21662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cded365cfc0065b41b084487fd2a0f8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VehiclesTab: {fileID: 691529250}
+  VehiclesTab: {fileID: 0}
   carbonMeter: {fileID: 0}
 --- !u!114 &1893275693
 MonoBehaviour:
