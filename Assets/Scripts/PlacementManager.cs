@@ -33,22 +33,25 @@ public class PlacementManager : MonoBehaviour
     private Dictionary<Vector3Int, StructureModel> temporaryRoadobjects = new Dictionary<Vector3Int, StructureModel>();
     private Dictionary<Vector3Int, StructureModel> structureDictionary = new Dictionary<Vector3Int, StructureModel>();
 
+    // Array (at first) of Terminal prefabs to spawn
+    public GameObject RedTerminal; 
+    public GameObject BlueTerminal; 
+    public GameObject YellowTerminal; 
 
-    public GameObject RedTerminal; // Array of house prefabs to spawn
-    public GameObject BlueTerminal; // Array of house prefabs to spawn
-    public GameObject YellowTerminal; // Array of house prefabs to spawn
+    // Array of Station prefabs to spawn
+    public GameObject RedStation; 
+    public GameObject BlueStation; 
+    public GameObject YellowStation; 
 
-    public GameObject RedStation; // Array of special structure prefabs to spawn
-    public GameObject BlueStation; // Array of special structure prefabs to spawn
-    public GameObject YellowStation; // Array of special structure prefabs to spawn
+    // Array of positions for Terminals
+    public Vector3Int[] RedTerminalPositions; 
+    public Vector3Int[] BlueTerminalPositions; 
+    public Vector3Int[] YellowTerminalPositions; 
 
-    public Vector3Int[] RedTerminalPositions; // Array of positions for houses
-    public Vector3Int[] BlueTerminalPositions; // Array of positions for houses
-    public Vector3Int[] YellowTerminalPositions; // Array of positions for houses
-
-    public Vector3Int[] RedStationPositions; // Array of positions for special structures
-    public Vector3Int[] BlueStationPositions; // Array of positions for special structures
-    public Vector3Int[] YellowStationPositions; // Array of positions for special structures
+    // Array of positions for Stations
+    public Vector3Int[] RedStationPositions; 
+    public Vector3Int[] BlueStationPositions; 
+    public Vector3Int[] YellowStationPositions; 
 
     public int structureSpawnInterval;  // Timer spawn interval
 
@@ -118,9 +121,6 @@ public class PlacementManager : MonoBehaviour
             SpawnStructure(YellowStation, YStationPosition);
         }
     }
-
-
-
 
 
 
