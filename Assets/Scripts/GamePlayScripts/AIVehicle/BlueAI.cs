@@ -97,7 +97,7 @@ public class BlueAI : MonoBehaviour
     private void Update() {
         switch (state) {
         case State.Idle:
-            resourceNode = GameManager.GetResourceNodeType_Static(GameResources.StationType.Blue);    // Finds resources available from the GameHandler
+            resourceNode = PlacementManager.GetResourceNodeType_Static(GameResources.StationType.Blue);    // Finds resources available from the GameHandler
             if (resourceNode != null) { //If there is a station pasengger avalible
                 state = State.MovingToResourceNode;
             }
@@ -113,7 +113,7 @@ public class BlueAI : MonoBehaviour
             if (unit.IsIdle() || !resourceNode.HasPassengers()) {
                 //if (goldInventoryAmount >= 3)
                 if (IsInventoryFull() || !resourceNode.HasPassengers()) { 
-                    storageNode = GameManager.GetStorageNodeType_Static(GameResources.StationType.Blue);
+                    storageNode = PlacementManager.GetStorageNodeType_Static(GameResources.StationType.Blue);
                     if (storageNode != null){
                         state = State.MovingToStorage;
                     }

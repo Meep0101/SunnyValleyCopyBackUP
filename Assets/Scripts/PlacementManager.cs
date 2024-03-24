@@ -162,6 +162,62 @@ public class PlacementManager : MonoBehaviour
         }
     }
 
+
+    private ResourceNode GetResourceNodeType(GameResources.StationType stationType) {
+        //List<Transform> resourceNodeList = new List<Transform>() { goldNode1Transform, goldNode2Transform, goldNode3Transform };
+        
+        List<ResourceNode> tmpResourceNodeList = new List<ResourceNode>(resourceNodeList);      //Clone List only for the use of cycle
+        for (int i = 0; i < tmpResourceNodeList.Count; i++){
+            if (!tmpResourceNodeList[i].HasPassengers() || tmpResourceNodeList[i].GetStationType() != stationType){
+                //No more Resources/Passengers or different type
+                tmpResourceNodeList.RemoveAt(i);
+                i--;
+            }
+        }
+        if (tmpResourceNodeList.Count > 0){
+            return tmpResourceNodeList[UnityEngine.Random.Range(0, tmpResourceNodeList.Count)];     //Return that have resources or passengers
+        } else {
+            return null;
+        }
+    }
+
+    public static ResourceNode GetResourceNodeType_Static(GameResources.StationType stationType) {
+        return instance.GetResourceNodeType(stationType);
+    }
+
+    private StorageNode GetStorageNodeType(GameResources.StationType storageType)
+    {
+        List<StorageNode> tmpStorageNodeList = new List<StorageNode>(storageNodeList);      //Clone List only for the use of cycle
+        for (int i = 0; i < tmpStorageNodeList.Count; i++){
+            if (tmpStorageNodeList[i].GetStorageType() != storageType){
+                //No more Resources/Passengers or different type
+                tmpStorageNodeList.RemoveAt(i);
+                i--;
+            }
+        }
+        if (tmpStorageNodeList.Count > 0){
+            return tmpStorageNodeList[UnityEngine.Random.Range(0, tmpStorageNodeList.Count)];     //Return that have resources or passengers
+        } else {
+            return null;
+        }
+        // foreach (StorageNode storageNode in storageNodeList)
+        // {
+        //     if (storageNode.GetStorageType() == storageType)
+        //     {
+        //         return storageNode;
+        //     }
+        // }
+        // return null;
+        
+    }
+
+    public static StorageNode GetStorageNodeType_Static(GameResources.StationType storageType)
+    {
+        return instance.GetStorageNodeType(storageType);
+    }
+
+
+
     
        private IEnumerator SpawnTreesRandomly()
     {
