@@ -26,15 +26,15 @@ public class GameManager : MonoBehaviour
 
     private bool isGamePaused = false;
 
-    // Station
-    [SerializeField] private Transform[] REDNodeTransformArray;
-    [SerializeField] private Transform[] BLUENodeTransformArray;
-    [SerializeField] private Transform[] YELLOWNodeTransformArray;
+    // // Station
+    // [SerializeField] private Transform[] REDNodeTransformArray;
+    // [SerializeField] private Transform[] BLUENodeTransformArray;
+    // [SerializeField] private Transform[] YELLOWNodeTransformArray;
 
-    // Terminal
-    [SerializeField] private Transform[] RedStorageArray; // New field
-    [SerializeField] private Transform[] BlueStorageArray; // New field
-    [SerializeField] private Transform[] YellowStorageArray; // New field
+    // // Terminal
+    // [SerializeField] private Transform[] RedStorageArray; // New field
+    // [SerializeField] private Transform[] BlueStorageArray; // New field
+    // [SerializeField] private Transform[] YellowStorageArray; // New field
 
     private List<ResourceNode> resourceNodeList; //Resurce Node object
     private List<StorageNode> storageNodeList; //Storage Node object
@@ -52,36 +52,36 @@ public class GameManager : MonoBehaviour
       
     }
 
-    private void Awake() {
-        instance = this;
+    // private void Awake() {
+    //     instance = this;
 
-        GameResources.Init();
+    //     GameResources.Init();
 
-        resourceNodeList = new List<ResourceNode>();
+    //     resourceNodeList = new List<ResourceNode>();
 
-        foreach (Transform REDNodeTransformArray in REDNodeTransformArray){
-            resourceNodeList.Add(new ResourceNode(REDNodeTransformArray, GameResources.StationType.Red));
-        }
-        foreach (Transform BLUENodeTransformArray in BLUENodeTransformArray){
-            resourceNodeList.Add(new ResourceNode(BLUENodeTransformArray, GameResources.StationType.Blue));
-        }
-        foreach (Transform YELLOWNodeTransformArray in YELLOWNodeTransformArray){
-            resourceNodeList.Add(new ResourceNode(YELLOWNodeTransformArray, GameResources.StationType.Yellow));
-        }
+    //     foreach (Transform REDNodeTransformArray in REDNodeTransformArray){
+    //         resourceNodeList.Add(new ResourceNode(REDNodeTransformArray, GameResources.StationType.Red));
+    //     }
+    //     foreach (Transform BLUENodeTransformArray in BLUENodeTransformArray){
+    //         resourceNodeList.Add(new ResourceNode(BLUENodeTransformArray, GameResources.StationType.Blue));
+    //     }
+    //     foreach (Transform YELLOWNodeTransformArray in YELLOWNodeTransformArray){
+    //         resourceNodeList.Add(new ResourceNode(YELLOWNodeTransformArray, GameResources.StationType.Yellow));
+    //     }
 
-        storageNodeList = new List<StorageNode>();
+    //     storageNodeList = new List<StorageNode>();
 
-        foreach (Transform RedStorageArray in RedStorageArray){
-            storageNodeList.Add(new StorageNode(RedStorageArray, GameResources.StationType.Red));
-        }
-        foreach (Transform BlueStorageArray in BlueStorageArray){
-            storageNodeList.Add(new StorageNode(BlueStorageArray, GameResources.StationType.Blue));
-        }
-        foreach (Transform YellowStorageArray in YellowStorageArray){
-            storageNodeList.Add(new StorageNode(YellowStorageArray, GameResources.StationType.Yellow));
-        }
+    //     foreach (Transform RedStorageArray in RedStorageArray){
+    //         storageNodeList.Add(new StorageNode(RedStorageArray, GameResources.StationType.Red));
+    //     }
+    //     foreach (Transform BlueStorageArray in BlueStorageArray){
+    //         storageNodeList.Add(new StorageNode(BlueStorageArray, GameResources.StationType.Blue));
+    //     }
+    //     foreach (Transform YellowStorageArray in YellowStorageArray){
+    //         storageNodeList.Add(new StorageNode(YellowStorageArray, GameResources.StationType.Yellow));
+    //     }
 
-    }
+    // }
 
    
     private ResourceNode GetResourceNodeType(GameResources.StationType stationType) {
