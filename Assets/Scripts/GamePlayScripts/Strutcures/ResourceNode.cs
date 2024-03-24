@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey;
 using CodeMonkey.Utils;
+using System;
 
 public class ResourceNode {
 
@@ -10,19 +11,52 @@ public class ResourceNode {
     private GameResources.StationType stationType;
 
     //Amount of Station
-    private int stationAmount; //Resource amount field to represent the amount of resources present in a node
-    private int stationAmountMax;
+    public int stationAmount; //Resource amount field to represent the amount of resources present in a node
+    public int stationAmountMax;
+    private StationBar stationBar;
 
-    public ResourceNode(Transform stationNodeTransform, GameResources.StationType stationType) {
+    
+    
+    public ResourceNode(Transform stationNodeTransform, GameResources.StationType stationType, StationBar stationBar) 
+    {
         this.stationNodeTransform = stationNodeTransform;
         this.stationType = stationType;
-        stationAmountMax = 3; //Starts with 3 passenger
+        stationAmountMax = 10; //Starts with 3 passenger
         stationAmount = stationAmountMax;
+        stationAmount = 0;
+
+        IncreaseStationAmount();
+
 
         FunctionPeriodic.Create(RegenerateSinglePassengerAmount, 5f);  //code monkey utilities
 
         CMDebug.TextUpdater(() => "" + stationAmount, Vector3.zero, stationNodeTransform);  //Displays current stationAmount, code monkey utilities
+    
+        this.stationBar = stationBar;
+        stationBar.SetResourceNode(this);
+    
     }
+
+    private void IncreaseStationAmount()
+    {
+        FunctionPeriodic.Create(() => 
+        {
+            if (stationAmount < stationAmountMax)
+            {
+                stationAmount++;
+            }
+        }, 5f); //3f is speed of the passenger spawn
+    }
+    // private void DecreaseStationAmount()
+    // {
+    //     FunctionPeriodic.Create(() => 
+    //     {
+    //         if (stationAmount < stationAmountMax)
+    //         {
+    //             stationAmount--;
+    //         }
+    //     }, 5f); //3f is speed of the passenger spawn
+    // }
 
     public Vector3 GetPosition(){
         return stationNodeTransform.position; //Doing this so that we can interface directly with the object and never have to deal with transforms
@@ -33,9 +67,9 @@ public class ResourceNode {
     }
 
     //Decreases Amount of Station Passenger
-    public GameResources.StationType GrabResource(){
-        stationAmount -= 1; // Decrease the resource amount
-
+    public GameResources.StationType GrabResource(StationBar stationBar, int maxPassengerHold){
+        stationAmount -= maxPassengerHold; // Decrease the resource amount by maxPassengerHold
+    stationBar.DecreaseSliderValue(maxPassengerHold);
         //Swap sprites showing decrease visual
         // if (stationAmount <= 0) {
         //     switch (stationType) {
@@ -51,7 +85,9 @@ public class ResourceNode {
         //             break;
         //     }
         // }
+        // Debug.Log("May nakuha na");
         return stationType;
+        
 
         //CMDebug.TextPopupMouse("stationAmount: " + stationAmount);   //using CodeMonkey utilities
     }
