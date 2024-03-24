@@ -7,7 +7,7 @@ using System;
 
 public class ResourceNode {
 
-    private Transform stationNodeTransform;
+    private Vector3Int stationNodeTransform;
     private GameResources.StationType stationType;
 
     //Amount of Station
@@ -17,25 +17,28 @@ public class ResourceNode {
 
     
     
-    public ResourceNode(Transform stationNodeTransform, GameResources.StationType stationType, StationBar stationBar) 
+    public ResourceNode(Vector3Int stationNodeTransform, GameResources.StationType stationType, StationBar stationBar) 
     {
         this.stationNodeTransform = stationNodeTransform;
         this.stationType = stationType;
         stationAmountMax = 10; //Starts with 3 passenger
         stationAmount = stationAmountMax;
         stationAmount = 0;
+        this.stationBar = stationBar;
 
         IncreaseStationAmount();
 
 
         FunctionPeriodic.Create(RegenerateSinglePassengerAmount, 5f);  //code monkey utilities
 
-        CMDebug.TextUpdater(() => "" + stationAmount, Vector3.zero, stationNodeTransform);  //Displays current stationAmount, code monkey utilities
+       // CMDebug.TextUpdater(() => "" + stationAmount, Vector3.zero, stationNodeTransform);  //Displays current stationAmount, code monkey utilities
     
-        this.stationBar = stationBar;
-        stationBar.SetResourceNode(this);
+        
+        //stationBar.SetResourceNode(this);
     
     }
+
+    
 
     private void IncreaseStationAmount()
     {
@@ -58,8 +61,9 @@ public class ResourceNode {
     //     }, 5f); //3f is speed of the passenger spawn
     // }
 
-    public Vector3 GetPosition(){
-        return stationNodeTransform.position; //Doing this so that we can interface directly with the object and never have to deal with transforms
+    public Vector3Int GetPosition(){
+        //return stationNodeTransform.position; //Doing this so that we can interface directly with the object and never have to deal with transforms
+        return new Vector3Int(stationNodeTransform.x, stationNodeTransform.y, stationNodeTransform.z);
     }
 
     public GameResources.StationType GetStationType(){

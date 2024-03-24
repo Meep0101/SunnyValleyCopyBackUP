@@ -167,7 +167,10 @@ namespace CodeMonkey {
             return gameObject;
         }
 
-
+        internal static void TextUpdater(Func<string> value, Vector3 zero, Vector3Int stationNodeTransform)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

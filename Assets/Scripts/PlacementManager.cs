@@ -59,6 +59,7 @@ public class PlacementManager : MonoBehaviour
 
     private List<ResourceNode> resourceNodeList; //Resurce Node object
     private List<StorageNode> storageNodeList; //Storage Node object
+    public StationBar stationBar;
 
     private void Start()
     {
@@ -82,9 +83,7 @@ public class PlacementManager : MonoBehaviour
         storageNodeList = new List<StorageNode>();
 
         // SpawnREDWithInterval();
-        // SpawnBLUEWithInterval();
-        // SpawnYELLOWWithInterval();
-        //StartCoroutine(SpawnStructuresWithInterval());
+       
     }
 
     void Update()
@@ -122,9 +121,10 @@ public class PlacementManager : MonoBehaviour
             storageNodeList.Add(new StorageNode(BluePosition, GameResources.StationType.Blue));
         }
 
-        foreach (Vector3Int BStationPosition in BlueStationPositions)
+        foreach (Vector3Int BlueStationPositions in BlueStationPositions)
         {
-            SpawnSpecialStructure(BlueStation, BStationPosition);
+            SpawnSpecialStructure(BlueStation, BlueStationPositions);
+            resourceNodeList.Add(new ResourceNode(BlueStationPositions, GameResources.StationType.Blue, stationBar));
         }
     }
 

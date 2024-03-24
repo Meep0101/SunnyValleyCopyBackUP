@@ -11,6 +11,8 @@ public class StationBar : MonoBehaviour
 
     // Reference to the ResourceNode instance
     private ResourceNode resourceNode;
+    
+    
 
     public void SetResourceNode(ResourceNode node)
     {
@@ -37,5 +39,7 @@ public class StationBar : MonoBehaviour
     {
         UpdateSliderValue();
     }
+
+    
 
 }
