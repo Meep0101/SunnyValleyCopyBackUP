@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -19,15 +20,19 @@ public class BlueAI : MonoBehaviour
     private StorageNode storageNode;
 
     [SerializeField]
-    private int maxPassengerHold = 3;
+    private int maxPassengerHold = 2;
     [SerializeField]
     private float carbonEmit = 0.2f;
     [SerializeField]
     private float stopDistance = 1f;
     public static int totalCarsSpawned = 0;
+    private StationBar stationBar;
+    public GameObject StationBar;
 
     private Dictionary<GameResources.StationType, int> inventoryAmountDictionary;
     //private TextMeshPro inventoryTextMesh; // besides the AI
+
+
 
     private void Awake() {
         unit = gameObject.GetComponent<IUnit>();
@@ -43,9 +48,15 @@ public class BlueAI : MonoBehaviour
 
         totalCarsSpawned++;
         IncrementCarbonMeter();
+
+       stationBar = FindObjectOfType<StationBar>();
+       if (stationBar == null)
+    {
+        Debug.LogError("StationBar object not found in the scene!");
+    }
     }
 
-     private void IncrementCarbonMeter()
+    private void IncrementCarbonMeter()
     {
         CarbonMeter carbonMeter = FindObjectOfType<CarbonMeter>();
         if (carbonMeter != null)
@@ -151,10 +162,16 @@ public class BlueAI : MonoBehaviour
         }
     }
 
-    private void GrabResourceFromNode() {
-        GameResources.StationType stationType = resourceNode.GrabResource();
-        inventoryAmountDictionary[stationType]++;
-        UpdateInventoryText(); // Text beside the character
-    }
     
+
+    private void GrabResourceFromNode() 
+    {
+         GameResources.StationType stationType = resourceNode.GrabResource(stationBar, maxPassengerHold);
+    inventoryAmountDictionary[stationType]++;
+    UpdateInventoryText(); // Text beside the character
+    Debug.Log("LUMBAS KA");
+    }
 }
+
+
+
