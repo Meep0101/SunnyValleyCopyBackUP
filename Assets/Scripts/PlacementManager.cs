@@ -68,9 +68,9 @@ public class PlacementManager : MonoBehaviour
 
         StartCoroutine(SpawnTreesRandomly());
 
-        // SpawnREDWithInterval();
-        // SpawnBLUEWithInterval();
-        // SpawnYELLOWWithInterval();
+        SpawnREDWithInterval();
+        SpawnBLUEWithInterval();
+        SpawnYELLOWWithInterval();
         // //StartCoroutine(SpawnStructuresWithInterval());
     }
 
@@ -79,10 +79,11 @@ public class PlacementManager : MonoBehaviour
         instance = this;
         GameResources.Init();
         resourceNodeList = new List<ResourceNode>();
+        storageNodeList = new List<StorageNode>();
 
-        SpawnREDWithInterval();
-        SpawnBLUEWithInterval();
-        SpawnYELLOWWithInterval();
+        // SpawnREDWithInterval();
+        // SpawnBLUEWithInterval();
+        // SpawnYELLOWWithInterval();
         //StartCoroutine(SpawnStructuresWithInterval());
     }
 
