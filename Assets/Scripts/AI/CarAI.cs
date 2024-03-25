@@ -100,7 +100,7 @@ private Vector3 laneChangeTarget;
     {
         if(path.Count == 0)
         {
-            Destroy(gameObject);
+            Destroy(gameObject);    // Set to State Idle
             return;
         }
 
@@ -118,6 +118,7 @@ private Vector3 laneChangeTarget;
 
     private void Update()
     {
+        //Movements
         CheckIfArrived();
         Drive();
         CheckForCollisions();

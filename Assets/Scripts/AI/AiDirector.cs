@@ -67,15 +67,15 @@ namespace SimpleCity.AI
                 var startRoadPosition = ((INeedingRoad)startStructure).RoadPosition;
                 var endRoadPosition = ((INeedingRoad)endStructure).RoadPosition;
 
-                var path = placementManager.GetPathBetween(startRoadPosition, endRoadPosition, true);
+                var path = placementManager.GetPathBetween(startRoadPosition, endRoadPosition, true);   //Start dito kunin
                 path.Reverse();
 
                 if (path.Count == 0 && path.Count>2)
                     return;
 
-                var startMarkerPosition = placementManager.GetStructureAt(startRoadPosition).GetCarSpawnMarker(path[1]);
+                var startMarkerPosition = placementManager.GetStructureAt(startRoadPosition).GetCarSpawnMarker(path[1]);    //Gets the startspawn
 
-                var endMarkerPosition = placementManager.GetStructureAt(endRoadPosition).GetCarEndMarker(path[path.Count-2]);
+                var endMarkerPosition = placementManager.GetStructureAt(endRoadPosition).GetCarEndMarker(path[path.Count-2]);   //Gets the endmarker at station
 
                 carPath = GetCarPath(path, startMarkerPosition.Position, endMarkerPosition.Position);
 
