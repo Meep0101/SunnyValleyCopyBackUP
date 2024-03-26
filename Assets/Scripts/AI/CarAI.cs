@@ -21,27 +21,29 @@ public class CarAI : MonoBehaviour
     private GameObject raycastStartingPoint = null;
     [SerializeField]
     private float collisionRaycastLength = 0.1f;
-    private bool completeRoundTrip = false;
+    //private bool completeRoundTrip = false;
     public CarbonMeter carbonMeter;
+
     [SerializeField]
-    private CarSpawner carSpawner;
+    public AiDirector aiDirector;
+    //private CarSpawner carSpawner;
 
-    private float laneChangeTimer = 0f;
+    //private float laneChangeTimer = 0f;
 
-    public GameObject carPrefab;
-     private static CarAI currentCarAI;
+    //public GameObject carPrefab;
+    //private static CarAI currentCarAI;
 
    
-[SerializeField]
-private float laneChangeDuration = 2f;
+// [SerializeField]
+// private float laneChangeDuration = 2f;
 
   // Add a variable to track whether the car is changing lanes
-private bool changingLane = false;
-[SerializeField]
-private float laneChangeDistance = 3f;
+// private bool changingLane = false;
+// [SerializeField]
+// private float laneChangeDistance = 3f;
 
 // Add a variable to store the target position during a lane change
-private Vector3 laneChangeTarget;
+//private Vector3 laneChangeTarget;
 
     internal bool IsThisLastPathIndex()
     {
@@ -74,27 +76,27 @@ private Vector3 laneChangeTarget;
             currentTargetPosition = path[index];
         }
 
-         // You can find the CarbonMeter script in the scene if it's not assigned in the Unity Editor
-        if (carbonMeter == null)
-        {
-            carbonMeter = FindObjectOfType<CarbonMeter>();
-            if (carbonMeter == null)
-            {
-                Debug.LogError("CarbonMeter script not found in the scene!");
-            }
-        }
+        //  // You can find the CarbonMeter script in the scene if it's not assigned in the Unity Editor
+        // if (carbonMeter == null)
+        // {
+        //     carbonMeter = FindObjectOfType<CarbonMeter>();
+        //     if (carbonMeter == null)
+        //     {
+        //         Debug.LogError("CarbonMeter script not found in the scene!");
+        //     }
+        // }
 
-        currentCarAI = this;
+        //currentCarAI = this;
     }
 
-         private void OnDestroy()
-    {
-        // Clear the current car reference when the car is destroyed
-        if (currentCarAI == this)
-        {
-            currentCarAI = null;
-        }
-    }
+    // private void OnDestroy()
+    // {
+    //     // Clear the current car reference when the car is destroyed
+    //     if (currentCarAI == this)
+    //     {
+    //         currentCarAI = null;
+    //     }
+    // }
 
     public void SetPath(List<Vector3> path)
     {
@@ -108,10 +110,9 @@ private Vector3 laneChangeTarget;
         index = 0;
         currentTargetPosition = this.path[index];
 
+        // Sets car position to face on the next target position
         Vector3 relativepoint = transform.InverseTransformPoint(this.path[index + 1]);
-
         float angle = Mathf.Atan2(relativepoint.x, relativepoint.z) * Mathf.Rad2Deg;
-
         transform.rotation = Quaternion.Euler(0, angle, 0);
         Stop = false;
     }
@@ -143,21 +144,22 @@ private Vector3 laneChangeTarget;
     {
         if (Stop)
         {
-            OnDrive?.Invoke(Vector2.zero);
+            OnDrive?.Invoke(Vector2.zero);  // Car will stop , "?" is a listener to avoid Error exception
         }
-        else
+        else    //Move toward nex target point
         {
             Vector3 relativepoint = transform.InverseTransformPoint(currentTargetPosition);
             float angle = Mathf.Atan2(relativepoint.x, relativepoint.z) * Mathf.Rad2Deg;
-            var rotateCar = 0;
+            var rotateCar = 0;  // x value, rotates the car. If zero = no rotation
             if(angle > turningAngleOffset)
             {
-                rotateCar = 1;
+                rotateCar = 1;  //Rotate RIGHT
             }else if(angle < -turningAngleOffset)
             {
-                rotateCar = -1;
+                rotateCar = -1; //Rotate LEFT
             }
-            OnDrive?.Invoke(new Vector2(rotateCar, 1));
+            //Whether there will be rotation or none:
+            OnDrive?.Invoke(new Vector2(rotateCar, 1)); // (x, y), 1 since go forward
         }
     }
 
@@ -166,63 +168,34 @@ private Vector3 laneChangeTarget;
         if(Stop == false)
         {
             var distanceToCheck = arriveDistance;
-            if(index == path.Count - 1)
+            if(index == path.Count - 1) // Last Point in the Path
             {
-                distanceToCheck = lastPointArriveDistance;
+                distanceToCheck = lastPointArriveDistance;  // Switched
             }
             if(Vector3.Distance(currentTargetPosition,transform.position) < distanceToCheck)
             {
                 SetNextTargetIndex();
-                
             }
         }
     }
 
 
-
     private void SetNextTargetIndex() //line 139-199 orig code
     {
-
         index++;
-    if (index >= path.Count)
-    {
-        // Check if the car has completed a round trip and arrived back at the starting point
-        if (completeRoundTrip && IsThisLastPathIndex())
+        if (index >= path.Count)
         {
-            carbonMeter.IncreaseCarbonMeter();
-            // Destroy the car when it completes the round trip
-            Destroy(gameObject);
-            Debug.Log("Car destroyed at the starting point.");
-            return;
+            carbonMeter.IncreaseCarbonMeter(); // Increase carbon meter value
+            Stop = true;
+            Destroy(gameObject);            //Possible to change: State.Idle()
+            Debug.Log("Nagdestroy na ba ang ferson?");
+            
         }
-
-        // Reverse the path to make the car go back
-        List<Vector3> reversedPath = new List<Vector3>(path);
-        reversedPath.Reverse();
-
-        // Set the reversed path as the new path for the car
-        SetPath(reversedPath);
-
-        // Reset the index to start from the beginning of the reversed path
-        index = 0;
-        completeRoundTrip = true;
-
-       
-        
-        carbonMeter.IncreaseCarbonMeter();
-
-        // Display debug message
-        Debug.Log("Car is going back to the original starting point.");
-        // Change the rotation of the car when going back to the starting point
-        
+        else
+        {
+            currentTargetPosition = path[index];
+        }
     }
-    else
-    {
-        currentTargetPosition = path[index];
-    }
-    }
-
-
 }
 
 

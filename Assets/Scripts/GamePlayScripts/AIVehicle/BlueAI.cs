@@ -166,10 +166,10 @@ public class BlueAI : MonoBehaviour
 
     private void GrabResourceFromNode() 
     {
-         GameResources.StationType stationType = resourceNode.GrabResource(stationBar, maxPassengerHold);
-    inventoryAmountDictionary[stationType]++;
-    UpdateInventoryText(); // Text beside the character
-    Debug.Log("LUMBAS KA");
+        GameResources.StationType stationType = resourceNode.GrabResource(stationBar, maxPassengerHold);
+        inventoryAmountDictionary[stationType]++;
+        UpdateInventoryText(); // Text beside the character
+        Debug.Log("LUMBAS KA");
     }
 }
 
