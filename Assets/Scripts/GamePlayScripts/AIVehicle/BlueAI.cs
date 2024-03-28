@@ -27,7 +27,7 @@ public class BlueAI : MonoBehaviour
     private float stopDistance = 1f;
     public static int totalCarsSpawned = 0;
     private StationBar stationBar;
-    public GameObject StationBar;
+    
 
     private Dictionary<GameResources.StationType, int> inventoryAmountDictionary;
     //private TextMeshPro inventoryTextMesh; // besides the AI
@@ -47,11 +47,8 @@ public class BlueAI : MonoBehaviour
         totalCarsSpawned++;
         IncrementCarbonMeter();
 
-        stationBar = FindObjectOfType<StationBar>();
-        if (stationBar == null)
-        {
-            Debug.LogError("StationBar object not found in the scene!");
-        }
+        
+        
     }
 
     private void IncrementCarbonMeter()
