@@ -63,7 +63,8 @@ public class ResourceNode {
     //Decreases Amount of Station Passenger
     public GameResources.StationType GrabResource(StationBar stationBar, int maxPassengerHold){
         stationAmount -= maxPassengerHold; // Decrease the resource amount by maxPassengerHold
-    stationBar.DecreaseSliderValue(maxPassengerHold);
+    
+    
         //Swap sprites showing decrease visual
         // if (stationAmount <= 0) {
         //     switch (stationType) {
