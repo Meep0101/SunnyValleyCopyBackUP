@@ -50,17 +50,7 @@ public class ResourceNode {
             }
         }, 5f); //3f is speed of the passenger spawn
     }
-    // private void DecreaseStationAmount()
-    // {
-    //     FunctionPeriodic.Create(() => 
-    //     {
-    //         if (stationAmount < stationAmountMax)
-    //         {
-    //             stationAmount--;
-    //         }
-    //     }, 5f); //3f is speed of the passenger spawn
-    // }
-
+ 
     public Vector3Int GetPosition(){
         //return stationNodeTransform.position; //Doing this so that we can interface directly with the object and never have to deal with transforms
         return new Vector3Int(stationNodeTransform.x, stationNodeTransform.y, stationNodeTransform.z);

@@ -145,7 +145,7 @@ public class PlacementManager : MonoBehaviour
 
 
     // Method to spawn a structure (house or special structure) at a specific position
-    private void SpawnStructure(GameObject structurePrefab, Vector3Int position)
+    private void SpawnStructure(GameObject structurePrefab, Vector3Int position) //station
     {
         if (CheckIfPositionInBound(position) && CheckIfPositionIsFree(position))
         {
@@ -154,7 +154,7 @@ public class PlacementManager : MonoBehaviour
         }
     }
 
-    private void SpawnSpecialStructure(GameObject structurePrefab, Vector3Int position)
+    private void SpawnSpecialStructure(GameObject structurePrefab, Vector3Int position) //terminal
     {
         if (CheckIfPositionInBound(position) && CheckIfPositionIsFree(position))
         {
