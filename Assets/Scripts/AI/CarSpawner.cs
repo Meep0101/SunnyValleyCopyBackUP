@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class CarSpawner : MonoBehaviour
+public class CarSpawner : MonoBehaviour //Attached on the car prefab
 {
     public GameObject[] carPrefabs;
 

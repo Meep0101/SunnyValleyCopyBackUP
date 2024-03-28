@@ -32,8 +32,6 @@ public class BlueAI : MonoBehaviour
     private Dictionary<GameResources.StationType, int> inventoryAmountDictionary;
     //private TextMeshPro inventoryTextMesh; // besides the AI
 
-
-
     private void Awake() {
         unit = gameObject.GetComponent<IUnit>();
         state = State.Idle;
@@ -49,11 +47,11 @@ public class BlueAI : MonoBehaviour
         totalCarsSpawned++;
         IncrementCarbonMeter();
 
-       stationBar = FindObjectOfType<StationBar>();
-       if (stationBar == null)
-    {
-        Debug.LogError("StationBar object not found in the scene!");
-    }
+        stationBar = FindObjectOfType<StationBar>();
+        if (stationBar == null)
+        {
+            Debug.LogError("StationBar object not found in the scene!");
+        }
     }
 
     private void IncrementCarbonMeter()
@@ -65,7 +63,6 @@ public class BlueAI : MonoBehaviour
         }
     }
 
-    
 
     public static void ResetTotalCarsSpawned()
     {

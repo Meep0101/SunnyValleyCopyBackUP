@@ -22,7 +22,7 @@ public class CarAI : MonoBehaviour
     [SerializeField]
     private float collisionRaycastLength = 0.1f;
     //private bool completeRoundTrip = false;
-    public CarbonMeter carbonMeter;
+    //public CarbonMeter carbonMeter;
 
     [SerializeField]
     public AiDirector aiDirector;
@@ -76,17 +76,6 @@ public class CarAI : MonoBehaviour
             currentTargetPosition = path[index];
         }
 
-        //  // You can find the CarbonMeter script in the scene if it's not assigned in the Unity Editor
-        // if (carbonMeter == null)
-        // {
-        //     carbonMeter = FindObjectOfType<CarbonMeter>();
-        //     if (carbonMeter == null)
-        //     {
-        //         Debug.LogError("CarbonMeter script not found in the scene!");
-        //     }
-        // }
-
-        //currentCarAI = this;
     }
 
     // private void OnDestroy()
@@ -111,9 +100,9 @@ public class CarAI : MonoBehaviour
         currentTargetPosition = this.path[index];
 
         // Sets car position to face on the next target position
-        Vector3 relativepoint = transform.InverseTransformPoint(this.path[index + 1]);
+        Vector3 relativepoint = transform.InverseTransformPoint(this.path[index + 1]);  //this.path[index + 1] is the next position on the path
         float angle = Mathf.Atan2(relativepoint.x, relativepoint.z) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, angle, 0);
+        transform.rotation = Quaternion.Euler(0, angle, 0); // Sets the facing angle of spawned car. Rotates on the Y-axis
         Stop = false;
     }
 
@@ -137,8 +126,6 @@ public class CarAI : MonoBehaviour
             collisionStop = false;
         }
     }
-
-    
 
     private void Drive()
     {
@@ -180,12 +167,12 @@ public class CarAI : MonoBehaviour
     }
 
 
-    private void SetNextTargetIndex() //line 139-199 orig code
+    private void SetNextTargetIndex() 
     {
         index++;
         if (index >= path.Count)
         {
-            carbonMeter.IncreaseCarbonMeter(); // Increase carbon meter value
+            //carbonMeter.IncreaseCarbonMeter(); // Increase carbon meter value
             Stop = true;
             Destroy(gameObject);            //Possible to change: State.Idle()
             Debug.Log("Nagdestroy na ba ang ferson?");
